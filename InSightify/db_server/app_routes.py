@@ -6,4 +6,5 @@ from InSightify.db_server.app_resources import *
 api.add_resource(Foo, '/foo')
 api.add_resource(Bar, '/bar')
 api.add_resource(SignUp, '/signup')
+api.add_resource(Login, '/login')
 print("Routes registered successfully")  # Debug print

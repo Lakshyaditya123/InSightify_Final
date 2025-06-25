@@ -2,6 +2,7 @@
 # app_resources.py - UPDATED VERSION
 """Define all the classes here for each page element"""
 from InSightify.db_server.resource_decorator import Resource, app_logger
+from InSightify.service_handler import *
 from flask import request
 import json
 
@@ -34,12 +35,32 @@ class SignUp(Resource):
     def post():
         try:
             app_logger.info("SignUp POST method called")
-            return {'errCode': 0, 'msg': 'In SignUp Function', 'datarec': request.get_json()}
+            signup= SignupHelper()
+            data=request.get_json()
+            return signup.signup(data)
         except Exception as e:
             app_logger.error(f"Error in SignUp POST: {str(e)}")
-            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
 
     @staticmethod
     def get():
         app_logger.info("SignUp GET method called")
         return {'errCode': 0, 'msg': 'SignUp GET method working'}
+
+class Login(Resource):
+    @staticmethod
+    def post():
+        try:
+            app_logger.info("Login POST method called")
+            login= LoginHelper()
+            data=request.get_json()
+            return login.login(data)
+        except Exception as e:
+            app_logger.error(f"Error in Login POST: {str(e)}")
+
+    @staticmethod
+    def get():
+        app_logger.info("Login GET method called")
+        return {'errCode': 0, 'msg': 'Login GET method working'}
+
+
+
