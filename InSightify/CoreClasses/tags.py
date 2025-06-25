@@ -49,13 +49,15 @@ class TagCRUD(BaseCRUD):
         return self.get_by_fields(status=1)
 
     def search_tags(self, search_term):
-        try:
-            return self.db_session.query(self.model).filter(
-                or_(
-                    self.model.name.ilike(f"%{search_term}%"),
-                    self.model.tag_desc.ilike(f"%{search_term}%")
-                )
-            ).all()
-        except SQLAlchemyError as e:
-            print(f"Error searching tags: {str(e)}")
-            return []
+        result=self.db_session.query(self.model).filter(
+            or_(
+                self.model.name.ilike(f"%{search_term}%"),
+                self.model.tag_desc.ilike(f"%{search_term}%")
+            )
+        ).all()
+        if result:
+            self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+        else:
+            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+        return self.db_response.send_response()
+

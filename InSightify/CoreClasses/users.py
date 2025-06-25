@@ -38,7 +38,7 @@ class UserCRUD(BaseCRUD):
         return self.create(
             name=name,
             email=email,
-            mob_number=mobile,
+            mobile=mobile,
             password=password,
             this_obj2security_ques=security_question_id,
             security_ques_answer=security_answer,
@@ -53,15 +53,5 @@ class UserCRUD(BaseCRUD):
 
     def update_profile(self, user_id, **kwargs):
         return self.update(user_id, **kwargs)
-
-    def authenticate_user(self, email, password):
-        try:
-            user = self.get_by_email(email)
-            if user and user.password == password:
-                return user
-            return None
-        except Exception as e:
-            print(f"Authentication error: {str(e)}")
-            return None
 
 

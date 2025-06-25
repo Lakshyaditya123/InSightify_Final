@@ -46,7 +46,7 @@ class User(Base, TimestampMixin):
     this_obj2security_ques = Column(SmallInteger, ForeignKey('in_use.security_ques.id'), nullable=False)
     name = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
-    mob_number = Column(String, nullable=False, unique=True)
+    mobile = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     security_ques_answer = Column(String, nullable=False)
     profile_picture = Column(String, nullable=False, unique=True)
