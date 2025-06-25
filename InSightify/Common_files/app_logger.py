@@ -22,7 +22,7 @@ class Logger:  # Capitalized class name following Python conventions
         self.log.handlers.clear()
 
         # Log file handler
-        file_handler = lg.FileHandler(filename=log_file, mode="w")
+        file_handler = lg.FileHandler(filename=log_file, mode="a")
         formatter = JsonFormatter("%(asctime)s %(levelname)s %(message)s")
         file_handler.setFormatter(formatter)
         self.log.addHandler(file_handler)

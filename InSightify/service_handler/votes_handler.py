@@ -12,25 +12,22 @@ class VoteHelper:
 
     def update_vote(self, vote):
         if vote['user_id'] and vote['vote_type'] and (vote['idea_id'] or vote['comment_id']):
-            check = self.vote_crud.update_vote(**vote)
-            if type(check)!=str:
-                self.response.get_response(0, "Idea created successfully")
-            else:
+            self.vote_crud.update_vote(**vote)
+            if self.vote_crud.commit_it()["error_code"]:
                 self.response.get_response(500, "Internal Server Error")
+            else:
+                self.response.get_response(0, "Vote created successfully")
         else:
-            self.response.get_response(400, "user_id, subject and content are required")
+            self.response.get_response(400, "user_id, vote_type and idea_id/comment_id are required")
         return self.response.send_response()
 
     def vote_display(self, vote):
-        vote_cnt = self.vote_crud.get_vote_count(**vote)
+        vote_cnt = self.vote_crud.get_vote_count(**vote)["obj"]
         # vote type for that user
-        if type(vote_cnt) != str:
-            if vote_cnt:
-                self.response.get_response(0, "Found votes", data_rec=vote_cnt)
-            else:
-                self.response.get_response(400, "No votes found")
+        if vote_cnt:
+            self.response.get_response(0, "Found votes", data_rec=vote_cnt)
         else:
-            self.response.get_response(500, "Internal Server Error")
+            self.response.get_response(400, "No votes found")
         return self.response.send_response()
 
 

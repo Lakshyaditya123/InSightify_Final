@@ -143,6 +143,8 @@
 #         if not obj:
 #             return None
 #         return {column.name: getattr(obj, column.name) for column in obj.__table__.columns}
+from datetime import datetime
+
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from InSightify.db_server.Flask_app import app_logger
 from sqlalchemy import desc, asc
@@ -237,16 +239,23 @@ class BaseCRUD:
         return self.db_response.send_response()
 
     @staticmethod
-    def convert_to_dict_list(objects):
-        if not objects:
-            return []
-        return [{column.name: getattr(obj, column.name) for column in obj.__table__.columns} for obj in objects]
-
-    @staticmethod
     def convert_to_dict(obj):
         if not obj:
             return None
-        return {column.name: getattr(obj, column.name) for column in obj.__table__.columns}
+        result = {}
+        for column in obj.__table__.columns:
+            value = getattr(obj, column.name)
+            if isinstance(value, datetime):
+                result[column.name] = value.isoformat()
+            else:
+                result[column.name] = value
+        return result
+
+    @staticmethod
+    def convert_to_dict_list(objects):
+        if not objects:
+            return []
+        return [BaseCRUD.convert_to_dict(obj) for obj in objects]
 
     def commit_it(self):
         try:
