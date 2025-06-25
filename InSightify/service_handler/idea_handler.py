@@ -33,18 +33,18 @@ class IdeaHelper:
             # Find relevant tags here,
             # put tags and pray to god things work out...
             # have to see if the tag that has been added by the user is already there or not... and add it here
-        self.response.send_response()
+        return self.response.send_response()
 
     def idea_display(self, idea_id):
-            idea=self.idea_crud.get_by_id(**idea_id)
-            if type(idea)!= str:
-                if idea:
-                    self.response.get_response(0,"Found Idea", data_rec = self.idea_crud.convert_to_dict(idea))
-                else:
-                    self.response.get_response(400, "No idea found")
+        idea=self.idea_crud.get_by_id(**idea_id)
+        if type(idea)!= str:
+            if idea:
+                self.response.get_response(0,"Found Idea", data_rec = self.idea_crud.convert_to_dict(idea))
             else:
-                self.response.get_response(500, "Internal Server Error")
-            self.response.send_response()
+                self.response.get_response(400, "No idea found")
+        else:
+            self.response.get_response(500, "Internal Server Error")
+        return self.response.send_response()
         # pass username, pf pic and tags
 
 

@@ -24,7 +24,7 @@ class CommentHelper:
                 self.response.get_response(400, "Either idea id or merged idea id is required")
         else:
             self.response.get_response(400, "user_id and content are required")
-        self.response.send_response()
+        return self.response.send_response()
 
     @staticmethod
     def format_comments(comments):
@@ -52,7 +52,7 @@ class CommentHelper:
                 self.response.get_response(500, "Internal Server Error")
         else:
             self.response.get_response(400, "No idea ID provided")
-        self.response.send_response()
+        return self.response.send_response()
 
 
 
