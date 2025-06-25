@@ -14,7 +14,7 @@
           "builder": "@angular/build:application",
           "options": {
             "scripts": ["node_modules/jquery/dist/jquery.min.js",
-  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
+                        "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -79,10 +79,8 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+
+              "src/assets"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
