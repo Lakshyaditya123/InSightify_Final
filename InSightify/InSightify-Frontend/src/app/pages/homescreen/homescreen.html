@@ -1,0 +1,105 @@
+<div class="homescreen-container">
+  <app-navbar></app-navbar>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Wall / Idea Feed -->
+    <section class="wall col-8">
+      <div class="main-idea-card">
+        <div class="idea-row-scroll">
+          <div
+            *ngFor="let card of ideaCards"
+            class="idea-card"
+            [ngClass]="card.size"
+          >
+            <div (click)="open_ticket_details_modal(card)" style="cursor: pointer;">
+              <h5 class="idea-title">{{ card.title }}</h5>
+              <p class="idea-subject">{{ card.subject }}</p>
+            </div>
+            <div class="idea-actions">
+              <button class="icon-btn">
+                <i class="bi bi-chat"></i> {{ card.comments }}
+              </button>
+              <button class="icon-btn">
+                <i class="bi bi-hand-thumbs-up"></i> {{ card.upvotes }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar / My Space -->
+    <aside class="sidebar col-3">
+      <div class="sidebar-title">MY SPACE:</div>
+      <div class="my-ideas">
+        <div class="my-idea">
+          <span class="dot purple"></span>
+          <span class="idea-name">IDEA NAME</span>
+          <button class="icon-btn"><i class="bi bi-lightbulb"></i></button>
+        </div>
+        <div class="my-idea">
+          <span class="dot yellow"></span>
+          <span class="idea-name">IDEA NAME</span>
+          <button class="icon-btn"><i class="bi bi-lightbulb"></i></button>
+        </div>
+      </div>
+      <hr />
+      <button class="add-more-btn">＋ ADD MORE</button>
+    </aside>
+  </main>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="ticket_details_modal"
+  tabindex="-1"
+  aria-labelledby="ticketDetailsModalLabel"
+  aria-hidden="true"
+  (hidden.bs.modal)="onModalHidden()"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ticketDetailsModalLabel">
+          {{ selectedCard?.title || 'Idea Details' }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Your idea-details component -->
+        <app-idea-details
+          *ngIf="selectedCard"
+          [cardData]="selectedCard"
+        ></app-idea-details>
+
+        <!-- Fallback content if no card is selected -->
+        <div *ngIf="!selectedCard" class="text-center p-4">
+          <p>Loading idea details...</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="close_ticket_details_modal()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          *ngIf="selectedCard"
+        >
+          Edit Idea
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

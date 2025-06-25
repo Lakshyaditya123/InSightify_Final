@@ -1,0 +1,38 @@
+.custom-navbar {
+  background-color: rgb(14, 12, 12); /* Dark clean background */
+  padding: 10px 20px;
+}
+
+.navbar-brand{
+  height: 70px;
+  width: auto;
+}
+
+.nav-img{
+  height: 90px;
+  width:auto;
+}
+
+.navbar-brand span {
+  color: #f1f1f1;
+}
+
+.search-bar input {
+  width: 200px;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: #f1f1f1;
+}
+
+.dropdown-menu {
+  background-color: #1e1e1e;
+  color: white;
+  border-radius: 10px;
+}
+.form-check-label {
+  color: white;
+}
+
