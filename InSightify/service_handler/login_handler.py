@@ -20,7 +20,7 @@ class LoginHelper:
                 else:
                     self.response.get_response(1,"Username and password are incorrect")
             else:
-                self.response.get_response(2, "User not found")
+                self.response.get_response(404, "User not found")
         else:
             self.response.get_response(400, "Username and password are required")
         self.response.send_response()
@@ -35,7 +35,7 @@ class LoginHelper:
                     else:
                         self.response.get_response(1,"Security_question or answer is incorrect")
                 else:
-                    self.response.get_response(2,"User not found")
+                    self.response.get_response(404,"User not found")
             else:
                 self.response.get_response(400, "email and sec_ques and answer are required")
             self.response.send_response()
