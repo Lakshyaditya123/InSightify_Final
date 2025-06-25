@@ -18,7 +18,7 @@ class LoginHelper:
                     #token = create_access_token(identity={"user_name": self.username, "user_id": self.user_rec.id}, expires_delta=timedelta(days=1))
                     self.response.get_response(0,"Login Successful", data_rec=self.user_crud.convert_to_dict(user_rec)) #pass the token here
                 else:
-                    self.response.get_response(1,"Username and password are incorrect")
+                    self.response.get_response(1,"Username or password is incorrect")
             else:
                 self.response.get_response(404, "User not found")
         else:

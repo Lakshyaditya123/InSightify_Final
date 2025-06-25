@@ -263,8 +263,8 @@ class BaseCRUD:
                     self.db_response.get_response(error_code=23503, msg="Foreign Key Violation")
             app_logger.error(f"Error committing transaction for {self.model.__name__}: {str(e)}")
             self.db_response.get_response(error_code=1, msg="Database Integrity Error")
-        finally:
-            return self.db_response.send_response()
+
+        return self.db_response.send_response()
 
 
 # from sqlalchemy.exc import SQLAlchemyError, IntegrityError

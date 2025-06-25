@@ -39,7 +39,8 @@ class SignUp(Resource):
             data=request.get_json()
             return signup.signup(data)
         except Exception as e:
-            app_logger.error(f"Error in SignUp POST: {str(e)}")
+            app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
 
     @staticmethod
     def get():
@@ -55,7 +56,8 @@ class Login(Resource):
             data=request.get_json()
             return login.login(data)
         except Exception as e:
-            app_logger.error(f"Error in Login POST: {str(e)}")
+            app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
 
     @staticmethod
     def get():
@@ -71,6 +73,8 @@ class VoteUpdate(Resource):
             data=request.get_json()
             return vote.update_vote(data)
         except Exception as e:
+            app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
             app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
     @staticmethod
     def get():

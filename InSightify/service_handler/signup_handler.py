@@ -17,14 +17,12 @@ class SignupHelper:
         if  data['name'] and data['email'] and data['mobile'] and data['password'] and  data['security_question_id'] and data['security_answer'] and data['profile_picture']:
             user_rec=self.user_crud.get_by_email(data['email'])["obj"]
             if user_rec:
-                self.response.get_response(3, "Try logging in or forgot password")
+                self.response.get_response(3, "User already exists with this email")
             else:
                 self.user_crud.create_user(**data)
-                if not self.user_crud.commit_it()["error_code"]:
-                    self.response.get_response(0, "User created successfully")
-                else:
+                if self.user_crud.commit_it()["error_code"]:
                     self.response.get_response(500, "Internal Server Error")
-        else:
-            self.response.get_response(2, "email, mobile, password, security_question and security_answer are required")
-        self.response.send_response()
+                else:
+                    self.response.get_response(0, "User created successfully")
+        return self.response.send_response()
 # have to encrypt password, email, mobile number, sec answer

@@ -7,7 +7,7 @@ class ResponseHandler:
         self.response = {"error_code": error_code, "msg": msg if msg else "No Message", "data": data if data else [],"datarec": data_rec if data_rec else {}}
 
     def send_response(self):
-        return jsonify(self.response)
+        return self.response
 
 
 class DatabaseResponse:
