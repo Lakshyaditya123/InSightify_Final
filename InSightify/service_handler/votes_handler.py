@@ -19,7 +19,7 @@ class VoteHelper:
                 self.response.get_response(500, "Internal Server Error")
         else:
             self.response.get_response(400, "user_id, subject and content are required")
-        self.response.send_response()
+        return self.response.send_response()
 
     def vote_display(self, vote):
         vote_cnt = self.vote_crud.get_vote_count(**vote)
@@ -31,6 +31,6 @@ class VoteHelper:
                 self.response.get_response(400, "No votes found")
         else:
             self.response.get_response(500, "Internal Server Error")
-        self.response.send_response()
+        return self.response.send_response()
 
 

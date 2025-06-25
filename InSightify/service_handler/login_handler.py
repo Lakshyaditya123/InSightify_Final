@@ -23,22 +23,22 @@ class LoginHelper:
                 self.response.get_response(404, "User not found")
         else:
             self.response.get_response(400, "Username and password are required")
-        self.response.send_response()
+        return self.response.send_response()
 
     def forgot_passwd(self, data):
-            if data['email'] and data['sec_ques'] and data['answer'] in data:
-                user_rec=self.user_crud.get_by_email(data['email'])["obj"]
-                if user_rec:
-                    if user_rec.sec_ques == data['sec_ques'] and user_rec.answer == data['answer']:
-                        self.response.get_response(0, "Yupp you are the one...")
-                        self.reset_password(data)
-                    else:
-                        self.response.get_response(1,"Security_question or answer is incorrect")
+        if data['email'] and data['sec_ques'] and data['answer'] in data:
+            user_rec=self.user_crud.get_by_email(data['email'])["obj"]
+            if user_rec:
+                if user_rec.sec_ques == data['sec_ques'] and user_rec.answer == data['answer']:
+                    self.response.get_response(0, "Yupp you are the one...")
+                    self.reset_password(data)
                 else:
-                    self.response.get_response(404,"User not found")
+                    self.response.get_response(1,"Security_question or answer is incorrect")
             else:
-                self.response.get_response(400, "email and sec_ques and answer are required")
-            self.response.send_response()
+                self.response.get_response(404,"User not found")
+        else:
+            self.response.get_response(400, "email and sec_ques and answer are required")
+        return self.response.send_response()
 
     def reset_password(self, data):
         user_rec=self.user_crud.get_by_email(data['email'])["obj"]
@@ -48,7 +48,7 @@ class LoginHelper:
         else:
             self.response.get_response(2,"User not found")
 
-        self.response.send_response()
+        return self.response.send_response()
 
 
 

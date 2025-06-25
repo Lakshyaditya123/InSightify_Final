@@ -34,7 +34,7 @@ class WallHelper:
                 self.response.get_response(2, "No Ideas Found")
         else:
             self.response.get_response(500, "Internal Server Error")
-        self.response.send_response()
+        return self.response.send_response()
 
     def load_wall_without_child(self, status):
         all_ideas = self.idea_crud.get_by_status(**status) # remove child ideas
@@ -48,7 +48,7 @@ class WallHelper:
                 self.response.get_response(2, "No Ideas Found")
         else:
             self.response.get_response(500, "Internal Server Error")
-        self.response.send_response()
+        return self.response.send_response()
 
 
     # all the response via data and that too nested when we are handling the versions else just a list of dict

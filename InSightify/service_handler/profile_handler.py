@@ -18,6 +18,6 @@ class ProfileHelper:
                 self.response.get_response(2, "User not found")
         else:
             self.response.get_response(500, "Internal Server Error")
-        self.response.send_response()
+        return self.response.send_response()
 
 
