@@ -49,7 +49,8 @@ class User(Base, TimestampMixin):
     mobile = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     security_ques_answer = Column(String, nullable=False)
-    profile_picture = Column(String, nullable=False, unique=True)
+    # profile_picture = Column(String, nullable=False, unique=True)
+    profile_picture = Column(String, nullable=False)
     bio = Column(String)
 
     # Relationships
