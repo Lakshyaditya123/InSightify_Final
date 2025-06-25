@@ -1,0 +1,47 @@
+<header class="bg-primary text-white p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0">Welcome to DCE Basic Code</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" routerLink="/sample/sample">Sample Module</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container mb-5">
+    <section id="hero" class="text-center py-5 mb-5 bg-light rounded shadow-sm">
+        <h1 class="display-4 text-primary">Nyalazone</h1>
+    </section>
+
+    <section id="services" class="mb-5">
+        <h2 class="h4 mb-4 text-secondary">Folder Structure</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="folder-title">dce_views</div>
+                <div class="folder-desc">Contains all modules that will be lazy-loaded based on routing structure.</div>
+            </li>
+            <li class="list-group-item">
+                <div class="folder-title">dce_shared</div>
+                <div class="folder-desc">Holds shared components, directives, and pipes accessible across dce_views
+                    modules.</div>
+            </li>
+            <li class="list-group-item">
+                <div class="folder-title">dce_service</div>
+                <div class="folder-desc">Contains service files injected through Angular’s dependency injection in
+                    components.</div>
+            </li>
+            <li class="list-group-item">
+                <div class="folder-title">dce_directive</div>
+                <div class="folder-desc">Includes custom directives and pipes for use across the application.</div>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<!-- <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <p class="mb-0">&copy; 2025 Nyalazone Solutions Pvt. Ltd. All rights reserved.</p>
+</footer> -->
+<router-outlet></router-outlet>
