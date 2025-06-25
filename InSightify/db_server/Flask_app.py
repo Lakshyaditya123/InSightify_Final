@@ -3,12 +3,12 @@ from flask_cors import CORS
 from flask_restful import Api
 from InSightify.db_server.app_orm import dbEngine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from InSightify.Common_files.app_logger import logger
+from InSightify.Common_files.app_logger import Logger
 
 app = Flask(__name__)
+app_logger = Logger().get_logger()
 CORS(app)
 api = Api(app)
-
 Session = sessionmaker(bind=dbEngine)
 dbsession = scoped_session(Session)
 

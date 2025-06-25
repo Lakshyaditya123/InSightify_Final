@@ -1,6 +1,6 @@
 import flask_restful as restful
 from functools import wraps
-from .Flask_app import app
+from .Flask_app import app, app_logger
 
 def role_decorator(func):
     @wraps(func)
