@@ -20,8 +20,10 @@ class SignupHelper:
                 self.response.get_response(3, "Try logging in or forgot password")
             else:
                 self.user_crud.create_user(**data)
-                self.user_crud.commit_it()
-
+                if not self.user_crud.commit_it()["error_code"]:
+                    self.response.get_response(0, "User created successfully")
+                else:
+                    self.response.get_response(500, "Internal Server Error")
         else:
             self.response.get_response(2, "email, mobile, password, security_question and security_answer are required")
         self.response.send_response()
