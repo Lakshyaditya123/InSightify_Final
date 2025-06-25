@@ -65,6 +65,9 @@ class IdeaCRUD(BaseCRUD):
     def get_by_status_without_ver(self, status=1):
         return self.get_by_fields(status=status, parent_idea=-1)
 
+    def get_by_status_without_ver_without_child(self, status=1):
+        return self.get_by_fields(status=status, parent_idea=-1)
+
     def get_by_tags(self, tag_ids):
         try:
             return self.db_session.query(self.model).filter(

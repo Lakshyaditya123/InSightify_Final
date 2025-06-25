@@ -22,9 +22,9 @@ class WallHelper:
             self.response.get_response(500, "Internal Server Error")
         self.response.send_response()
 
-    def load_wall(self, status):
+    def load_wall_with_child(self, status):
         all_ideas = self.idea_crud.get_by_status(**status) # remove child ideas
-        all_merged_ideas=self.merged_idea_crud.get_all(limit=-1) # list of dict pass krni hai for user and pf
+        all_merged_ideas=self.merged_idea_crud.get_merged_ideas_with_users() # list of dict pass krni hai for user and pf
         if type(all_ideas)!=str and type(all_merged_ideas)!=str:
             total_ideas = self.idea_crud.convert_to_dict_list(all_ideas)
             total_ideas +=self.merged_idea_crud.convert_to_dict_list(all_merged_ideas)
@@ -35,6 +35,21 @@ class WallHelper:
         else:
             self.response.get_response(500, "Internal Server Error")
         self.response.send_response()
+
+    def load_wall_without_child(self, status):
+        all_ideas = self.idea_crud.get_by_status(**status) # remove child ideas
+        all_merged_ideas=self.merged_idea_crud.get_merged_ideas_with_users() # list of dict pass krni hai for user and pf
+        if type(all_ideas)!=str and type(all_merged_ideas)!=str:
+            total_ideas = self.idea_crud.convert_to_dict_list(all_ideas)
+            total_ideas +=self.merged_idea_crud.convert_to_dict_list(all_merged_ideas)
+            if total_ideas:
+                self.response.get_response(0, "Found My ideas Successfully", data=total_ideas)  # pass token here
+            else:
+                self.response.get_response(2, "No Ideas Found")
+        else:
+            self.response.get_response(500, "Internal Server Error")
+        self.response.send_response()
+
 
     # all the response via data and that too nested when we are handling the versions else just a list of dict
     # filters and tag groupings
