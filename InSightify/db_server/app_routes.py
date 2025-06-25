@@ -7,4 +7,6 @@ api.add_resource(Foo, '/foo')
 api.add_resource(Bar, '/bar')
 api.add_resource(SignUp, '/signup')
 api.add_resource(Login, '/login')
+api.add_resource(WallForUser, '/user_wall')
+api.add_resource(MySpaceWall, '/my_space_wall')
 print("Routes registered successfully")  # Debug print

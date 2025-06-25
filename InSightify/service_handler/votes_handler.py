@@ -10,7 +10,7 @@ class VoteHelper:
         self.session = dbsession
         self.response = ResponseHandler()
 
-    def add_vote(self, vote):
+    def update_vote(self, vote):
         if vote['user_id'] and vote['vote_type'] and (vote['idea_id'] or vote['comment_id']):
             check = self.vote_crud.update_vote(**vote)
             if type(check)!=str:

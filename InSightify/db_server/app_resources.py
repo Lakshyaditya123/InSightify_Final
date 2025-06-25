@@ -49,8 +49,8 @@ class SignUp(Resource):
 class Login(Resource):
     @staticmethod
     def post():
+        app_logger.info("Login POST method called")
         try:
-            app_logger.info("Login POST method called")
             login= LoginHelper()
             data=request.get_json()
             return login.login(data)
@@ -61,6 +61,49 @@ class Login(Resource):
     def get():
         app_logger.info("Login GET method called")
         return {'errCode': 0, 'msg': 'Login GET method working'}
+
+class VoteUpdate(Resource):
+    @staticmethod
+    def post():
+        app_logger.info("VoteUpdate POST method called")
+        try:
+            vote=VoteHelper()
+            data=request.get_json()
+            return vote.update_vote(data)
+        except Exception as e:
+            app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
+    @staticmethod
+    def get():
+        app_logger.info("VoteUpdate GET method called")
+        vote = VoteHelper()
+        data = request.get_json()
+        return vote.update_vote(vote.vote_display(data))
+
+
+class WallForUser(Resource):
+    @staticmethod
+    def get():
+        app_logger.info("WallForUser GET method called")
+        try:
+            wall = WallHelper()
+            data=request.get_json()
+            return wall.load_wall_with_child(data)
+        except Exception as e:
+            app_logger.error(f"Error in WallForUser GET: {str(e)}")
+
+class MySpaceWall(Resource):
+    @staticmethod
+    def get():
+        app_logger.info("MySpaceWall GET method called")
+        try:
+            wall = WallHelper()
+            data=request.get_json()
+            return wall.load_my_space(data)
+        except Exception as e:
+            app_logger.error(f"Error in MySpaceWall GET: {str(e)}")
+
+
+
 
 
 

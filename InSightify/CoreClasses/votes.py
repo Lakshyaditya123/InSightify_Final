@@ -63,39 +63,44 @@ class VoteCRUD(BaseCRUD):
         )
 
     def get_user_vote_for_idea(self, user_id, idea_id):
-        try:
-            return self.db_session.query(self.model).filter(
-                and_(
-                    self.model.this_obj2users == user_id,
-                    self.model.this_obj2ideas == idea_id
-                )
-            ).first()
-        except SQLAlchemyError as e:
-            print(f"Error getting user vote for idea: {str(e)}")
-            return None
+        result= self.db_session.query(self.model).filter(
+            and_(
+                self.model.this_obj2users == user_id,
+                self.model.this_obj2ideas == idea_id
+            )
+        ).first()
+        if result:
+            self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+        else:
+            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+        return self.db_response.send_response()
+
 
     def get_user_vote_for_comment(self, user_id, comment_id):
-        try:
-            return self.db_session.query(self.model).filter(
-                and_(
-                    self.model.this_obj2users == user_id,
-                    self.model.this_obj2comments == comment_id
-                )
-            ).first()
-        except SQLAlchemyError as e:
-            print(f"Error getting user vote for comment: {str(e)}")
-            return None
+        result= self.db_session.query(self.model).filter(
+            and_(
+                self.model.this_obj2users == user_id,
+                self.model.this_obj2comments == comment_id
+            )
+        ).first()
+        if result:
+            self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+        else:
+            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+        return self.db_response.send_response()
 
     def get_vote_count(self, idea_id=None, comment_id=None):
-        try:
-            if get_vote := bool(idea_id) ^ bool(comment_id):
-                votes = self.get_by_fields(this_obj2ideas=get_vote)
-                upvotes = sum(1 for vote in votes if vote.vote_type > 0)
-                downvotes = sum(1 for vote in votes if vote.vote_type < 0)
-                return {"upvotes": upvotes, "downvotes": downvotes, "total": upvotes-downvotes}
-        except Exception as e:
-            print(f"Error getting vote count for idea: {str(e)}")
-            return {"upvotes": 0, "downvotes": 0, "total": 0}
+        if get_vote := bool(idea_id) ^ bool(comment_id):
+            votes = self.get_by_fields(this_obj2ideas=get_vote)["obj"]
+            upvotes = sum(1 for vote in votes if vote.vote_type > 0)
+            downvotes = sum(1 for vote in votes if vote.vote_type < 0)
+            result= {"upvotes": upvotes, "downvotes": downvotes, "total": upvotes-downvotes}
+            if sum(result.values())>0:
+                self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+            else:
+                self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+            return self.db_response.send_response()
+
 
     def get_user_vote(self, user_id , idea_id = None, comment_id= None):
         query = self.db_session.query(Vote).filter(Vote.this_obj2users == user_id)
@@ -103,10 +108,15 @@ class VoteCRUD(BaseCRUD):
             query = query.filter(Vote.this_obj2ideas == idea_id)
         if comment_id:
             query = query.filter(Vote.this_obj2comments == comment_id)
-        return query.first()
+        result=query.first()
+        if result:
+            self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+        else:
+            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+        return self.db_response.send_response()
 
     def update_vote(self,user_id, vote_type, idea_id = None, comment_id = None):
-        existing_vote = self.get_user_vote(user_id, idea_id, comment_id)
+        existing_vote = self.get_user_vote(user_id, idea_id, comment_id)["obj"]
         if existing_vote:
             return self.update(existing_vote.id, vote_type=vote_type)
         else:

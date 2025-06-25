@@ -46,13 +46,13 @@ class IdeasMergedIdeasCRUD(BaseCRUD):
     def get_merged_ideas_for_idea(self, idea_id):
         return self.get_by_fields(id_ideas=idea_id)
 
-    def unlink_idea_from_merged_idea(self, idea_id, merged_idea_id):
-        link = self.db_session.query(IdeasMergedIdeas).filter(
-            IdeasMergedIdeas.id_ideas == idea_id,
-            IdeasMergedIdeas.id_merged_ideas == merged_idea_id
-        ).first()
-        if link:
-            self.db_session.delete(link)
-            self.db_session.flush()
-            return True
-        return False
+    # def unlink_idea_from_merged_idea(self, idea_id, merged_idea_id):
+    #     link = self.db_session.query(IdeasMergedIdeas).filter(
+    #         IdeasMergedIdeas.id_ideas == idea_id,
+    #         IdeasMergedIdeas.id_merged_ideas == merged_idea_id
+    #     ).first()
+    #     if link:
+    #         self.db_session.delete(link)
+    #         self.db_session.flush()
+    #         return True
+    #     return False
