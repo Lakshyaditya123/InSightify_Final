@@ -1,4 +1,6 @@
 """Define all the classes here for each page element"""
+from InSightify.service_handler.tags_handler import TagHelper
+
 # app_resources.py - UPDATED VERSION
 """Define all the classes here for each page element"""
 from InSightify.db_server.resource_decorator import Resource, app_logger
@@ -133,6 +135,72 @@ class IdeaDisplay(Resource):
         except Exception as e:
             app_logger.error(f"Error in IdeaDisplay GET: {str(e)}")
             return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+
+class TagCreation(Resource):
+    @staticmethod
+    def post():
+        app_logger.info("TagCreation POST method called")
+        try:
+            tag=TagHelper()
+            data=request.get_json()
+            return tag.add_tag(data)
+        except Exception as e:
+            app_logger.error(f"Error in TagCreation POST: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+
+    def get(self):
+        app_logger.info("TagCreation GET method called")
+        return {'errCode': 0, 'msg': 'TagCreation GET method working'}
+
+class TagDisplay(Resource):
+    @staticmethod
+    def get():
+        app_logger.info("TagDisplay GET method called")
+        try:
+            tag=TagHelper()
+            data=request.get_json()
+            return tag.tag_display(data)
+        except Exception as e:
+            app_logger.error(f"Error in TagDisplay GET: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+
+class UserProfile(Resource):
+    @staticmethod
+    def get():
+        try:
+            app_logger.info("UserProfile GET method called")
+            user=ProfileHelper()
+            data = request.get_json()
+            return user.get_profile(data)
+        except Exception as e:
+            app_logger.error(f"Error in UserProfile GET: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+class AddComment(Resource):
+    @staticmethod
+    def post():
+        try:
+            app_logger.info("AddComment POST method called")
+            comment=CommentHelper()
+            data=request.get_json()
+            return comment.add_comment(data)
+        except Exception as e:
+            app_logger.error(f"Error in AddComment POST: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+
+class CommentDisplay(Resource):
+    @staticmethod
+    def get():
+        app_logger.info("CommentDisplay GET method called")
+        try:
+            comment=CommentHelper()
+            data=request.get_json()
+            return comment.comment_display(data)
+        except Exception as e:
+            app_logger.error(f"Error in CommentDisplay GET: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+
+
+
 
 
 

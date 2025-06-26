@@ -32,10 +32,10 @@ class TagCRUD(BaseCRUD):
     def __init__(self, db_session):
         super().__init__(Tag, db_session)
 
-    def create_tag(self, name, description, status=1, generated_by="user"):
+    def create_tag(self, name, tag_desc, status=1, generated_by="user"):
         return self.create(
             name=name,
-            tag_desc=description,
+            tag_desc=tag_desc,
             status=status,
             generated_by=generated_by)
 

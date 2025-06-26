@@ -12,14 +12,16 @@ class CommentHelper:
 
     def add_comment(self,comment):
         comment["parent_comment"] = comment["parent_comment"] if comment.get("parent_comment") else -1
+        comment["idea_id"] = comment["idea_id"] if comment.get("idea_id") else None
+        comment["merged_idea_id"] = comment["merged_idea_id"] if comment.get("merged_idea_id") else None
         if comment["user_id"] and comment["content"]:
             if not (comment["idea_id"] and comment["merged_idea_id"]) and (comment["idea_id"] or comment["merged_idea_id"]):
                 # There should be only one idea_id or merged_id
-                check=self.comment_crud.create_comment(**comment)
-                if type(check)!=str:
-                    self.response.get_response(0, "Idea created successfully")
-                else:
+                self.comment_crud.create_comment(**comment)
+                if self.comment_crud.commit_it()["error_code"]:
                     self.response.get_response(500, "Internal Server Error")
+                else:
+                    self.response.get_response(0, "Comment created successfully")
             else:
                 self.response.get_response(400, "Either idea id or merged idea id is required")
         else:
@@ -40,18 +42,21 @@ class CommentHelper:
         return comments
 
     def comment_display(self, idea_ids):
-        if get_comms := bool(idea_ids["idea_id"]) ^ bool(idea_ids["merged_idea_id"]):
-            comments = self.comment_crud.get_by_idea(get_comms)
-            if type(comments)!=str:
-                if comments:
-                    formated_comments=self.format_comments(self.comment_crud.convert_to_dict_list(comments))
-                    self.response.get_response(0, "Found Idea", data_rec=formated_comments)
-                else:
-                    self.response.get_response(400, "No idea found")
-            else:
-                self.response.get_response(500, "Internal Server Error")
+        if not (idea_ids.get("idea_id") or idea_ids.get("merged_idea_id")):
+            self.response.get_response(400, "Either idea id or merged idea id is required")
         else:
-            self.response.get_response(400, "No idea ID provided")
+            if get_comms:= idea_ids.get("idea_id"):
+                comments = self.comment_crud.get_by_idea(get_comms)["obj"]
+            else:
+                get_comms= idea_ids.get("merged_idea_id")
+                comments = self.comment_crud.get_by_merged_idea(get_comms)["obj"]
+
+            if comments:
+                formated_comments = self.format_comments(self.comment_crud.convert_to_dict_list(comments))
+                self.response.get_response(0, "Found Idea", data_rec=formated_comments)
+            else:
+                self.response.get_response(400, "No idea found")
+
         return self.response.send_response()
 
 
