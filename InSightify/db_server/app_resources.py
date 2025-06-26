@@ -187,6 +187,18 @@ class AddComment(Resource):
             app_logger.error(f"Error in AddComment POST: {str(e)}")
             return {'errCode': 1, 'msg': f'Error: {str(e)}'}
 
+class CommentDisplay(Resource):
+    @staticmethod
+    def get():
+        app_logger.info("CommentDisplay GET method called")
+        try:
+            comment=CommentHelper()
+            data=request.get_json()
+            return comment.comment_display(data)
+        except Exception as e:
+            app_logger.error(f"Error in CommentDisplay GET: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
+
 
 
 

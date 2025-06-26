@@ -16,4 +16,5 @@ api.add_resource(TagCreation, "/tag_creation")
 api.add_resource(TagDisplay, "/tag_display")
 api.add_resource(UserProfile, "/user_profile")
 api.add_resource(AddComment, "/add_comment")
+api.add_resource(CommentDisplay, "/comment_display")
 print("Routes registered successfully")  # Debug print
