@@ -75,13 +75,13 @@ class VoteUpdate(Resource):
         except Exception as e:
             app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
             return {'errCode': 1, 'msg': f'Error: {str(e)}'}
-            app_logger.error(f"Error in VoteUpdate POST: {str(e)}")
+
     @staticmethod
     def get():
         app_logger.info("VoteUpdate GET method called")
         vote = VoteHelper()
-        data = request.get_json()
-        return vote.update_vote(vote.vote_display(data))
+        data = request.get_json() #{"idea_id","comment_id"}
+        return vote.vote_display(data)
 
 
 class WallForUser(Resource):
@@ -106,7 +106,33 @@ class MySpaceWall(Resource):
         except Exception as e:
             app_logger.error(f"Error in MySpaceWall GET: {str(e)}")
 
+class AddingIdea(Resource):
+    @staticmethod
+    def post():
+        app_logger.info("AddingIdea POST method called")
+        try:
+            idea=IdeaHelper()
+            data=request.get_json()
+            return idea.add_idea(data)
+        except Exception as e:
+            app_logger.error(f"Error in AddingIdea POST: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
 
+    def get(self):
+        app_logger.info("AddingIdea GET method called")
+        return {'errCode': 0, 'msg': 'AddingIdea GET method working'}
+
+class IdeaDisplay(Resource):
+    @staticmethod
+    def get():
+        app_logger.info("IdeaDisplay GET method called")
+        try:
+            idea=IdeaHelper()
+            data=request.get_json()
+            return idea.idea_display(data)
+        except Exception as e:
+            app_logger.error(f"Error in IdeaDisplay GET: {str(e)}")
+            return {'errCode': 1, 'msg': f'Error: {str(e)}'}
 
 
 

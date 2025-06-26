@@ -22,11 +22,11 @@ class IdeaHelper:
         idea["link"] = idea["link"] if idea.get("link") else None
         idea["file_path"] = idea["file_path"] if idea.get("file_path") else None
         if idea["user_id"] and idea["subject"] and idea["content"]:
-            check=self.idea_crud.create_idea(**idea)
-            if type(check)!=str:
-                self.response.get_response(0, "Idea created successfully")
-            else:
+            self.idea_crud.create_idea(**idea)
+            if self.user_crud.commit_it()["error_code"]:
                 self.response.get_response(500, "Internal Server Error")
+            else:
+                self.response.get_response(0, "Idea created successfully")
         else:
             self.response.get_response(400, "user_id, subject and content are required")
             # Call Ai merged here
@@ -36,14 +36,11 @@ class IdeaHelper:
         return self.response.send_response()
 
     def idea_display(self, idea_id):
-        idea=self.idea_crud.get_by_id(**idea_id)
-        if type(idea)!= str:
-            if idea:
-                self.response.get_response(0,"Found Idea", data_rec = self.idea_crud.convert_to_dict(idea))
-            else:
-                self.response.get_response(400, "No idea found")
+        idea=self.idea_crud.get_by_id(idea_id["idea_id"])["obj"]
+        if idea:
+            self.response.get_response(0,"Found Idea", data_rec = self.idea_crud.convert_to_dict(idea))
         else:
-            self.response.get_response(500, "Internal Server Error")
+            self.response.get_response(400, "No idea found")
         return self.response.send_response()
         # pass username, pf pic and tags
 

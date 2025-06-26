@@ -89,17 +89,17 @@ class VoteCRUD(BaseCRUD):
             self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
         return self.db_response.send_response()
 
-    def get_vote_count(self, idea_id=None, comment_id=None):
-        if get_vote := bool(idea_id) ^ bool(comment_id):
-            votes = self.get_by_fields(this_obj2ideas=get_vote)["obj"]
-            upvotes = sum(1 for vote in votes if vote.vote_type > 0)
-            downvotes = sum(1 for vote in votes if vote.vote_type < 0)
-            result= {"upvotes": upvotes, "downvotes": downvotes, "total": upvotes-downvotes}
-            if sum(result.values())>0:
-                self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
-            else:
-                self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
-            return self.db_response.send_response()
+    def get_vote_count(self, user_id, vote_type, idea_id=None, comment_id=None):
+        get_vote= idea_id if idea_id is not None else comment_id
+        votes = self.get_by_fields(this_obj2ideas=get_vote)["obj"]
+        upvotes = sum(1 for vote in votes if vote.vote_type > 0)
+        downvotes = sum(1 for vote in votes if vote.vote_type < 0)
+        result= {"upvotes": upvotes, "downvotes": downvotes, "total": upvotes-downvotes}
+        if sum(result.values())>0:
+            self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+        else:
+            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+        return self.db_response.send_response()
 
 
     def get_user_vote(self, user_id , idea_id = None, comment_id= None):
