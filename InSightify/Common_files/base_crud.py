@@ -168,7 +168,7 @@ class BaseCRUD:
         if obj:
             self.db_response.get_response(error_code=0, msg="Found Record !", obj=obj)
         else:
-            self.db_response.get_response(error_code=404, msg="Record not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Record not found", obj=None)
         return self.db_response.send_response()
 
     def get_all(self, skip=0, limit=100, order_by="id", desc_order=False):
@@ -186,14 +186,14 @@ class BaseCRUD:
         if result:
             self.db_response.get_response(error_code=0, msg="Found Record !", obj=result)
         else:
-            self.db_response.get_response(error_code=404, msg="Record not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Record not found", obj=None)
         return self.db_response.send_response()
 
 
     def update(self, id, **kwargs):
         db_obj = self.db_session.query(self.model).filter(self.model.id == id).first()
         if not db_obj:
-            self.db_response.get_response(error_code=404, msg="Record not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Record not found", obj=None)
         else:
             for field, value in kwargs.items():
                 if hasattr(db_obj, field):
@@ -205,7 +205,7 @@ class BaseCRUD:
     def delete(self, id):
         db_obj = self.db_session.query(self.model).filter(self.model.id == id).first()
         if not db_obj:
-            self.db_response.get_response(error_code=404, msg="Record not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Record not found", obj=None)
         else:
             self.db_session.delete(db_obj)
             self.db_response.get_response(error_code=0, msg="Record deleted successfully", obj=None)
@@ -217,7 +217,7 @@ class BaseCRUD:
             obj = self.db_session.query(self.model).filter(field == value).first()
             self.db_response.get_response(error_code=0, msg="Record found", obj=obj)
         else:
-            self.db_response.get_response(error_code=404, msg="Field not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Field not found", obj=None)
         return self.db_response.send_response()
 
     def get_by_fields(self, **kwargs):
@@ -230,7 +230,7 @@ class BaseCRUD:
         if results:
             self.db_response.get_response(error_code=0, msg="Found Record !", obj=results)
         else:
-            self.db_response.get_response(error_code=404, msg="Record not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Record not found", obj=None)
         return self.db_response.send_response()
 
     def count(self):

@@ -58,6 +58,6 @@ class TagCRUD(BaseCRUD):
         if result:
             self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
         else:
-            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Records not found", obj=None)
         return self.db_response.send_response()
 

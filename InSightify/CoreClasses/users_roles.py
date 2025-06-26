@@ -67,6 +67,6 @@ class UsersRolesCRUD(BaseCRUD):
             self.db_session.delete(record)
             self.db_response.get_response(error_code=0, msg="Role removed from user !", obj=record)
         else:
-            self.db_response.get_response(error_code=1, msg="Role not found !", obj=None)
+            self.db_response.get_response(error_code=0, msg="Role not found !", obj=None)
         return self.db_response.send_response()
 
