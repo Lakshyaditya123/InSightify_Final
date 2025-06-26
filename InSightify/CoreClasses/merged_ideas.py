@@ -28,7 +28,7 @@ class MergedIdeaCRUD(BaseCRUD):
         if result:
             self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
         else:
-            self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
+            self.db_response.get_response(error_code=0, msg="Records not found", obj=None)
         return self.db_response.send_response()
 
     def get_merged_ideas_with_users(self):
@@ -39,43 +39,44 @@ class MergedIdeaCRUD(BaseCRUD):
             )
             .all()
         )
+        if merged_ideas:
+            result = []
+            for merged_idea in merged_ideas:
+                users_set = set()
+                users_list = []
 
-        result = []
-        for merged_idea in merged_ideas:
-            users_set = set()
-            users_list = []
+                for idea in merged_idea.ideas:
+                    user = idea.user
+                    if user and user.id not in users_set:
+                        users_set.add(user.id)
+                        users_list.append({
+                            "id": user.id,
+                            "name": user.name,
+                            "email": user.email,
+                            "mob_number": user.mob_number,
+                            "bio": user.bio,
+                            "profile_picture": user.profile_picture
+                        })
 
-            for idea in merged_idea.ideas:
-                user = idea.user
-                if user and user.id not in users_set:
-                    users_set.add(user.id)
-                    users_list.append({
-                        "id": user.id,
-                        "name": user.name,
-                        "email": user.email,
-                        "mob_number": user.mob_number,
-                        "bio": user.bio,
-                        "profile_picture": user.profile_picture
-                    })
+                merged_idea_dict = {
+                    "id": merged_idea.id,
+                    "title": merged_idea.title,
+                    "subject": merged_idea.subject,
+                    "content": merged_idea.content,
+                    "created_at": merged_idea.create_datetime,
+                    "last_modified": merged_idea.lastchange_datetime
+                }
 
-            merged_idea_dict = {
-                "id": merged_idea.id,
-                "title": merged_idea.title,
-                "subject": merged_idea.subject,
-                "content": merged_idea.content,
-                "created_at": merged_idea.create_datetime,
-                "last_modified": merged_idea.lastchange_datetime
-            }
+                result.append({
+                    "users": users_list,
+                    "merged_idea": merged_idea_dict
+                })
 
-            result.append({
-                "users": users_list,
-                "merged_idea": merged_idea_dict
-            })
-            if result:
                 self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
-            else:
-                self.db_response.get_response(error_code=404, msg="Records not found", obj=None)
-            return self.db_response.send_response()
+        else:
+            self.db_response.get_response(error_code=0, msg="Records not found", obj=None)
+
+        return self.db_response.send_response()
 
 
 
