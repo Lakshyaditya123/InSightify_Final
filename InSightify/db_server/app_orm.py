@@ -68,6 +68,7 @@ class Vote(Base, TimestampMixin):
     id = Column(SmallInteger, primary_key=True)
     this_obj2users = Column(SmallInteger, ForeignKey('in_use.users.id'), nullable=False)
     this_obj2ideas = Column(SmallInteger, ForeignKey('in_use.ideas.id'))
+    this_obj2merged_ideas = Column(SmallInteger, ForeignKey('in_use.merged_ideas.id'))
     this_obj2comments = Column(SmallInteger, ForeignKey('in_use.comments.id'))
     vote_type = Column(SmallInteger, nullable=False)
 
@@ -75,6 +76,7 @@ class Vote(Base, TimestampMixin):
     user = relationship("User", back_populates="votes")
     idea = relationship("Idea", back_populates="votes")
     comment = relationship("Comment", back_populates="votes")
+    merged_idea = relationship("MergedIdea", back_populates="votes")
 
 
 class Idea(Base, TimestampMixin):
@@ -142,7 +144,7 @@ class MergedIdea(Base, TimestampMixin):
     # Relationships
     ideas = relationship("Idea", secondary="in_use.ideas_merged_ideas", back_populates="merged_ideas")
     comments = relationship("Comment", back_populates="merged_idea")
-
+    votes = relationship("Vote", back_populates="merged_idea")
 
 class IdeasMergedIdeas(Base):
     __tablename__ = 'ideas_merged_ideas'

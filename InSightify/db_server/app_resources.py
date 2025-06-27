@@ -86,7 +86,7 @@ class VoteUpdate(Resource):
         return vote.vote_display(data)
 
 
-class WallForUser(Resource):
+class WallForUserIdea(Resource):
     @staticmethod
     def get():
         app_logger.info("WallForUser GET method called")

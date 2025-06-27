@@ -23,17 +23,14 @@ class WallHelper:
         return self.response.send_response()
 
     def load_wall_with_child(self, status):
-        all_ideas = self.idea_crud.get_by_status(**status)# remove child ideas
-        all_merged_ideas=self.merged_idea_crud.get_merged_ideas_with_users() # list of dict pass krni hai for user and pf
-        total_ideas = self.idea_crud.convert_to_dict_list(all_ideas["obj"])
-        print(total_ideas)
-        total_ideas +=self.merged_idea_crud.convert_to_dict_list(all_merged_ideas["obj"])
-        if total_ideas:
-            self.response.get_response(0, "Found My ideas Successfully", data=total_ideas)  # pass token here
+        all_ideas = self.idea_crud.get_all_ideas_with_details(**status)# remove child ideas
+        all_merged_ideas = self.merged_idea_crud.get_merged_ideas_with_users()
+        if all_ideas or all_merged_ideas:
+            result={"all_ideas": all_ideas["obj"]if all_ideas else [], "all_merged_ideas": all_merged_ideas["obj"] if all_merged_ideas else []}
+            self.response.get_response(0, "Found all ideas Successfully", data=result)  # pass token here
         else:
             self.response.get_response(2, "No Ideas Found")
         return self.response.send_response()
-
     # def load_wall_without_child(self, status):
     #     all_ideas = self.idea_crud.get_by_status(**status) # remove child ideas
     #     all_merged_ideas=self.merged_idea_crud.get_merged_ideas_with_users() # list of dict pass krni hai for user and pf
