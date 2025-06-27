@@ -12,7 +12,7 @@ class TagHelper:
         tag["tag_desc"] = tag["tag_desc"] if tag.get("tag_desc") else "No description Available" # handle if this is none then
         if tag["name"] and tag["tag_desc"]:
             self.tag_crud.create_tag(**tag)
-            if self.tag_crud.commit_it()["error_code"]:
+            if self.tag_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
             else:
                 self.response.get_response(0, "tag created successfully")
@@ -28,3 +28,5 @@ class TagHelper:
             self.response.get_response(400, "No tag found")
         return self.response.send_response()
     # used in admin side...
+    # used for AI
+    # used for dropdown

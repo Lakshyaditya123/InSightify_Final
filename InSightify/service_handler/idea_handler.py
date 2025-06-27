@@ -23,7 +23,7 @@ class IdeaHelper:
         idea["file_path"] = idea["file_path"] if idea.get("file_path") else None
         if idea["user_id"] and idea["subject"] and idea["content"]:
             self.idea_crud.create_idea(**idea)
-            if self.user_crud.commit_it()["error_code"]:
+            if self.user_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
             else:
                 self.response.get_response(0, "Idea created successfully")

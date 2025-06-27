@@ -12,7 +12,6 @@ api = Api(app)
 Session = sessionmaker(bind=dbEngine)
 dbsession = scoped_session(Session)
 
-# Add a simple test route to verify Flask is working
 @app.route('/test')
 def test_route():
     return {'message': 'Flask app is working!'}
