@@ -3,27 +3,24 @@
 
   <div class="auth-card">
 
-    <!-- SIGNUP FORM -->
-    <form *ngIf="isSignup" (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+    <form *ngIf="isSignup" [formGroup]="signupForm">
       <input type="text" formControlName="name" placeholder="Full Name" required />
       <input type="number" formControlName="mobile" placeholder="Mobile" required />
       <input type="email" formControlName="email" placeholder="Email" required />
       <input type="password" formControlName="password" placeholder="Password" required />
       <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required />
 
-      <button type="submit">Sign Up</button>
+      <button type="submit" (click)="signup()">Sign Up</button>
       <p class="switch-text">
         Already have an account?
         <a href="#" (click)="toggleMode($event)">Login</a>
       </p>
     </form>
 
-    <!-- LOGIN FORM -->
-    <form *ngIf="!isSignup" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <form *ngIf="!isSignup" [formGroup]="loginForm">
       <input type="email" formControlName="email" placeholder="Email" required />
       <input type="password" formControlName="password" placeholder="Password" required />
-
-      <button type="submit">Login</button>
+      <button type="submit" (click)="login()">Login</button>
       <p class="switch-text">
         Don’t have an account?
         <a href="#" (click)="toggleMode($event)">Sign up</a>

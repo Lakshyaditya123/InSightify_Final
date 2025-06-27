@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {AuthService} from '../../services/auth';
 
 @Component({
   selector: 'app-auth-page',
@@ -13,16 +14,16 @@ import { Router } from '@angular/router';
 export class AuthPage {
   loginForm: FormGroup;
   signupForm: FormGroup;
-  isSignup = false; // 🔁 Controls which form is shown
+  isSignup = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    // 🧾 Login Form
-    this.loginForm = this.fb.group({
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private authService:AuthService) {
+      this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
 
-    // 🧾 Signup Form
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       mobile: ['', [Validators.required, Validators.minLength(10)]],
@@ -39,34 +40,40 @@ export class AuthPage {
     this.signupForm.reset();
   }
 
-  onSubmit(): void {
-    if (this.isSignup) {
-      // 🔐 SIGNUP logic
-      const { name, mobile, email, password, confirmPassword } = this.signupForm.value;
 
-      if (!this.signupForm.valid) {
-        alert('Please fill out all fields properly.');
-        return;
-      }
+  signup(){
+    if(this.signupForm.status=='VALID'){
+      let payload:any = this.signupForm.value;
+      delete payload['confirmPassword'];
+      this.authService.signup(payload).subscribe((res)=>{
+        if(res.error_code==0){
+          alert('Signup Successfully');
+          this.isSignup = false;
+        }
+        else{
+          alert('Signup Failed!');
+          this.isSignup = true;
+        }
+      })
 
-      if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-      }
-
-      console.log('Sign Up with:', name, email, mobile);
-      this.toggleMode(new Event('click')); // Redirects to login view
-    } else {
-      // 🔓 LOGIN logic
-      const { email, password } = this.loginForm.value;
-
-      if (!this.loginForm.valid) {
-        alert('Please enter valid credentials.');
-        return;
-      }
-
-      console.log('Login with:', email);
-      this.router.navigate(['/homescreen']); // 🔁 Redirect to homescreen
     }
+
+
   }
+
+ login() {
+     if(this.loginForm.status=='VALID'){
+      let payload:any = this.loginForm.value;
+      this.authService.login(payload).subscribe((res:any)=>{
+        if(res.error_code==0){
+          alert('Login Successfully');
+          this.router.navigate(['/homescreen']);
+        }
+        else{
+          alert('Login Failed!');
+        }
+      })
+     }
+    }
+
 }

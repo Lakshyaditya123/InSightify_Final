@@ -6,6 +6,6 @@ import {Homescreen} from './pages/homescreen/homescreen';
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'login', component: AuthPage },
-  { path: 'homescreen', component: Homescreen }
+  { path: 'homescreen', component: Homescreen },
   // other routes...
 ];

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,8 @@ import {CommonModule} from '@angular/common';
   styleUrl: './navbar.css'
 })
 export class Navbar {
+  constructor(private router: Router) {}
+
   tags = ['AI', 'UI/UX', 'Backend', 'ML', 'Research'];
   selectedTags: string[] = [];
   toggleTag(tag: string) {
@@ -22,5 +25,9 @@ export class Navbar {
 
   isTagSelected(tag: string): boolean {
     return this.selectedTags.includes(tag);
+  }
+
+  navigateToProfile() {
+    this.router.navigate(['/profile']);
   }
 }
