@@ -2,8 +2,6 @@ from InSightify.Common_files.response import ResponseHandler
 from InSightify.CoreClasses import VoteCRUD
 from InSightify.db_server.Flask_app import dbsession
 
-'''user, idea, merged idea, votes, comments, tags'''
-
 class VoteHelper:
     def __init__(self):
         self.vote_crud = VoteCRUD(dbsession)
@@ -13,7 +11,7 @@ class VoteHelper:
     def update_vote(self, vote):
         if vote['user_id'] and vote['vote_type'] and (vote['idea_id'] or vote['comment_id']):
             self.vote_crud.update_vote(**vote)
-            if self.vote_crud.commit_it()["error_code"]:
+            if self.vote_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
             else:
                 self.response.get_response(0, "Vote created successfully")

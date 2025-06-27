@@ -1,5 +1,4 @@
 from sqlalchemy import or_
-from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import joinedload
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.app_orm import MergedIdea, Idea
@@ -26,9 +25,9 @@ class MergedIdeaCRUD(BaseCRUD):
             )
         ).all()
         if result:
-            self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+            self.db_response.get_response(errCode=0, msg="Found Records !", obj=result)
         else:
-            self.db_response.get_response(error_code=0, msg="Records not found", obj=None)
+            self.db_response.get_response(errCode=0, msg="Records not found", obj=None)
         return self.db_response.send_response()
 
     def get_merged_ideas_with_users(self):
@@ -80,28 +79,8 @@ class MergedIdeaCRUD(BaseCRUD):
                     "vote":vote_dict
                 })
 
-                self.db_response.get_response(error_code=0, msg="Found Records !", obj=result)
+                self.db_response.get_response(errCode=0, msg="Found Records !", obj=result)
         else:
-            self.db_response.get_response(error_code=0, msg="Records not found", obj=None)
+            self.db_response.get_response(errCode=0, msg="Records not found", obj=None)
 
         return self.db_response.send_response()
-
-
-
-
-
-# class MergedIdeaCRUD(BaseCRUD):
-#
-#     def __init__(self):
-#         super().__init__(MergedIdea)
-#
-#     def create_merged_idea(self, db: Session, subject: str, content: str, title: str = None):
-#         return self.create(db, title=title, subject=subject, content=content)
-#
-#     def search_merged_ideas(self, db: Session, search_term: str):
-#         return db.query(MergedIdea).filter(
-#             (MergedIdea.title.ilike(f"%{search_term}%")) |
-#             (MergedIdea.subject.ilike(f"%{search_term}%")) |
-#             (MergedIdea.content.ilike(f"%{search_term}%"))
-#         ).all()
-#

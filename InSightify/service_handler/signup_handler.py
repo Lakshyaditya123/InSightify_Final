@@ -20,9 +20,9 @@ class SignupHelper:
                 self.response.get_response(3, "User already exists with this email")
             else:
                 self.user_crud.create_user(**data)
-                if self.user_crud.commit_it()["error_code"]:
+                if self.user_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")
                 else:
                     self.response.get_response(0, "User created successfully")
         return self.response.send_response()
-# have to encrypt password, email, mobile number, sec answer
+# have to email, mobile number, sec answer

@@ -2,8 +2,6 @@ from InSightify.Common_files.response import ResponseHandler
 from InSightify.CoreClasses import CommentCRUD
 from InSightify.db_server.Flask_app import dbsession
 
-'''user, idea, merged idea, votes, comments, tags'''
-
 class CommentHelper:
     def __init__(self):
         self.comment_crud = CommentCRUD(dbsession)
@@ -18,7 +16,7 @@ class CommentHelper:
             if not (comment["idea_id"] and comment["merged_idea_id"]) and (comment["idea_id"] or comment["merged_idea_id"]):
                 # There should be only one idea_id or merged_id
                 self.comment_crud.create_comment(**comment)
-                if self.comment_crud.commit_it()["error_code"]:
+                if self.comment_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")
                 else:
                     self.response.get_response(0, "Comment created successfully")

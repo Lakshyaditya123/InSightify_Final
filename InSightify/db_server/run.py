@@ -1,6 +1,4 @@
-# run.py - FIXED VERSION
 from InSightify.db_server.Flask_app import app
-# Import routes to register them with the app
 from InSightify.db_server import app_routes
 
 if __name__ == '__main__':
