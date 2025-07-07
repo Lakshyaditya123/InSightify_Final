@@ -9,9 +9,9 @@ class CommentHelper:
         self.response = ResponseHandler()
 
     def add_comment(self,comment):
-        comment["parent_comment"] = comment["parent_comment"] if comment.get("parent_comment") else -1
-        comment["idea_id"] = comment["idea_id"] if comment.get("idea_id") else None
-        comment["merged_idea_id"] = comment["merged_idea_id"] if comment.get("merged_idea_id") else None
+        comment.setdefault("parent_comment", -1)
+        comment.setdefault("idea_id")
+        comment.setdefault("merged_idea_id")
         if comment["user_id"] and comment["content"]:
             if not (comment["idea_id"] and comment["merged_idea_id"]) and (comment["idea_id"] or comment["merged_idea_id"]):
                 # There should be only one idea_id or merged_id

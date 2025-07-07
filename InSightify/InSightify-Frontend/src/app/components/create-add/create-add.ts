@@ -66,9 +66,9 @@ export class CreateAdd implements OnInit {
       try {
         const ideaData = {
           ...this.addIdeaForm.value,
-          tags_list: [1],
-          user_id: 2,
-
+          tags_list: [1,2,3],
+          user_id: 5,
+          status: 1,
         };
 
         // Here you would call your backend API
@@ -76,7 +76,7 @@ export class CreateAdd implements OnInit {
 
         // Mock API call - replace with actual service call
         const res :any= await this.ideaService.add_idea(ideaData).toPromise();
-        if(res.error_code==0){
+        if(res.errCode==0){
           alert('Submitted');
         }
 

@@ -50,6 +50,9 @@ class IdeaCRUD(BaseCRUD):
     def update_status(self, idea_id, status):
         return self.update(idea_id, status=status)
 
+    def update_tags(self, idea_id, tags_list):
+        return self.update(idea_id, tags_list=tags_list)
+
     def search_ideas(self, search_term):
         result = self.db_session.query(self.model).filter(
             or_(
@@ -140,5 +143,4 @@ class IdeaCRUD(BaseCRUD):
                 msg=f"Error retrieving ideas with details: {str(e)}",
                 obj=None
             )
-
         return self.db_response.send_response()

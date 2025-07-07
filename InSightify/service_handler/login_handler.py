@@ -44,10 +44,13 @@ class LoginHelper:
         user_rec=self.user_crud.get_by_email(data['email'])["obj"]
         if user_rec:
             self.user_crud.update_profile(user_id=user_rec.id, password=data['password'])
-            self.response.get_response(0, "Password updated successfully")
+            #have to commit here:)
+            if self.user_crud.commit_it()["errCode"]:
+                self.response.get_response(500, "Internal Server Error")
+            else:
+                self.response.get_response(0, "Password updated successfully")
         else:
             self.response.get_response(2,"User not found")
-
         return self.response.send_response()
 
 

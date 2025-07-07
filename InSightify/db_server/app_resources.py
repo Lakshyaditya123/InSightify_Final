@@ -124,3 +124,10 @@ class CommentDisplay(Resource):
         comment = CommentHelper()
         data = request.get_json()
         return comment.comment_display(data)
+
+class RefineIdeas(Resource):
+    @staticmethod
+    def get():
+        ai_help= AiHelper()
+        data=request.get_json()
+        return ai_help.refine_idea(data)

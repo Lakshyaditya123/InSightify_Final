@@ -8,8 +8,729 @@
 {"asctime": "2025-06-26 18:08:13,837", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  password authentication failed for user \"lakshyadityabhatnagar\"\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
 {"asctime": "2025-06-26 18:10:16,397", "levelname": "INFO", "message": "SignUp POST method called"}
 {"asctime": "2025-06-26 18:12:15,335", "levelname": "INFO", "message": "SignUp POST method called"}
-{"asctime": "2025-06-26 18:12:17,590", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"192.168.1.35\", port 5490 failed: Connection refused (0x0000274D/10061)\n\tIs the server running on that host and accepting TCP/IP connections?\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
+{"asctime": "2025-06-26 18:12:17,590", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"192.168.1.14\", port 5490 failed: Connection refused (0x0000274D/10061)\n\tIs the server running on that host and accepting TCP/IP connections?\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
 {"asctime": "2025-06-26 18:12:46,302", "levelname": "INFO", "message": "SignUp POST method called"}
-{"asctime": "2025-06-26 18:12:51,064", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"192.168.1.35\", port 5490 failed: Connection refused (0x0000274D/10061)\n\tIs the server running on that host and accepting TCP/IP connections?\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
+{"asctime": "2025-06-26 18:12:51,064", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"192.168.1.14\", port 5490 failed: Connection refused (0x0000274D/10061)\n\tIs the server running on that host and accepting TCP/IP connections?\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
 {"asctime": "2025-06-26 18:17:12,070", "levelname": "INFO", "message": "SignUp POST method called"}
-{"asctime": "2025-06-26 18:40:32,880", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"192.168.1.35\", port 5490 failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request.\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
+{"asctime": "2025-06-26 18:40:32,880", "levelname": "ERROR", "message": "Error in VoteUpdate POST: (psycopg2.OperationalError) connection to server at \"192.168.1.14\", port 5490 failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request.\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
+{"asctime": "2025-06-27 16:31:56,986", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:31:57,204", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:32:07,319", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:32:07,320", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:32:07,320", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:36:47,067", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:36:47,255", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:36:52,458", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:36:52,458", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:36:52,458", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:41:51,125", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:42:56,577", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:43:16,269", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:43:16,473", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:44:48,305", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:44:48,305", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:44:48,305", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:44:51,128", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:44:51,128", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:44:51,128", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:46:00,115", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:46:00,317", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:46:09,039", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:46:09,040", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:46:09,040", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:46:42,174", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:46:42,175", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:46:42,175", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:47:05,525", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:47:05,525", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:47:05,526", "levelname": "INFO", "message": "Endpoint: bar"}
+{"asctime": "2025-06-27 16:47:05,526", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 16:47:05,526", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:47:05,526", "levelname": "INFO", "message": "Execution Time: 0.74ms"}
+{"asctime": "2025-06-27 16:47:05,526", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: BAR GET method working"}
+{"asctime": "2025-06-27 16:47:05,526", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "Endpoint: foo"}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "Execution Time: 0.31ms"}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: IN FOO Function."}
+{"asctime": "2025-06-27 16:47:11,326", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 16:48:10,060", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:48:10,060", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:48:10,060", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:48:52,097", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:48:52,294", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:48:57,603", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:48:57,604", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:48:57,604", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:48:57,696", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 16:48:57,696", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:48:57,696", "levelname": "INFO", "message": "Execution Time: 93.08ms"}
+{"asctime": "2025-06-27 16:48:57,696", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Found all ideas Successfully"}
+{"asctime": "2025-06-27 16:48:57,696", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "Error Type: TypeError"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "Error Module: builtins"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "Error Message: IdeaCRUD.get_all_ideas_with_details() got an unexpected keyword argument 'statu'. Did you mean 'status'?"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "Execution Time: 0.49ms"}
+{"asctime": "2025-06-27 16:49:53,876", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 16:53:49,268", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:53:49,465", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:54:10,050", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:54:10,248", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:54:30,708", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:54:30,708", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:54:30,708", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:54:30,742", "levelname": "ERROR", "message": "Error in get_all_ideas_with_details_simplified: (psycopg2.OperationalError) connection to server at \"localhost\" (::1), port 5434 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5434 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "Error Type: OperationalError"}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "Error Module: sqlalchemy.exc"}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "Error Message: (psycopg2.OperationalError) connection to server at \"localhost\" (::1), port 5434 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5434 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\n\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "Execution Time: 35.4ms"}
+{"asctime": "2025-06-27 16:54:30,743", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 16:54:54,787", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:54:54,988", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:55:01,196", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:55:01,197", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:55:01,197", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:56:45,788", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:56:45,993", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 16:56:47,404", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 16:56:47,405", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:56:47,405", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 16:56:47,488", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 16:56:47,488", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 16:56:47,488", "levelname": "INFO", "message": "Execution Time: 84.02ms"}
+{"asctime": "2025-06-27 16:56:47,488", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Found all ideas Successfully"}
+{"asctime": "2025-06-27 16:56:47,488", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:38:30,989", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 18:38:31,192", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 18:39:10,643", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:39:10,643", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:39:10,643", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 18:39:10,713", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:39:10,713", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:39:10,713", "levelname": "INFO", "message": "Execution Time: 70.17ms"}
+{"asctime": "2025-06-27 18:39:10,713", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-27 18:39:10,713", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:39:18,564", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:39:18,565", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:39:18,565", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 18:39:18,589", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:39:18,589", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:39:18,589", "levelname": "INFO", "message": "Execution Time: 24.63ms"}
+{"asctime": "2025-06-27 18:39:18,589", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-27 18:39:18,590", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:42:04,740", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:42:04,741", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:42:04,741", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 18:42:04,767", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:42:04,767", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:42:04,767", "levelname": "INFO", "message": "Execution Time: 26.66ms"}
+{"asctime": "2025-06-27 18:42:04,767", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-27 18:42:04,767", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:45:06,872", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "Execution Time: 0.84ms"}
+{"asctime": "2025-06-27 18:45:06,873", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "Execution Time: 0.37ms"}
+{"asctime": "2025-06-27 18:45:37,262", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:50:56,054", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 18:50:57,314", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:50:57,315", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:57,315", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:50:57,315", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:50:57,315", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:57,315", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:50:57,315", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:50:57,316", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:50:57,316", "levelname": "ERROR", "message": "Execution Time: 0.58ms"}
+{"asctime": "2025-06-27 18:50:57,316", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:50:58,110", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:50:58,110", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:58,110", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:50:58,110", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:50:58,111", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:58,111", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:50:58,111", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:50:58,111", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:50:58,112", "levelname": "ERROR", "message": "Execution Time: 0.5ms"}
+{"asctime": "2025-06-27 18:50:58,112", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:50:58,617", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:50:58,618", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:58,618", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:50:58,618", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:50:58,619", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:58,619", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:50:58,619", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:50:58,619", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:50:58,619", "levelname": "ERROR", "message": "Execution Time: 0.85ms"}
+{"asctime": "2025-06-27 18:50:58,619", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:50:59,629", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:50:59,629", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:59,629", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "Execution Time: 0.48ms"}
+{"asctime": "2025-06-27 18:50:59,630", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "Execution Time: 0.27ms"}
+{"asctime": "2025-06-27 18:50:59,846", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "Execution Time: 0.16ms"}
+{"asctime": "2025-06-27 18:51:00,013", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:00,276", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:00,276", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "Execution Time: 0.77ms"}
+{"asctime": "2025-06-27 18:51:00,277", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:00,491", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:00,492", "levelname": "ERROR", "message": "Execution Time: 0.86ms"}
+{"asctime": "2025-06-27 18:51:00,493", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:00,659", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:00,659", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,659", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:00,659", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:00,659", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,660", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:00,660", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:00,660", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:00,660", "levelname": "ERROR", "message": "Execution Time: 0.62ms"}
+{"asctime": "2025-06-27 18:51:00,660", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:00,886", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:00,887", "levelname": "ERROR", "message": "Execution Time: 0.73ms"}
+{"asctime": "2025-06-27 18:51:00,887", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:01,062", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "Execution Time: 0.36ms"}
+{"asctime": "2025-06-27 18:51:01,063", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:01,268", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:01,268", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:01,268", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "Execution Time: 0.38ms"}
+{"asctime": "2025-06-27 18:51:01,269", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:01,437", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:01,437", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:01,437", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:01,437", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:01,437", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:01,437", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:01,438", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:01,438", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:01,438", "levelname": "ERROR", "message": "Execution Time: 0.35ms"}
+{"asctime": "2025-06-27 18:51:01,438", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:06,760", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:06,760", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:06,760", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "Execution Time: 0.57ms"}
+{"asctime": "2025-06-27 18:51:06,761", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:08,683", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:08,683", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:08,683", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "Execution Time: 0.38ms"}
+{"asctime": "2025-06-27 18:51:08,684", "levelname": "ERROR", "message": "Client IP: 192.168.1.14"}
+{"asctime": "2025-06-27 18:51:33,052", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:33,052", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:33,052", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 18:51:33,141", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:51:33,142", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:33,142", "levelname": "INFO", "message": "Execution Time: 89.81ms"}
+{"asctime": "2025-06-27 18:51:33,142", "levelname": "INFO", "message": "Response type: Response"}
+{"asctime": "2025-06-27 18:51:33,142", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "Error Type: UnsupportedMediaType"}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "Error Message: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "Execution Time: 0.37ms"}
+{"asctime": "2025-06-27 18:51:58,277", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 18:52:12,409", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:52:12,409", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:12,409", "levelname": "INFO", "message": "Endpoint: wallforuseridea"}
+{"asctime": "2025-06-27 18:52:12,447", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:52:12,447", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:12,447", "levelname": "INFO", "message": "Execution Time: 37.89ms"}
+{"asctime": "2025-06-27 18:52:12,447", "levelname": "INFO", "message": "Response type: Response"}
+{"asctime": "2025-06-27 18:52:12,447", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "Error Type: TypeError"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "Error Module: builtins"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "Error Message: BaseCRUD.get_by_id() got an unexpected keyword argument 'status'"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "Execution Time: 0.38ms"}
+{"asctime": "2025-06-27 18:52:24,524", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 18:52:36,421", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:52:36,421", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:36,421", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:52:36,422", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:52:36,422", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:36,422", "levelname": "ERROR", "message": "Error Type: TypeError"}
+{"asctime": "2025-06-27 18:52:36,422", "levelname": "ERROR", "message": "Error Module: builtins"}
+{"asctime": "2025-06-27 18:52:36,422", "levelname": "ERROR", "message": "Error Message: BaseCRUD.get_by_id() got an unexpected keyword argument 'user_id'"}
+{"asctime": "2025-06-27 18:52:36,423", "levelname": "ERROR", "message": "Execution Time: 0.88ms"}
+{"asctime": "2025-06-27 18:52:36,423", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 18:52:42,347", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:52:42,348", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:42,348", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:52:42,348", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:52:42,348", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:52:42,349", "levelname": "ERROR", "message": "Error Type: BadRequest"}
+{"asctime": "2025-06-27 18:52:42,349", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:52:42,349", "levelname": "ERROR", "message": "Error Message: 400 Bad Request: Failed to decode JSON object: Expecting value: line 16 column 1 (char 15)"}
+{"asctime": "2025-06-27 18:52:42,349", "levelname": "ERROR", "message": "Execution Time: 1.02ms"}
+{"asctime": "2025-06-27 18:52:42,350", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 18:53:06,582", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "Error Type: BadRequest"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "Error Module: werkzeug.exceptions"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "Error Message: 400 Bad Request: Failed to decode JSON object: Expecting value: line 16 column 1 (char 15)"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "Execution Time: 0.29ms"}
+{"asctime": "2025-06-27 18:53:06,615", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-06-27 18:56:54,787", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 18:56:54,988", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 18:57:19,106", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:57:19,107", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:57:19,107", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 18:57:19,188", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:57:19,188", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:57:19,188", "levelname": "INFO", "message": "Execution Time: 82.27ms"}
+{"asctime": "2025-06-27 18:57:19,188", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-27 18:57:19,189", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:57:39,845", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:57:39,845", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:57:39,845", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 18:57:39,862", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:57:39,863", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:57:39,863", "levelname": "INFO", "message": "Execution Time: 17.23ms"}
+{"asctime": "2025-06-27 18:57:39,863", "levelname": "INFO", "message": "Response - ErrorCode: 1, Message: Username or password is incorrect"}
+{"asctime": "2025-06-27 18:57:39,863", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:57:47,752", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:57:47,752", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:57:47,752", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 18:57:47,775", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:57:47,775", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:57:47,775", "levelname": "INFO", "message": "Execution Time: 22.73ms"}
+{"asctime": "2025-06-27 18:57:47,775", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-27 18:57:47,775", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 18:58:42,700", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 18:58:42,701", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:58:42,701", "levelname": "INFO", "message": "Endpoint: addingidea"}
+{"asctime": "2025-06-27 18:58:42,735", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 18:58:42,735", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 18:58:42,735", "levelname": "INFO", "message": "Execution Time: 34.91ms"}
+{"asctime": "2025-06-27 18:58:42,736", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea created successfully"}
+{"asctime": "2025-06-27 18:58:42,736", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 19:06:26,498", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 19:06:26,500", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 19:06:26,500", "levelname": "INFO", "message": "Endpoint: addingidea"}
+{"asctime": "2025-06-27 19:06:26,516", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 19:06:26,516", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 19:06:26,516", "levelname": "INFO", "message": "Execution Time: 17.64ms"}
+{"asctime": "2025-06-27 19:06:26,516", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea created successfully"}
+{"asctime": "2025-06-27 19:06:26,516", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-27 21:29:59,639", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 21:29:59,915", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-27 21:33:12,152", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-27 21:33:12,153", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 21:33:12,153", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-27 21:33:12,363", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-27 21:33:12,363", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-27 21:33:12,363", "levelname": "INFO", "message": "Execution Time: 211.26ms"}
+{"asctime": "2025-06-27 21:33:12,363", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-27 21:33:12,363", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-06-30 13:11:44,499", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-30 13:11:44,827", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-30 14:14:53,813", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-30 14:14:54,038", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-06-30 14:15:17,046", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-06-30 14:15:17,048", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-30 14:15:17,048", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-06-30 14:15:17,259", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-06-30 14:15:17,260", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-06-30 14:15:17,260", "levelname": "INFO", "message": "Execution Time: 213.15ms"}
+{"asctime": "2025-06-30 14:15:17,260", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Login Successful"}
+{"asctime": "2025-06-30 14:15:17,260", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:22:25,217", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:22:25,456", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:23:48,131", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:23:54,929", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:23:54,929", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:23:54,929", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:24:23,447", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:24:23,448", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:24:23,449", "levelname": "INFO", "message": "Execution Time: 28517.76ms"}
+{"asctime": "2025-07-04 10:24:23,449", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:24:23,449", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:43:02,911", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:43:03,140", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:43:09,491", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:43:09,491", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:43:09,491", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:43:33,942", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:43:33,942", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:43:33,942", "levelname": "INFO", "message": "Execution Time: 24451.02ms"}
+{"asctime": "2025-07-04 10:43:33,942", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:43:33,942", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:44:16,089", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:44:16,090", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:44:16,090", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:44:16,615", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:44:23,463", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:44:23,463", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:44:23,463", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:44:43,594", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:44:43,829", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:44:47,081", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:44:47,081", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:44:47,081", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:44:55,428", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:44:55,428", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:44:55,429", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:45:06,073", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-07-04 10:45:06,074", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:45:06,074", "levelname": "ERROR", "message": "Error Type: AttributeError"}
+{"asctime": "2025-07-04 10:45:06,074", "levelname": "ERROR", "message": "Error Module: builtins"}
+{"asctime": "2025-07-04 10:45:06,074", "levelname": "ERROR", "message": "Error Message: 'str' object has no attribute 'copy'"}
+{"asctime": "2025-07-04 10:45:06,074", "levelname": "ERROR", "message": "Execution Time: 18992.21ms"}
+{"asctime": "2025-07-04 10:45:06,074", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-07-04 10:45:29,948", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-07-04 10:45:29,949", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:45:29,949", "levelname": "ERROR", "message": "Error Type: AttributeError"}
+{"asctime": "2025-07-04 10:45:29,949", "levelname": "ERROR", "message": "Error Module: builtins"}
+{"asctime": "2025-07-04 10:45:29,949", "levelname": "ERROR", "message": "Error Message: 'str' object has no attribute 'copy'"}
+{"asctime": "2025-07-04 10:45:29,949", "levelname": "ERROR", "message": "Execution Time: 34520.22ms"}
+{"asctime": "2025-07-04 10:45:29,949", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-07-04 10:45:50,474", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:45:50,474", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:45:50,474", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:45:51,190", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:46:12,263", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:46:12,500", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:46:17,410", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:46:17,410", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:46:17,410", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:46:49,377", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:46:49,377", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:46:49,377", "levelname": "INFO", "message": "Execution Time: 31967.16ms"}
+{"asctime": "2025-07-04 10:46:49,377", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:46:49,377", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:47:53,372", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:47:53,525", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:47:53,525", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:47:53,525", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:48:19,749", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:48:19,749", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:48:19,749", "levelname": "INFO", "message": "Execution Time: 26224.47ms"}
+{"asctime": "2025-07-04 10:48:19,750", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:48:19,750", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:49:22,064", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:49:22,101", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:49:22,101", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:49:22,101", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:49:44,838", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:49:44,838", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:49:44,839", "levelname": "INFO", "message": "Execution Time: 22737.66ms"}
+{"asctime": "2025-07-04 10:49:44,839", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:49:44,839", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:51:29,339", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:51:29,374", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:51:29,374", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:51:29,374", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:51:53,474", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:51:53,474", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:51:53,474", "levelname": "INFO", "message": "Execution Time: 24099.88ms"}
+{"asctime": "2025-07-04 10:51:53,474", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:51:53,474", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:54:46,366", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:54:46,366", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:54:46,366", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:55:12,290", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:55:12,290", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:55:12,290", "levelname": "INFO", "message": "Execution Time: 25924.52ms"}
+{"asctime": "2025-07-04 10:55:12,291", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 10:55:12,291", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 10:57:41,056", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 10:57:42,726", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 10:57:42,726", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:57:42,726", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 10:58:12,390", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 10:58:12,391", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 10:58:12,391", "levelname": "INFO", "message": "Execution Time: 29664.41ms"}
+{"asctime": "2025-07-04 10:58:12,391", "levelname": "INFO", "message": "Response type: Response"}
+{"asctime": "2025-07-04 10:58:12,391", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:11:32,777", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:13:20,411", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:13:20,649", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:13:26,078", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:13:26,079", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:13:26,079", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:13:45,591", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:13:45,591", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:13:45,591", "levelname": "INFO", "message": "Execution Time: 19512.63ms"}
+{"asctime": "2025-07-04 11:13:45,591", "levelname": "INFO", "message": "Response type: Response"}
+{"asctime": "2025-07-04 11:13:45,591", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:25:11,015", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:25:11,259", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:25:40,994", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:25:40,994", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:25:40,994", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:26:00,587", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:26:00,588", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:26:00,588", "levelname": "INFO", "message": "Execution Time: 19593.76ms"}
+{"asctime": "2025-07-04 11:26:00,588", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:26:00,588", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:29:47,798", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:29:47,830", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:29:47,830", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:29:47,830", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:30:08,203", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-07-04 11:30:08,203", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:30:08,204", "levelname": "ERROR", "message": "Error Type: JSONDecodeError"}
+{"asctime": "2025-07-04 11:30:08,204", "levelname": "ERROR", "message": "Error Module: json.decoder"}
+{"asctime": "2025-07-04 11:30:08,204", "levelname": "ERROR", "message": "Error Message: Expecting value: line 1 column 1 (char 0)"}
+{"asctime": "2025-07-04 11:30:08,204", "levelname": "ERROR", "message": "Execution Time: 20373.18ms"}
+{"asctime": "2025-07-04 11:30:08,204", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-07-04 11:30:58,143", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:30:58,263", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:30:58,263", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:30:58,263", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "Error Type: JSONDecodeError"}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "Error Module: json.decoder"}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "Error Message: Expecting value: line 1 column 1 (char 0)"}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "Execution Time: 42166.93ms"}
+{"asctime": "2025-07-04 11:31:40,430", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-07-04 11:35:23,152", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:35:23,154", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:35:23,154", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:35:23,700", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:35:25,450", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:35:25,451", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:35:25,451", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:35:51,070", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:35:51,070", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:35:51,070", "levelname": "INFO", "message": "Execution Time: 25619.59ms"}
+{"asctime": "2025-07-04 11:35:51,071", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:35:51,071", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:36:11,893", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:36:11,927", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:36:11,927", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:36:11,927", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:36:31,573", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:36:35,502", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:36:35,502", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:36:35,502", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:37:13,840", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:37:13,840", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:37:13,840", "levelname": "INFO", "message": "Execution Time: 38337.87ms"}
+{"asctime": "2025-07-04 11:37:13,840", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:37:13,840", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:38:38,869", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:39:46,260", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:39:46,897", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:39:46,897", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:39:46,897", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:40:12,251", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:40:12,251", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:40:12,251", "levelname": "INFO", "message": "Execution Time: 25353.82ms"}
+{"asctime": "2025-07-04 11:40:12,251", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:40:12,252", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:41:10,857", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:41:17,378", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:41:17,416", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:41:17,416", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:41:17,416", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:41:43,526", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:41:43,526", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:41:43,526", "levelname": "INFO", "message": "Execution Time: 26109.32ms"}
+{"asctime": "2025-07-04 11:41:43,526", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:41:43,526", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:42:56,663", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:42:56,664", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:42:56,664", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:42:57,397", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:42:59,174", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:42:59,175", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:42:59,175", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:43:35,830", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:43:35,830", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:43:35,831", "levelname": "INFO", "message": "Execution Time: 36655.77ms"}
+{"asctime": "2025-07-04 11:43:35,831", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:43:35,831", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:44:24,097", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:44:25,246", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:44:25,246", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:44:25,246", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:44:53,611", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:44:53,611", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:44:53,611", "levelname": "INFO", "message": "Execution Time: 28365.11ms"}
+{"asctime": "2025-07-04 11:44:53,611", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:44:53,612", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:45:49,735", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:45:49,923", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:45:49,923", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:45:49,923", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:46:17,785", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 11:46:17,785", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:46:17,785", "levelname": "INFO", "message": "Execution Time: 27861.45ms"}
+{"asctime": "2025-07-04 11:46:17,785", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 11:46:17,785", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 11:47:59,120", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 11:47:59,758", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 11:47:59,758", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:47:59,758", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 11:48:26,954", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-07-04 11:48:26,955", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-07-04 11:48:26,955", "levelname": "ERROR", "message": "Error Type: JSONDecodeError"}
+{"asctime": "2025-07-04 11:48:26,955", "levelname": "ERROR", "message": "Error Module: json.decoder"}
+{"asctime": "2025-07-04 11:48:26,955", "levelname": "ERROR", "message": "Error Message: Extra data: line 1 column 1030 (char 1029)"}
+{"asctime": "2025-07-04 11:48:26,955", "levelname": "ERROR", "message": "Execution Time: 27196.69ms"}
+{"asctime": "2025-07-04 11:48:26,955", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-07-04 14:18:01,503", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 14:18:01,746", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 14:18:05,908", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 14:18:05,908", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 14:18:05,908", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "=== RESOURCE ERROR OCCURRED ==="}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "Method: GET get"}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "Error Type: JSONDecodeError"}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "Error Module: json.decoder"}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "Error Message: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "Execution Time: 15.78ms"}
+{"asctime": "2025-07-04 14:18:05,924", "levelname": "ERROR", "message": "Client IP: 127.0.0.1"}
+{"asctime": "2025-07-04 14:19:21,221", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 14:19:21,787", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 14:19:21,788", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 14:19:21,788", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 14:19:21,803", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 14:19:21,803", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 14:19:21,803", "levelname": "INFO", "message": "Execution Time: 15.64ms"}
+{"asctime": "2025-07-04 14:19:21,803", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 14:19:21,804", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 14:19:41,910", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 14:19:41,941", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 14:19:41,941", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 14:19:41,941", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 14:19:41,946", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 14:19:41,946", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 14:19:41,946", "levelname": "INFO", "message": "Execution Time: 4.81ms"}
+{"asctime": "2025-07-04 14:19:41,946", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 14:19:41,946", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 14:27:05,504", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 14:27:05,722", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 17:17:34,539", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 17:17:34,836", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 17:21:39,947", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 17:21:39,947", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 17:21:39,948", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 17:22:08,634", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 17:22:08,635", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 17:22:08,635", "levelname": "INFO", "message": "Execution Time: 28686.58ms"}
+{"asctime": "2025-07-04 17:22:08,635", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 17:22:08,636", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 17:23:07,808", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-07-04 17:23:08,726", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 17:23:08,726", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 17:23:08,726", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 17:23:34,375", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 17:23:34,375", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 17:23:34,375", "levelname": "INFO", "message": "Execution Time: 25649.08ms"}
+{"asctime": "2025-07-04 17:23:34,375", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 17:23:34,376", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-07-04 17:27:21,105", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-07-04 17:27:21,105", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 17:27:21,105", "levelname": "INFO", "message": "Endpoint: refineideas"}
+{"asctime": "2025-07-04 17:27:49,587", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-07-04 17:27:49,587", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-07-04 17:27:49,587", "levelname": "INFO", "message": "Execution Time: 28482.03ms"}
+{"asctime": "2025-07-04 17:27:49,588", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: Idea Refined Successful"}
+{"asctime": "2025-07-04 17:27:49,588", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}

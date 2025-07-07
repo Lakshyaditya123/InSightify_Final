@@ -9,10 +9,10 @@ class SignupHelper:
         self.session = dbsession
 
     def signup(self, data):
-        data['security_question_id']= data['security_question_id'] if data.get('security_question_id') else 1
-        data['security_answer'] = data['security_answer'] if data.get('security_answer') else "lakshya"
-        data['profile_picture'] = data['profile_picture'] if data.get('profile_picture') else "/static/img/profile_picture.png"
-        data['bio'] = data['bio'] if data.get('bio') else "No bio available"
+        data.setdefault('security_question_id',1)
+        data.setdefault('security_answer',"lakshya")
+        data.setdefault('profile_picture', "/static/img/profile_picture.png")
+        data.setdefault('bio', "No bio available")
         # Check if all required fields are provided
         if  data['name'] and data['email'] and data['mobile'] and data['password'] and  data['security_question_id'] and data['security_answer'] and data['profile_picture']:
             user_rec=self.user_crud.get_by_email(data['email'])["obj"]

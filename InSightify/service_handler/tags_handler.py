@@ -9,7 +9,7 @@ class TagHelper:
         self.response = ResponseHandler()
 
     def add_tag(self, tag):
-        tag["tag_desc"] = tag["tag_desc"] if tag.get("tag_desc") else "No description Available" # handle if this is none then
+        tag.setdefault("tag_desc", "No description Available") # handle if this is none then
         if tag["name"] and tag["tag_desc"]:
             self.tag_crud.create_tag(**tag)
             if self.tag_crud.commit_it()["errCode"]:

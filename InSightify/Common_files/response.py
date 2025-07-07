@@ -1,3 +1,4 @@
+from flask import jsonify
 class ResponseHandler:
     def __init__(self):
         self.errCode = None

@@ -16,23 +16,21 @@ class IdeaHelper:
         self.response = ResponseHandler()
 
     def add_idea(self, idea):
-        idea["title"] = idea["title"] if idea.get("title") else "untitled" # handle for multiple untitled
-        idea["tags_list"] = idea["tags_list"] if idea.get("tags_list") else [] # handle if this is none then
-        idea["refine_content"] = idea["refine_content"] if idea.get("refine_content") else None
-        idea["link"] = idea["link"] if idea.get("link") else None
-        idea["file_path"] = idea["file_path"] if idea.get("file_path") else None
+        idea.setdefault("title","untitled")
+        idea.setdefault("tags_list", [])
+        idea.setdefault("refine_content")
+        idea.setdefault("link")
+        idea.setdefault("file_path")
         if idea["user_id"] and idea["subject"] and idea["content"]:
             self.idea_crud.create_idea(**idea)
             if self.user_crud.commit_it()["errCode"]:
+                # here i want to pass data to celery worker so that it can do the task in background
+
                 self.response.get_response(500, "Internal Server Error")
             else:
                 self.response.get_response(0, "Idea created successfully")
         else:
             self.response.get_response(400, "user_id, subject and content are required")
-            # Call Ai merged here
-            # Find relevant tags here,
-            # put tags and pray to god things work out...
-            # have to see if the tag that has been added by the user is already there or not... and add it here
         return self.response.send_response()
 
     def idea_display(self, idea_id):

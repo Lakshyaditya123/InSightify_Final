@@ -46,7 +46,7 @@ export class AuthPage {
       let payload:any = this.signupForm.value;
       delete payload['confirmPassword'];
       this.authService.signup(payload).subscribe((res)=>{
-        if(res.error_code==0){
+        if(res.errCode==0){
           alert('Signup Successfully');
           this.isSignup = false;
         }
@@ -65,7 +65,7 @@ export class AuthPage {
      if(this.loginForm.status=='VALID'){
       let payload:any = this.loginForm.value;
       this.authService.login(payload).subscribe((res:any)=>{
-        if(res.error_code==0){
+        if(res.errCode==0){
           alert('Login Successfully');
           this.router.navigate(['/homescreen']);
         }
