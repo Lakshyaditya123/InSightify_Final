@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, SmallInteger, String, DateTime, ForeignKey, ARRAY
+from sqlalchemy import Column, Integer, SmallInteger, String, DateTime, ForeignKey
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy.sql import func
 from InSightify.db_server.app_database import InsightifyDB
@@ -140,6 +141,7 @@ class MergedIdea(Base, TimestampMixin):
     title = Column(String)
     subject = Column(String, nullable=False)
     content = Column(String, nullable=False)
+    tags_list = Column(ARRAY(SmallInteger))
 
     # Relationships
     ideas = relationship("Idea", secondary="in_use.ideas_merged_ideas", back_populates="merged_ideas")

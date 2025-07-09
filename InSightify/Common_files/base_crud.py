@@ -15,6 +15,7 @@ class BaseCRUD:
         db_obj = self.model(**kwargs)
         self.db_session.add(db_obj)
         self.db_response.get_response(errCode=0, msg="Record created successfully.", obj=db_obj)
+        self.db_session.flush()
         return self.db_response.send_response()
 
     def get_by_id(self, id):
@@ -53,6 +54,7 @@ class BaseCRUD:
                 if hasattr(db_obj, field):
                     setattr(db_obj, field, value)
             self.db_session.add(db_obj)
+            self.db_session.flush()
             self.db_response.get_response(errCode=0, msg="Record updated successfully", obj=db_obj)
         return self.db_response.send_response()
 

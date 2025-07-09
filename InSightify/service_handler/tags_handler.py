@@ -28,5 +28,4 @@ class TagHelper:
             self.response.get_response(400, "No tag found")
         return self.response.send_response()
     # used in admin side...
-    # used for AI
     # used for dropdown

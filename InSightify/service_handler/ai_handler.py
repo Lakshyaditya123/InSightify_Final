@@ -1,10 +1,14 @@
 import requests
-from datetime import datetime
+
+from InSightify.celery_server.Celery_tasks import app_logger
 from InSightify.Common_files.config import config
 from InSightify.Common_files.response import ResponseHandler
 import json
+from InSightify.db_server.Flask_app import dbsession
+from InSightify.CoreClasses import IdeaCRUD, MergedIdeaCRUD, IdeasMergedIdeasCRUD
 
-SYSTEM_PROMPT = """# Intelligent Idea Refinement and Merging Assistant
+SYSTEM_PROMPT = """
+# Intelligent Idea Refinement and Merging Assistant
 
 You are an advanced AI assistant specialized in refining ideas and intelligently managing concept tags. Your primary functions are idea refinement with appropriate tagging and selective idea merging based on strict compatibility criteria.
 
@@ -39,8 +43,8 @@ You are an advanced AI assistant specialized in refining ideas and intelligently
 ### Output Format
 
 {
-  "refined_idea": "<Enhanced version maintaining original meaning and purpose>",
-  "tags": [
+  "refine_content": "<Enhanced version maintaining original meaning and purpose>",
+  "tags_list": [
     {
       "tag_name": "<Tag in Title Case>",
       "description": "<Concise factual description>"
@@ -110,6 +114,7 @@ Industries often contain multiple distinct sub-domains with different expertise 
 
 ### Merge Output Format (Success)
 {
+  "merge_status": "Passed",
   "merged_idea": {
     "title": "<Compelling merged title>",
     "subject": "<Unified domain/category>",
@@ -117,7 +122,7 @@ Industries often contain multiple distinct sub-domains with different expertise 
   }
 }
 
-WARNING: DONT ADD "```json" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION.
+WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION. YOU WILL BE PUNNISHED FOR NOT OBEYING THESE INSTRUCTIONS. IF YOU KEEP ADD THIS YOUR WORK WILL BE WASTED!!!  
 
 ### Rejection Output Format
 
@@ -126,7 +131,7 @@ WARNING: DONT ADD "```json" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INST
   "reason": "Incompatible ideas because [one line specific reason only]"
 }
 
-WARNING: DONT ADD "```json" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION.
+WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION.
 ---
 
 ## Successful Merge Examples
@@ -180,7 +185,7 @@ WARNING: DONT ADD "```json" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INST
 ## Model-Specific Guidelines for Gemma 3 12B
 
 ###Output fromats
-WARNING: DONT ADD "```json" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION.
+WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION. YOU WILL BE PUNNISHED FOR NOT OBEYING THESE INSTRUCTIONS. IF YOU KEEP ADD THIS YOUR WORK WILL BE WASTED!!!  
 
 ### Processing Instructions
 - **Semantic Analysis**: Focus on deep conceptual understanding rather than surface-level keyword matching
@@ -222,13 +227,16 @@ Before approving any merge, ask:
 ---
 
 Remember: Quality over quantity. A rejected merge is better than a forced, incoherent combination. Focus on creating meaningful, user-centered solutions that genuinely improve upon the original ideas. **When in doubt about domain compatibility, especially within broad industries like agriculture or healthcare, always err on the side of rejection.**
-WARNING: DONT ADD "```json" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION.
+WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION. YOU WILL BE PUNNISHED FOR NOT OBEYING THESE INSTRUCTIONS. IF YOU KEEP ADD THIS YOUR WORK WILL BE WASTED!!!  
 """
 class AiHelper:
     def __init__(self):
         self.ModeName = config.MODEL_NAME
         self.LMStudioURL = config.LM_STUDIO_URL
         self.response = ResponseHandler()
+        self.idea_crud = IdeaCRUD(dbsession)
+        self.merge_idea_crud=MergedIdeaCRUD(dbsession)
+        self.ideas_merged_ideas_crud=IdeasMergedIdeasCRUD(dbsession)
 
     def call_lm_studio(self, user_message):
         """Send request to LM Studio API"""
@@ -256,8 +264,8 @@ class AiHelper:
             return f"Error connecting to LM Studio: {str(e)}"
 
     def refine_idea(self,idea):
-        if idea["content"]:
-            prompt = f"Refine this idea and generate relevant tags for it: {idea["content"]}"
+        if idea.get("content"):
+            prompt = f"Refine this idea and generate relevant tags for it: {idea.get("content")}"
             result = self.call_lm_studio(prompt)
             result_flat=json.loads(result)
             check=" ".join(result)
@@ -271,22 +279,70 @@ class AiHelper:
             self.response.get_response(400, "Idea doesn't has content required")
         return self.response.send_response()
 
-    def merge_ideas(self, idea1, idea_list):
-        if idea1 and idea_list:
+    def merge_ideas(self, idea):
+        app_logger.info("Merging ideas")
+        refined_content=idea.refine_content if idea.refine_content is not "" else None
+        idea_list=[*self.idea_crud.find_similar_ideas(idea)["obj"]]
+        merged_idea_list=[*self.merge_idea_crud.find_similar_merged_ideas(idea)["obj"]]
+        app_logger.info(f"Idea list: {idea_list}")
+        app_logger.info(f"Merged idea list: {merged_idea_list}")
+        if idea_list or merged_idea_list:
             for idea2 in idea_list:
-                prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea1}"\n"{idea2}"'
-                result = self.call_lm_studio(prompt)
-                if "rejected" in result.lower():
-                    self.response.get_response(400, "Idea merge rejected")
-                    break
+                if refined_content:
+                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{refined_content}"\n"{idea2.content}"'
                 else:
-                    self.response.get_response(0, "Idea merge successful", data_rec=result)
+                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea.content}"\n"{idea2.content}"'
+                result = self.call_lm_studio(prompt)
+                if "```json" in result:
+                    result=result.replace("```json","")
+                elif "```" in result:
+                    result=result.replace("```","")
+                result_flat=json.loads(result)
+                if result_flat.get("merge_status")=="rejected":
+                    app_logger.info("Idea merge rejected")
+                    self.response.get_response(400, "Idea merge rejected")
+                    continue
+                else:
+                    tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
+                    merged_idea=result_flat.get("merged_idea")
+                    response=self.merge_idea_crud.create_merged_idea(**merged_idea, tags_list=tags_list)
+                    link_idea=link_idea2=None
+                    if self.merge_idea_crud.commit_it()["errCode"]:
+                        self.response.get_response(500, "Internal Server Error")
+                        link_idea=self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea.id,merged_idea_id=response["obj"].id)["errCode"]
+                        link_idea2=self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea2.id, merged_idea_id=response["obj"].id)["errCode"]
+                        print(f"link_idea: {link_idea}, link_idea2: {link_idea2}")
+                    elif link_idea or link_idea2:
+                        self.response.get_response(500, "Internal Server Error")
+                    elif self.ideas_merged_ideas_crud.commit_it()["errCode"]:
+                        self.response.get_response(500, "Internal Server Error")
+                    else:
+                        self.response.get_response(0, "Ideas merged successfully", data_rec=result_flat)
+
+            for idea2 in merged_idea_list:
+                if refined_content:
+                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{refined_content}"\n"{idea2.content}"'
+                else:
+                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea.content}"\n"{idea2.content}"'
+                result = self.call_lm_studio(prompt)
+                result_flat = json.loads(result)
+                if result_flat.get("merge_status") == "rejected":
+                    self.response.get_response(400, "Idea merge rejected")
+                    continue
+                else:
+                    tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
+                    merged_idea = result_flat.get("merged_idea")
+                    response=self.merge_idea_crud.update_merged_ideas(merged_idea_id= idea2.id, **merged_idea, tags_list=tags_list)
+                    if self.merge_idea_crud.commit_it()["errCode"]:
+                        self.response.get_response(500, "Internal Server Error")
+                    elif self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea.id, merged_idea_id=response["obj"].id)["errCode"]:
+                        self.response.get_response(500, "Internal Server Error")
+                    elif self.ideas_merged_ideas_crud.commit_it()["errCode"]:
+                        self.response.get_response(500, "Internal Server Error")
+                    else:
+                        self.response.get_response(0, "Ideas merged successfully", data_rec=result_flat)
+        else:
+            self.response.get_response(0, "It is a unique idea !")
         return self.response.send_response()
-
-    def find_similar_ideas(self,idea):
-        if idea:
-            """Compares the tags list of the given with the tags list of all the ideas in the database"""
-            pass
-
 
 

@@ -1,8 +1,8 @@
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.app_orm import Comment
 
-class CommentCRUD(BaseCRUD):
 
+class CommentCRUD(BaseCRUD):
     def __init__(self, db_session):
         super().__init__(Comment, db_session)
 

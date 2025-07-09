@@ -9,7 +9,7 @@ class VoteHelper:
         self.response = ResponseHandler()
 
     def update_vote(self, vote):
-        if vote['user_id'] and vote['vote_type'] and (vote['idea_id'] or vote['comment_id']):
+        if vote['user_id'] and vote['vote_type'] and (vote.get('idea_id') or vote.get('comment_id') or vote.get('merged_idea_id')):
             self.vote_crud.update_vote(**vote)
             if self.vote_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")

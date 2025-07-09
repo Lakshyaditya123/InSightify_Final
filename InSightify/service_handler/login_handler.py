@@ -1,6 +1,6 @@
 from InSightify.Common_files.response import ResponseHandler
 from InSightify.CoreClasses.users import UserCRUD
-from InSightify.db_server.Flask_app import dbsession
+from InSightify.db_server.Flask_app import dbsession, app_logger
 
 
 class LoginHelper:
@@ -11,8 +11,8 @@ class LoginHelper:
 
     def login(self, data):
         # Check if both username and password are provided
-        if data['email'] and data['password']:
-            user_rec=self.user_crud.get_by_email(data['email'])["obj"]
+        if data.get('email') and data.get('password'):
+            user_rec=self.user_crud.get_by_email(data.get('email'))["obj"]
             if user_rec:
                 if user_rec.password == data['password']:
                     #token = create_access_token(identity={"user_name": self.username, "user_id": self.user_rec.id}, expires_delta=timedelta(days=1))
@@ -22,38 +22,36 @@ class LoginHelper:
             else:
                 self.response.get_response(404, "User not found")
         else:
-            self.response.get_response(400, "Username and password are required")
+            self.response.get_response(100, "Username and password are required")
         return self.response.send_response()
 
     def forgot_passwd(self, data):
-        if data['email'] and data['sec_ques'] and data['answer'] in data:
+        if data.get('email') and data.get('security_question_id') and data.get('security_answer'):
             user_rec=self.user_crud.get_by_email(data['email'])["obj"]
             if user_rec:
-                if user_rec.sec_ques == data['sec_ques'] and user_rec.answer == data['answer']:
+                app_logger.info(f"User found: {data['security_question_id']}=={user_rec.this_obj2security_ques}:{data["security_answer"].strip()}=={user_rec.security_ques_answer}")
+                if user_rec.this_obj2security_ques == data['security_question_id'] and user_rec.security_ques_answer == data['security_answer'].strip():
                     self.response.get_response(0, "Yupp you are the one...")
-                    self.reset_password(data)
+                    self.reset_password(data, user_rec)
                 else:
                     self.response.get_response(1,"Security_question or answer is incorrect")
             else:
                 self.response.get_response(404,"User not found")
         else:
-            self.response.get_response(400, "email and sec_ques and answer are required")
+            self.response.get_response(400, "email, security_question_id and security_answer are required")
         return self.response.send_response()
 
-    def reset_password(self, data):
-        user_rec=self.user_crud.get_by_email(data['email'])["obj"]
-        if user_rec:
-            self.user_crud.update_profile(user_id=user_rec.id, password=data['password'])
-            #have to commit here:)
+    def reset_password(self, data, user_rec):
+        new_password = data.get("new_password")
+        if new_password:
+            self.user_crud.update_profile(user_rec.id, password=new_password)
             if self.user_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
             else:
-                self.response.get_response(0, "Password updated successfully")
+                self.response.get_response(0, "Password reset successfully")
         else:
-            self.response.get_response(2,"User not found")
+            self.response.get_response(400, "new_password are required")
         return self.response.send_response()
-
-
 
 
 

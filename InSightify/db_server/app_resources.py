@@ -54,7 +54,7 @@ class VoteUpdate(Resource):
         data = request.get_json()  # {"idea_id","comment_id"}
         return vote.vote_display(data)
 
-class WallForUserIdea(Resource):
+class MainWall(Resource):
     @staticmethod
     def get():
         wall = WallHelper()
@@ -111,6 +111,13 @@ class UserProfile(Resource):
         data = request.get_json()
         return user.get_profile(data)
 
+class UserProfileUpdate(Resource):
+    @staticmethod
+    def post():
+        user = ProfileHelper()
+        data = request.get_json()
+        return user.update_profile(data)
+
 class AddComment(Resource):
     @staticmethod
     def post():
@@ -131,3 +138,10 @@ class RefineIdeas(Resource):
         ai_help= AiHelper()
         data=request.get_json()
         return ai_help.refine_idea(data)
+
+class ForgotPassswd(Resource):
+    @staticmethod
+    def post():
+        login = LoginHelper()
+        data=request.get_json()
+        return login.forgot_passwd(data)

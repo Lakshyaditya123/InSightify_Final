@@ -37,7 +37,8 @@ class CommentHelper:
                 parent = comment_map.get(p_id)
                 if parent:
                     parent["Children"].append(comment)
-        return comments
+
+        return [comment for comment in comments if comment["parent_comment"] == -1]
 
     def comment_display(self, idea_ids):
         if not (idea_ids.get("idea_id") or idea_ids.get("merged_idea_id")):
@@ -51,9 +52,9 @@ class CommentHelper:
 
             if comments:
                 formated_comments = self.format_comments(self.comment_crud.convert_to_dict_list(comments))
-                self.response.get_response(0, "Found Idea", data_rec=formated_comments)
+                self.response.get_response(0, "Found comment", data=formated_comments)
             else:
-                self.response.get_response(400, "No idea found")
+                self.response.get_response(400, "No comment found!")
 
         return self.response.send_response()
 

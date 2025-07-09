@@ -23,7 +23,7 @@ class WallHelper:
         return self.response.send_response()
 
     def load_wall_with_child(self, status):
-        all_ideas = self.idea_crud.get_all_ideas_with_details(**status)# remove child ideas
+        all_ideas = self.idea_crud.get_all_ideas_with_details(status.get("status"), get_one=False)# remove child ideas
         all_merged_ideas = self.merged_idea_crud.get_merged_ideas_with_users()
         if all_ideas or all_merged_ideas:
             result={"all_ideas": all_ideas["obj"]if all_ideas else [], "all_merged_ideas": all_merged_ideas["obj"] if all_merged_ideas else []}

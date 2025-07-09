@@ -65,18 +65,30 @@ class IdeaCRUD(BaseCRUD):
             self.db_response.get_response(errCode=0, msg="Record not found", obj=None)
         return self.db_response.send_response()
 
-    def get_all_ideas_with_details(self, status=1):
+    def get_all_ideas_with_details(self, status=1, get_one=False, idea_id=None):
         try:
-            ideas = self.db_session.query(Idea).options(
-                joinedload(Idea.user)
-            ).filter(Idea.status == status).all()
-            if not ideas:
-                self.db_response.get_response(
-                    errCode=0,
-                    msg="No ideas found with the specified status",
-                    obj=[]
-                )
-                return self.db_response.send_response()
+            if get_one:
+                ideas = [self.db_session.query(Idea).options(
+                joinedload(Idea.user)).filter(Idea.id == idea_id).first()]
+
+                if not ideas:
+                    self.db_response.get_response(
+                        errCode=0,
+                        msg="No ideas found with the specified status",
+                        obj=[]
+                    )
+                    return self.db_response.send_response()
+            else:
+                ideas = self.db_session.query(Idea).options(
+                    joinedload(Idea.user)
+                ).filter(Idea.status == status).all()
+                if not ideas:
+                    self.db_response.get_response(
+                        errCode=0,
+                        msg="No ideas found with the specified status",
+                        obj=[]
+                    )
+                    return self.db_response.send_response()
 
             result_list = []
 
@@ -137,10 +149,38 @@ class IdeaCRUD(BaseCRUD):
             )
 
         except Exception as e:
-            app_logger.error(f"Error in get_all_ideas_with_details_simplified: {str(e)}")
+            app_logger.error(f"Error in get_all_ideas_with_details: {str(e)}")
             self.db_response.get_response(
                 errCode=2,
                 msg=f"Error retrieving ideas with details: {str(e)}",
                 obj=None
             )
+        return self.db_response.send_response()
+
+    def find_similar_ideas(self, idea: Idea):
+        if not idea or not idea.tags_list:
+            self.db_response.get_response(errCode=0, msg="No idea found", obj=None)
+        else:
+            input_tags = set(idea.tags_list)
+            # Fetch all ideas with at least one overlapping tag (excluding the input idea)
+            other_ideas = (
+                self.db_session.query(Idea)
+                .filter(Idea.id != idea.id)
+                .filter(Idea.tags_list.overlap(idea.tags_list))
+                .all()
+            )
+            similar_ideas = []
+            for other in other_ideas:
+                if not other.tags_list or other.id==idea.id:
+                    continue
+                overlap = input_tags.intersection(set(other.tags_list))
+                ratio = len(overlap) / len(input_tags)
+                if ratio > 0.5:
+                    similar_ideas.append(other)
+            self.db_response.get_response(
+                errCode=0,
+                msg="Similar ideas found successfully!",
+                obj=similar_ideas
+            )
+
         return self.db_response.send_response()

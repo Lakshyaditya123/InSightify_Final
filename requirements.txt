@@ -16,3 +16,6 @@ six~=1.17.0
 Flask-RESTful~=0.3.10
 flask-cors~=6.0.1
 python-json-logger~=3.3.0
+InSightify~=0.0.1
+celery~=5.5.3
+requests~=2.32.4
