@@ -1,11 +1,13 @@
 from InSightify.Common_files.response import ResponseHandler
-from InSightify.CoreClasses.users import UserCRUD
+from InSightify.CoreClasses import UserCRUD, UsersRolesCRUD
 from InSightify.db_server.Flask_app import dbsession
+
 
 class SignupHelper:
     def __init__(self):
         self.response = ResponseHandler()
         self.user_crud = UserCRUD(dbsession)
+        self.user_role_crud = UsersRolesCRUD(dbsession)
         self.session = dbsession
 
     def signup(self, data):
@@ -19,10 +21,11 @@ class SignupHelper:
             if user_rec:
                 self.response.get_response(3, "User already exists with this email")
             else:
-                self.user_crud.create_user(**data)
+                user=self.user_crud.create_user(**data)["obj"]
                 if self.user_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")
                 else:
+                    self.user_role_crud.assign_role_to_user(user_id=user.id, role_id=2)
                     self.response.get_response(0, "User created successfully")
         else:
             self.response.get_response(400, "name, email, mobile, password, security_question_id and security_answer are required")

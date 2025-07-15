@@ -1,5 +1,6 @@
 from sqlalchemy import or_, select
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.sync import update
 
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.app_orm import Tag
@@ -9,12 +10,31 @@ class TagCRUD(BaseCRUD):
     def __init__(self, db_session):
         super().__init__(Tag, db_session)
 
-    def create_tag(self, name, tag_desc, status=1, generated_by="user"):
+    def create_tag(self, name, tag_desc, status=0, generated_by="admin"):
         return self.create(
             name=name,
             tag_desc=tag_desc,
             status=status,
             generated_by=generated_by)
+
+    def update_tag(self, id, name, tag_desc, status=1, generated_by="user"):
+        return self.update(id, name=name, tag_desc=tag_desc, status=status, generated_by=generated_by)
+
+    def update_tag_status(self, tags_list):
+        tags=self.db_session.execute(select(Tag).where(Tag.id.in_(tags_list))).scalars().all()
+        for tag in tags:
+            tag.status=1
+        self.db_response.get_response(errCode=0, msg="Tags updated successfully", obj=tags)
+        return self.db_response.send_response()
+
+    def delete_tag(self, tag_id):
+        tag=self.get_by_id(id=tag_id)["obj"]
+        if tag.status==0:
+            self.delete(id=tag_id)
+            self.db_response.get_response(errCode=0, msg="Tag deleted successfully", obj=tag)
+        else:
+            self.db_response.get_response(errCode=0, msg="Tag cannot be deleted as it is active", obj=tag)
+        return self.db_response.send_response()
 
     def get_by_name(self, name):
         return self.get_by_field("name", name)
@@ -38,8 +58,11 @@ class TagCRUD(BaseCRUD):
             self.db_response.get_response(errCode=0, msg="Records not found", obj=None)
         return self.db_response.send_response()
 
-    def bulk_select_tags(self,tag_list):
-        self.db_session.execute(select(Tag).where(Tag.name.in_(tag_list))).scalars().all()
+    def bulk_select_tags(self,tag_list, names=True):
+        if names:
+            self.db_session.execute(select(Tag).where(Tag.name.in_(tag_list))).scalars().all()
+        else:
+            self.db_session.execute(select(Tag).where(Tag.id.in_(tag_list))).scalars().all()
         self.db_response.get_response(errCode=0,msg="Found tags", obj=self.db_session.query(self.model))
         return self.db_response.send_response()
 

@@ -10,7 +10,7 @@ class IdeasMergedIdeasCRUD(BaseCRUD):
         return self.create(id_ideas=idea_id, id_merged_ideas=merged_idea_id)
 
     def get_ideas_in_merged_idea(self, merged_idea_id):
-        return self.get_by_fields(id_merged_ideas=merged_idea_id)
+        return self.get_by_fields(merged_ideas=merged_idea_id)
 
     def get_merged_ideas_for_idea(self, idea_id):
         return self.get_by_fields(id_ideas=idea_id)

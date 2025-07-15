@@ -142,6 +142,7 @@ class MergedIdea(Base, TimestampMixin):
     subject = Column(String, nullable=False)
     content = Column(String, nullable=False)
     tags_list = Column(ARRAY(SmallInteger))
+    status = Column(SmallInteger, nullable=False)
 
     # Relationships
     ideas = relationship("Idea", secondary="in_use.ideas_merged_ideas", back_populates="merged_ideas")

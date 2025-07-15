@@ -11,9 +11,8 @@ class ProfileHelper:
         self.session = dbsession
 
     def get_profile(self, user_id):
-        user_id= {}
-        user_id["id"]=user_id.get("user_id")
-        user_rec=self.user_crud.get_by_id(**user_id)
+        user_id=user_id.get("user_id")
+        user_rec=self.user_crud.get_by_id(id=user_id)
         if user_rec["obj"]:
             self.response.get_response(0,"Profile found Successful", data_rec=self.user_crud.convert_to_dict(user_rec["obj"])) #pass the token here
         else:
@@ -22,9 +21,8 @@ class ProfileHelper:
         return self.response.send_response()
 
     def update_profile(self, data):
-        user_id = {}
-        user_id["id"] = data.pop("user_id")
-        user_rec = self.user_crud.get_by_id(**user_id)
+        user_id = data.get("user_id")
+        user_rec = self.user_crud.get_by_id(id=user_id)
         if user_rec["obj"]:
             if data.get("mobile") or data.get("name") or data.get("email"):
                 self.response.get_response(1,"Access Denied to change mobile, email or name")

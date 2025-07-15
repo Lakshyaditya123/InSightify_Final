@@ -8,10 +8,7 @@ class UsersRolesCRUD(BaseCRUD):
         super().__init__(UsersRoles, db_session)
 
     def assign_role_to_user(self, user_id, role_id):
-        return self.create(
-            id_users=user_id,
-            id_roles=role_id
-        )
+        return self.create(id_users=user_id,id_roles=role_id)
 
     def get_user_roles(self, user_id):
         return self.get_by_fields(id_users=user_id)

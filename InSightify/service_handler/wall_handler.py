@@ -22,12 +22,16 @@ class WallHelper:
             self.response.get_response(500, "Internal Server Error")
         return self.response.send_response()
 
-    def load_wall_with_child(self, status):
-        all_ideas = self.idea_crud.get_all_ideas_with_details(status.get("status"), get_one=False)# remove child ideas
-        all_merged_ideas = self.merged_idea_crud.get_merged_ideas_with_users()
+    def load_wall(self, user="user"):
+        if user=="user":
+            all_ideas = self.idea_crud.get_all_ideas_with_details()["obj"]
+            all_merged_ideas = self.merged_idea_crud.get_merged_ideas_with_users()["obj"]
+        else:
+            all_ideas = self.idea_crud.get_all_ideas_with_details(status=0)["obj"]
+            all_merged_ideas = self.merged_idea_crud.get_merged_ideas_with_users(user="admin")["obj"]
         if all_ideas or all_merged_ideas:
-            result={"all_ideas": all_ideas["obj"]if all_ideas else [], "all_merged_ideas": all_merged_ideas["obj"] if all_merged_ideas else []}
-            self.response.get_response(0, "Found all ideas Successfully", data_rec=result)  # pass token here
+            result={"all_ideas": all_ideas if all_ideas else [], "all_merged_ideas": all_merged_ideas if all_merged_ideas else []}
+            self.response.get_response(0, "Found all ideas Successfully", data_rec=result)
         else:
             self.response.get_response(2, "No Ideas Found")
         return self.response.send_response()

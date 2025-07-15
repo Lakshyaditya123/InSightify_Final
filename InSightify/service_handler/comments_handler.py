@@ -14,7 +14,6 @@ class CommentHelper:
         comment.setdefault("merged_idea_id")
         if comment["user_id"] and comment["content"]:
             if not (comment["idea_id"] and comment["merged_idea_id"]) and (comment["idea_id"] or comment["merged_idea_id"]):
-                # There should be only one idea_id or merged_id
                 self.comment_crud.create_comment(**comment)
                 if self.comment_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")

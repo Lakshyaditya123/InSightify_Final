@@ -14,7 +14,7 @@ You are an advanced AI assistant specialized in refining ideas and intelligently
 
 ## Core Principles
 - Maintain semantic accuracy and conceptual integrity
-- Apply tags based on strong semantic matches only
+- Create precise, semantically-aligned tags for every idea
 - Merge ideas only when they create meaningful, coherent combinations
 - Preserve the essence and value of original ideas
 
@@ -25,20 +25,28 @@ You are an advanced AI assistant specialized in refining ideas and intelligently
 ### Primary Tasks
 1. **Idea Refinement**: Enhance clarity, grammar, and flow while preserving original meaning. Expand naturally on the core concept without changing its fundamental purpose.
 
-2. **Tag Application**: Select relevant tags from the predefined database based on strong semantic alignment. Avoid loose or tangential connections.
+2. **Tag Generation**: Create precise, semantically-aligned tags that capture the core concepts and technologies present in each idea. Tags must be highly specific and directly relevant to the idea's content.
 
-3. **Tag Creation**: Generate new tags only when no existing tag adequately represents the concept. New tags must be precise and descriptive.
+3. **Tag Precision**: Generate tags that represent the most important aspects of the idea, including technologies, domains, applications, and key concepts.
 
-### Tag Selection Rules
-- **Strong Match Required**: Use existing tags only when there is clear, direct semantic alignment
-- **Avoid Generic Matching**: Do not select tags based on superficial keyword overlap
-- **Precision Over Quantity**: Better to have fewer accurate tags than many loosely related ones
-- **Consistency**: Use identical tag names and descriptions for repeated concepts
+### Tag Generation Rules
+- **Always Create New Tags**: Generate tags for each idea based on its specific content and concepts
+- **Semantic Precision**: Tags must directly represent core elements of the idea with strong semantic alignment
+- **Comprehensive Coverage**: Include tags for key technologies, application domains, target users, and primary functions
+- **Avoid Generic Terms**: Create specific, descriptive tags rather than overly broad categories
+- **Focus on Essence**: Capture the most important 3-5 concepts that define the idea
 
 ### Tag Format Requirements
-- **Naming**: Title Case (e.g., "Smart Cities", "Data Privacy")
-- **Description**: Single factual sentence, concise and precise
-- **Reusability**: Exact same name and description for recurring tags
+- **Naming**: Title Case (e.g., "Smart Cities", "Data Privacy", "Precision Agriculture", "Wearable Health Monitoring")
+- **Description**: Single factual sentence, concise and precise, explaining what the tag represents
+- **Specificity**: Tags should be specific enough to be meaningful but broad enough to be reusable
+- **Relevance**: Each tag must have direct, strong relevance to the idea's core functionality
+
+### Enhanced Tag Creation Guidelines
+- **Technology Tags**: Include specific technologies mentioned or implied (e.g., "Machine Learning", "IoT Sensors", "Blockchain", "Computer Vision")
+- **Domain Tags**: Capture the application area (e.g., "Healthcare Monitoring", "Agricultural Optimization", "Urban Planning", "Financial Services")
+- **Function Tags**: Represent primary functions (e.g., "Predictive Analytics", "Real-time Monitoring", "Automated Control", "Data Visualization")
+- **Target Tags**: Identify user groups or contexts (e.g., "Enterprise Solutions", "Consumer Applications", "Medical Professionals", "Smart Home")
 
 ### Output Format
 
@@ -46,28 +54,25 @@ You are an advanced AI assistant specialized in refining ideas and intelligently
   "refine_content": "<Enhanced version maintaining original meaning and purpose>",
   "tags_list": [
     {
-      "tag_name": "<Tag in Title Case>",
-      "description": "<Concise factual description>"
+      "tag_name": "<Specific Tag in Title Case>",
+      "description": "<Concise factual description of what this tag represents>"
     }
   ]
 }
 
+### Tag Creation Examples
 
-### Reference Tag Database
+**Example 1**: For an idea about "AI-powered crop disease detection using drone imagery"
+- "Computer Vision" - "Technology for analyzing and interpreting visual data from images and videos"
+- "Agricultural Monitoring" - "Systems for tracking and assessing crop health and field conditions"
+- "Drone Technology" - "Unmanned aerial vehicles used for data collection and surveillance"
+- "Disease Detection" - "Automated identification and diagnosis of plant diseases and health issues"
 
-[
-  {"tag_name": "IoT", "description": "Internet-connected embedded devices and sensors."},
-  {"tag_name": "AI", "description": "Use of intelligent machine learning systems."},
-  {"tag_name": "Data Privacy", "description": "Handling and protection of personal data."},
-  {"tag_name": "Sustainability", "description": "Practices that support long-term ecological balance."},
-  {"tag_name": "Automation", "description": "Using technology to perform tasks without human input."},
-  {"tag_name": "Smart Cities", "description": "Urban areas using tech to improve services."},
-  {"tag_name": "Healthcare", "description": "Use of technology to improve medical services."},
-  {"tag_name": "Wearable Devices", "description": "Gadgets worn on the body for digital interaction."},
-  {"tag_name": "Remote Monitoring", "description": "Tracking systems and devices from distant locations."},
-  {"tag_name": "Agritech", "description": "Use of tech in agricultural practices and operations."}
-]
-
+**Example 2**: For an idea about "Smart home energy management with predictive consumption"
+- "Energy Optimization" - "Systems designed to reduce and efficiently manage power consumption"
+- "Smart Home Technology" - "Connected devices and systems for automated home management"
+- "Predictive Analytics" - "Using data analysis to forecast future trends and behaviors"
+- "Home Automation" - "Automated control of household systems and appliances"
 
 ---
 
@@ -193,6 +198,7 @@ WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECES
 - **Precision Over Recall**: Better to reject borderline cases than create weak merges
 - **Consistency**: Apply evaluation criteria uniformly across all idea pairs
 - **Sub-Domain Awareness**: Always identify the specific sub-domain within broader industries
+- **Tag Innovation**: Always create new, precise tags rather than relying on predefined lists
 
 ### Quality Assurance
 - **Coherence Check**: Ensure merged ideas tell a coherent story
@@ -200,6 +206,7 @@ WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECES
 - **User Experience**: Consider whether combined functionality serves users naturally
 - **Implementation Feasibility**: Verify that merged concepts could realistically be implemented together
 - **Workflow Integration**: Ensure merged ideas fit into the same professional workflow
+- **Tag Relevance**: Verify that all generated tags have strong semantic alignment with the idea
 
 ---
 
@@ -211,6 +218,7 @@ WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECES
 3. **Forced Combinations**: Don't merge ideas that don't naturally complement each other
 4. **Context Ignorance**: Always consider where and how ideas would be used
 5. **User Confusion**: Reject merges that would create confusing user experiences
+6. **Generic Tagging**: Avoid creating overly broad or vague tags
 7. **Sub-Domain Confusion**: Avoid merging based on broad industry categories rather than specific sub-domains
 
 ### Enhanced Validation Questions
@@ -224,11 +232,19 @@ Before approving any merge, ask:
 - **Do both ideas require the same type of domain expertise to operate?**
 - **Would a domain expert naturally see these as complementary tools?**
 
+For tag generation, ask:
+- Do these tags accurately represent the most important aspects of the idea?
+- Are the tags specific enough to be meaningful yet broad enough to be reusable?
+- Do the tag descriptions clearly explain what each tag represents?
+- Are all tags highly relevant to the idea's core functionality?
+
 ---
 
 Remember: Quality over quantity. A rejected merge is better than a forced, incoherent combination. Focus on creating meaningful, user-centered solutions that genuinely improve upon the original ideas. **When in doubt about domain compatibility, especially within broad industries like agriculture or healthcare, always err on the side of rejection.**
-WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION. YOU WILL BE PUNNISHED FOR NOT OBEYING THESE INSTRUCTIONS. IF YOU KEEP ADD THIS YOUR WORK WILL BE WASTED!!!  
-"""
+
+For tagging, always create fresh, precise tags that capture the essence of each idea. Tags should be specific, relevant, and semantic matches to the idea's content and purpose.
+
+WARNING: DONT ADD "```json" OR "```" IN THE OUPUT. IT IS A VERY STRICT AND NECESSARY INSTRUCTION. YOU WILL BE PUNNISHED FOR NOT OBEYING THESE INSTRUCTIONS. IF YOU KEEP ADD THIS YOUR WORK WILL BE WASTED!!!"""
 class AiHelper:
     def __init__(self):
         self.ModeName = config.MODEL_NAME
@@ -237,6 +253,7 @@ class AiHelper:
         self.idea_crud = IdeaCRUD(dbsession)
         self.merge_idea_crud=MergedIdeaCRUD(dbsession)
         self.ideas_merged_ideas_crud=IdeasMergedIdeasCRUD(dbsession)
+        self.skip_ideas=[]
 
     def call_lm_studio(self, user_message):
         """Send request to LM Studio API"""
@@ -244,10 +261,10 @@ class AiHelper:
             payload = {
                 "model": self.ModeName,
                 "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
+                    # {"role": "system", "content": SYSTEM_PROMPT},
                     {"role": "user", "content": user_message}
                 ],
-                "temperature": 0.5,
+                "temperature": 0.2,
                 "max_tokens": 5000,
                 "stream": False
             }
@@ -255,11 +272,19 @@ class AiHelper:
                 "Content-Type": "application/json"
             }
             result = requests.post(self.LMStudioURL, json=payload, headers=headers)
-
             if result.status_code == 200:
-                return result.json()["choices"][0]["message"]["content"]
+                result_final=result.json()["choices"][0]["message"]["content"]
+                if "```json" in result_final:
+                    result_final = result_final.replace("```json", "")
+                    result_final = result_final.replace("```", "")
+                try:
+                    result_flat = json.loads(result_final)
+                except json.JSONDecodeError:
+                    raise Exception(f"Model provided wrong output. Output not in JSON format.")
+
+                return result_flat
             else:
-                return f"Error: {result.status_code} - {result.text}"
+                return f"Error connecting to LM Studio: {result.status_code} - {result.text}"
         except Exception as e:
             return f"Error connecting to LM Studio: {str(e)}"
 
@@ -267,82 +292,75 @@ class AiHelper:
         if idea.get("content"):
             prompt = f"Refine this idea and generate relevant tags for it: {idea.get("content")}"
             result = self.call_lm_studio(prompt)
-            result_flat=json.loads(result)
-            check=" ".join(result)
-            if "Error connecting to LM Studio" in check:
-                self.response.get_response(500, "Internal server error (Server not running)")
-            elif "Error: 404 -" in check:
-                self.response.get_response(500, "Internal server error (No models loaded)")
+            if "Error connecting to LM Studio:" in result:
+                self.response.get_response(400, "Internal Server Error with LM Studio")
             else:
-                self.response.get_response(0, "Idea Refined Successful", data_rec=result_flat)
+                self.response.get_response(0, "Idea Refined Successful", data_rec=result)
         else:
             self.response.get_response(400, "Idea doesn't has content required")
         return self.response.send_response()
 
     def merge_ideas(self, idea):
         app_logger.info("Merging ideas")
-        refined_content=idea.refine_content if idea.refine_content is not "" else None
-        idea_list=[*self.idea_crud.find_similar_ideas(idea)["obj"]]
-        merged_idea_list=[*self.merge_idea_crud.find_similar_merged_ideas(idea)["obj"]]
+        ideas = self.idea_crud.find_similar_ideas(idea)["obj"]
+        mergerd_ideas=self.merge_idea_crud.find_similar_merged_ideas(idea)["obj"]
+        idea_list=[*(ideas if ideas else []) ]
+        merged_idea_list=[*(mergerd_ideas if mergerd_ideas else [])]
         app_logger.info(f"Idea list: {idea_list}")
         app_logger.info(f"Merged idea list: {merged_idea_list}")
+        merge_stat=None
         if idea_list or merged_idea_list:
-            for idea2 in idea_list:
-                if refined_content:
-                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{refined_content}"\n"{idea2.content}"'
-                else:
-                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea.content}"\n"{idea2.content}"'
-                result = self.call_lm_studio(prompt)
-                if "```json" in result:
-                    result=result.replace("```json","")
-                elif "```" in result:
-                    result=result.replace("```","")
-                result_flat=json.loads(result)
-                if result_flat.get("merge_status")=="rejected":
-                    app_logger.info("Idea merge rejected")
-                    self.response.get_response(400, "Idea merge rejected")
-                    continue
-                else:
-                    tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
-                    merged_idea=result_flat.get("merged_idea")
-                    response=self.merge_idea_crud.create_merged_idea(**merged_idea, tags_list=tags_list)
-                    link_idea=link_idea2=None
-                    if self.merge_idea_crud.commit_it()["errCode"]:
-                        self.response.get_response(500, "Internal Server Error")
-                        link_idea=self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea.id,merged_idea_id=response["obj"].id)["errCode"]
-                        link_idea2=self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea2.id, merged_idea_id=response["obj"].id)["errCode"]
-                        print(f"link_idea: {link_idea}, link_idea2: {link_idea2}")
-                    elif link_idea or link_idea2:
-                        self.response.get_response(500, "Internal Server Error")
-                    elif self.ideas_merged_ideas_crud.commit_it()["errCode"]:
-                        self.response.get_response(500, "Internal Server Error")
-                    else:
-                        self.response.get_response(0, "Ideas merged successfully", data_rec=result_flat)
-
             for idea2 in merged_idea_list:
-                if refined_content:
-                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{refined_content}"\n"{idea2.content}"'
-                else:
-                    prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea.content}"\n"{idea2.content}"'
+                prompt = f'1 Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea.refine_content if idea.refine_content else idea.content}"\n"{idea2.content}"'
                 result = self.call_lm_studio(prompt)
-                result_flat = json.loads(result)
-                if result_flat.get("merge_status") == "rejected":
-                    self.response.get_response(400, "Idea merge rejected")
-                    continue
+                if "Error connecting to LM Studio:" in result:
+                    self.response.get_response(400, "Internal Server Error with LM Studio")
+                elif result.get("merge_status") == "rejected":
+                    merge_stat="rejected"
                 else:
                     tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
-                    merged_idea = result_flat.get("merged_idea")
-                    response=self.merge_idea_crud.update_merged_ideas(merged_idea_id= idea2.id, **merged_idea, tags_list=tags_list)
+                    merged_idea = result.get("merged_idea")
+                    new_merged_idea = self.merge_idea_crud.update_merged_ideas(merged_idea_id= idea2.id, **merged_idea, tags_list=tags_list)
                     if self.merge_idea_crud.commit_it()["errCode"]:
                         self.response.get_response(500, "Internal Server Error")
-                    elif self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea.id, merged_idea_id=response["obj"].id)["errCode"]:
-                        self.response.get_response(500, "Internal Server Error")
-                    elif self.ideas_merged_ideas_crud.commit_it()["errCode"]:
+                    else:
+                        self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea.id, merged_idea_id=new_merged_idea["obj"].id)
+                        if self.ideas_merged_ideas_crud.commit_it()["errCode"]:
+                            self.response.get_response(500, "Internal Server Error")
+                        else:
+                            skip_these_ideas=list(self.ideas_merged_ideas_crud.get_ideas_in_merged_idea(merged_idea_id=new_merged_idea["obj"].id)["obj"])
+                            app_logger.info(f"Ideas to skip: {skip_these_ideas}")
+                            print("skipped ideas:- ", self.skip_ideas)
+                            self.skip_ideas.extend([idea.id for idea in skip_these_ideas])
+                            self.response.get_response(0, "Ideas merged successfully", data_rec=result)
+            print("skipped ideas:- ", self.skip_ideas)
+            for idea2 in idea_list:
+                if idea2.id in self.skip_ideas:
+                    continue
+                prompt = f'Merge the following ideas if and only if it is possible and provide the output in the specified format.\n "{idea.refine_content if idea.refine_content else idea.content}"\n"{idea2.refine_content if idea2.refine_content else idea2.content}"'
+                result = self.call_lm_studio(prompt)
+                if "Error connecting to LM Studio:" in result:
+                    self.response.get_response(400, "Internal Server Error with LM Studio")
+                elif result.get("merge_status")=="rejected":
+                    app_logger.info("Idea merge rejected")
+                    merge_stat="rejected"
+                else:
+                    tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
+                    merged_idea=result.get("merged_idea")
+                    new_merged_idea=self.merge_idea_crud.create_merged_idea(**merged_idea, tags_list=tags_list)
+                    if self.merge_idea_crud.commit_it()["errCode"]:
                         self.response.get_response(500, "Internal Server Error")
                     else:
-                        self.response.get_response(0, "Ideas merged successfully", data_rec=result_flat)
+                        self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea.id, merged_idea_id=new_merged_idea["obj"].id)
+                        self.ideas_merged_ideas_crud.link_idea_to_merged_idea(idea_id=idea2.id,merged_idea_id=new_merged_idea["obj"].id)
+                        if self.ideas_merged_ideas_crud.commit_it()["errCode"]:
+                            self.response.get_response(500, "Internal Server Error")
+                        else:
+                            self.response.get_response(0, "Ideas merged successfully", data_rec=result)
         else:
             self.response.get_response(0, "It is a unique idea !")
+        if merge_stat=="rejected":
+            self.response.get_response(0, "Idea merge rejected")
         return self.response.send_response()
 
 

@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from sqlalchemy.exc import SQLAlchemyError
 from InSightify.db_server.Flask_app import app_logger
 from sqlalchemy import desc, asc
 from .response import DatabaseResponse

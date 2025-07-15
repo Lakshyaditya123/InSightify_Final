@@ -26,20 +26,12 @@ class SignUp(Resource):
         data = request.get_json()
         return signup.signup(data)
 
-    @staticmethod
-    def get():
-        return {'errCode': 0, 'msg': 'SignUp GET method working'}
-
 class Login(Resource):
     @staticmethod
     def post():
         login = LoginHelper()
         data = request.get_json()
         return login.login(data)
-
-    @staticmethod
-    def get():
-        return {'errCode': 0, 'msg': 'Login GET method working'}
 
 class VoteUpdate(Resource):
     @staticmethod
@@ -54,12 +46,17 @@ class VoteUpdate(Resource):
         data = request.get_json()  # {"idea_id","comment_id"}
         return vote.vote_display(data)
 
-class MainWall(Resource):
+class UserMainWall(Resource):
     @staticmethod
     def get():
         wall = WallHelper()
-        data = request.get_json()
-        return wall.load_wall_with_child(data)
+        return wall.load_wall()
+
+class AdminMainWall(Resource):
+    @staticmethod
+    def get():
+        wall = WallHelper()
+        return wall.load_wall(user="admin")
 
 class MySpaceWall(Resource):
     @staticmethod
@@ -75,10 +72,6 @@ class AddingIdea(Resource):
         data = request.get_json()
         return idea.add_idea(data)
 
-    @staticmethod
-    def get():
-        return {'errCode': 0, 'msg': 'AddingIdea GET method working'}
-
 class IdeaDisplay(Resource):
     @staticmethod
     def get():
@@ -93,9 +86,12 @@ class TagCreation(Resource):
         data = request.get_json()
         return tag.add_tag(data)
 
+class TagUpdate(Resource):
     @staticmethod
-    def get():
-        return {'errCode': 0, 'msg': 'TagCreation GET method working'}
+    def post():
+        tag = TagHelper()
+        data = request.get_json()
+        return tag.update_tag(data)
 
 class TagDisplay(Resource):
     @staticmethod
@@ -103,6 +99,13 @@ class TagDisplay(Resource):
         tag = TagHelper()
         data = request.get_json()
         return tag.tag_display(data)
+
+class TagDelete(Resource):
+    @staticmethod
+    def post():
+        tag=TagHelper()
+        data=request.json()
+        return tag.tag_delete(data)
 
 class UserProfile(Resource):
     @staticmethod
@@ -145,3 +148,11 @@ class ForgotPassswd(Resource):
         login = LoginHelper()
         data=request.get_json()
         return login.forgot_passwd(data)
+
+class UpdateIdeaStatus(Resource):
+    @staticmethod
+    def post():
+        idea = IdeaHelper()
+        data=request.get_json()
+        return idea.update_idea_status(data)
+
