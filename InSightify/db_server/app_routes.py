@@ -9,7 +9,7 @@ api.add_resource(SignUp, '/signup') #Done
 api.add_resource(Login, '/login') #Done
 api.add_resource(AdminMainWall, '/admin/main_wall') #Done
 api.add_resource(UserMainWall, '/user/main_wall')
-api.add_resource(MySpaceWall, '/user/my_space_wall') #Done
+# api.add_resource(MySpaceWall, '/user/my_space_wall') #Done
 api.add_resource(VoteUpdate, '/user/vote_update') #Done
 api.add_resource(AddingIdea, '/user/add_idea') #Done
 api.add_resource(UpdateIdeaStatus, '/admin/update_idea_status')

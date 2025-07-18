@@ -8,20 +8,20 @@ class VoteHelper:
         self.session = dbsession
         self.response = ResponseHandler()
 
-    def update_vote(self, vote):
-        if vote['user_id'] and vote['vote_type'] and (vote.get('idea_id') or vote.get('comment_id') or vote.get('merged_idea_id')):
+    def update_the_vote(self, vote):
+        if vote.get('user_id') and (vote.get('idea_id') or vote.get('comment_id') or vote.get('merged_idea_id')):
             self.vote_crud.update_vote(**vote)
             if self.vote_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
             else:
-                self.response.get_response(0, "Vote created successfully")
+                vote.pop("vote_type")
+                return self.vote_display(vote)
         else:
             self.response.get_response(400, "user_id, vote_type and idea_id/comment_id are required")
         return self.response.send_response()
 
     def vote_display(self, vote):
-        vote_cnt = self.vote_crud.get_vote_count(**vote)["obj"]
-        # vote type for that user
+        vote_cnt = self.vote_crud.get_user_vote(**vote)["obj"]
         if vote_cnt:
             self.response.get_response(0, "Found votes", data_rec=vote_cnt)
         else:

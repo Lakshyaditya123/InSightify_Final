@@ -38,19 +38,20 @@ class VoteUpdate(Resource):
     def post():
         vote = VoteHelper()
         data = request.get_json()
-        return vote.update_vote(data)
+        return vote.update_the_vote(data)
 
     @staticmethod
     def get():
         vote = VoteHelper()
-        data = request.get_json()  # {"idea_id","comment_id"}
+        data = request.args
         return vote.vote_display(data)
 
 class UserMainWall(Resource):
     @staticmethod
     def get():
         wall = WallHelper()
-        return wall.load_wall()
+        data = request.args
+        return wall.load_wall(data)
 
 class AdminMainWall(Resource):
     @staticmethod
@@ -58,12 +59,12 @@ class AdminMainWall(Resource):
         wall = WallHelper()
         return wall.load_wall(user="admin")
 
-class MySpaceWall(Resource):
-    @staticmethod
-    def get():
-        wall = WallHelper()
-        data = request.get_json()
-        return wall.load_my_space(data)
+# class MySpaceWall(Resource):
+#     @staticmethod
+#     def get():
+#         wall = WallHelper()
+#         data = request.args
+#         return wall.load_my_space(data)
 
 class AddingIdea(Resource):
     @staticmethod
@@ -76,7 +77,7 @@ class IdeaDisplay(Resource):
     @staticmethod
     def get():
         idea = IdeaHelper()
-        data = request.get_json()
+        data = request.args
         return idea.idea_display(data)
 
 class TagCreation(Resource):
@@ -97,7 +98,7 @@ class TagDisplay(Resource):
     @staticmethod
     def get():
         tag = TagHelper()
-        data = request.get_json()
+        data = request.args
         return tag.tag_display(data)
 
 class TagDelete(Resource):
@@ -111,7 +112,7 @@ class UserProfile(Resource):
     @staticmethod
     def get():
         user = ProfileHelper()
-        data = request.get_json()
+        data = request.args
         return user.get_profile(data)
 
 class UserProfileUpdate(Resource):
@@ -132,14 +133,14 @@ class CommentDisplay(Resource):
     @staticmethod
     def get():
         comment = CommentHelper()
-        data = request.get_json()
+        data = request.args
         return comment.comment_display(data)
 
 class RefineIdeas(Resource):
     @staticmethod
     def get():
         ai_help= AiHelper()
-        data=request.get_json()
+        data = request.args
         return ai_help.refine_idea(data)
 
 class ForgotPassswd(Resource):

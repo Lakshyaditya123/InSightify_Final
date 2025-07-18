@@ -11,3 +11,6 @@ class RoleCRUD(BaseCRUD):
 
     def create_role(self, role_name, description):
         return self.create(roles=role_name, description=description)
+
+    def get_role_id(self, role_id):
+        return self.get_by_field("id", role_id)

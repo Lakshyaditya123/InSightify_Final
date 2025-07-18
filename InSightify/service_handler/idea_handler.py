@@ -41,12 +41,13 @@ class IdeaHelper:
         return self.response.send_response()
 
 
-    def idea_display(self, idea):
-        if idea.get("idea_id"):
-            idea_with_details=self.idea_crud.get_all_ideas_with_details(get_one=True, idea_id=idea.get("idea_id"))
+    def idea_display(self, data):
+        if data.get("idea_id"):
+            idea_with_details=self.idea_crud.get_all_ideas_with_details(get_one=True,user_id= data.get("user_id"), idea_id=data.get("idea_id"))
         else:
-            idea_with_details=self.merge_ideas_crud.get_merged_ideas_with_users(get_one=True, merged_idea_id=idea.get("merged_idea_id"))
+            idea_with_details=self.merge_ideas_crud.get_merged_ideas_with_users(get_one=True, user_id= data.get("user_id"), merged_idea_id=data.get("merged_idea_id"))
         idea_obj=idea_with_details["obj"][0]
+        print("idea_ob", idea_obj)
         if idea_with_details["errCode"]:
             self.response.get_response(500, f"Internal Server Error: {idea_with_details['msg']}")
         elif idea_obj:

@@ -16,3 +16,8 @@ dbsession = scoped_session(Session)
 def test_route():
     return {'message': 'Flask app is working!'}
 
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    dbsession.remove()
+    
+

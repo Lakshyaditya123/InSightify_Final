@@ -1,4 +1,5 @@
 from InSightify.Common_files.response import ResponseHandler
+from InSightify.CoreClasses import UsersRolesCRUD, RoleCRUD
 from InSightify.CoreClasses.users import UserCRUD
 from InSightify.db_server.Flask_app import dbsession, app_logger
 
@@ -7,16 +8,27 @@ class LoginHelper:
     def __init__(self):
         self.response = ResponseHandler()
         self.user_crud = UserCRUD(dbsession)
+        self.user_role_crud = UsersRolesCRUD(dbsession)
+        self.role_crud = RoleCRUD(dbsession)
         self.session = dbsession
 
     def login(self, data):
         # Check if both username and password are provided
         if data.get('email') and data.get('password'):
             user_rec=self.user_crud.get_by_email(data.get('email'))["obj"]
+            output={
+                "user_id": user_rec.id,
+                "user_name": user_rec.name,
+                "user_email": user_rec.email,
+                "user_mobile": user_rec.mobile,
+                "user_profile_picture": user_rec.profile_picture,
+                "user_bio": user_rec.bio,
+                "user_role": [self.role_crud.get_role_id(role.id_roles)["obj"].roles for role in self.user_role_crud.get_user_roles(user_id=user_rec.id)["obj"]]
+            }
             if user_rec:
                 if user_rec.password == data['password']:
                     #token = create_access_token(identity={"user_name": self.username, "user_id": self.user_rec.id}, expires_delta=timedelta(days=1))
-                    self.response.get_response(0,"Login Successful", data_rec=self.user_crud.convert_to_dict(user_rec)) #pass the token here
+                    self.response.get_response(0,"Login Successful", data_rec=output) #pass the token here
                 else:
                     self.response.get_response(1,"Username or password is incorrect")
             else:

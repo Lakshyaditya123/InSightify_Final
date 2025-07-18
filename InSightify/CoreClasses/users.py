@@ -28,3 +28,4 @@ class UserCRUD(BaseCRUD):
         return self.update(user_id, **kwargs)
 
 
+
