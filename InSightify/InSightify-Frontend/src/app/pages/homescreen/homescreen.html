@@ -1,0 +1,220 @@
+<div class="homescreen-container">
+  <app-navbar></app-navbar>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <section class="wall col-8">
+      <div class="main-idea-card">
+        <div class="idea-row-scroll">
+          <div *ngFor="let card of all_merged_cards" class="idea-card">
+            <div class="idea-content" (click)="open_merged_ticket_details_modal(card)" style="cursor: pointer;">
+              <h5 class="idea-title">{{ card?.merged_idea_details?.title }}</h5>
+              <p class="idea-subject">{{ card?.merged_idea_details?.subject }}</p>
+            </div>
+            <!-- Bottom Section with Voting -->
+            <div class="idea-bottom-section">
+              <div class="voting-section">
+                <!-- Upvote Button -->
+                <button
+                  class="vote-btn upvote-btn"
+                  [ngClass]="{ 'voted': getUserVoteType(card) === 1 }"
+                  (click)="upvoteIdea(card); $event.stopPropagation()"
+                  title="Upvote"
+                >
+                  <i class="bi bi-arrow-up-circle-fill" *ngIf="getUserVoteType(card) === 1"></i>
+                  <i class="bi bi-arrow-up-circle" *ngIf="getUserVoteType(card) !== 1"></i>
+                </button>
+
+                <!-- Vote Count -->
+                <span class="vote-count" [ngClass]="getVoteColorClass(getTotalVotes(card))">
+                  {{ getVoteDisplay(getTotalVotes(card)) }}
+                </span>
+
+                <!-- Downvote Button -->
+                <button
+                  class="vote-btn downvote-btn"
+                  [ngClass]="{ 'voted': getUserVoteType(card) === -1 }"
+                  (click)="downvoteIdea(card); $event.stopPropagation()"
+                  title="Downvote"
+                >
+                  <i class="bi bi-arrow-down-circle-fill" *ngIf="getUserVoteType(card) === -1"></i>
+                  <i class="bi bi-arrow-down-circle" *ngIf="getUserVoteType(card) !== -1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let card of all_cards" class="idea-card">
+            <div class="idea-content" (click)="open_ticket_details_modal(card)" style="cursor: pointer;">
+              <h5 class="idea-title">{{ card?.idea_details?.title }}</h5>
+              <p class="idea-subject">{{ card?.idea_details?.subject }}</p>
+            </div>
+            <!-- Bottom Section with Voting -->
+            <div class="idea-bottom-section">
+              <div class="voting-section">
+                <!-- Upvote Button -->
+                <button
+                  class="vote-btn upvote-btn"
+                  [ngClass]="{ 'voted': getUserVoteType(card) === 1 }"
+                  (click)="upvoteIdea(card); $event.stopPropagation()"
+                  title="Upvote"
+                >
+                  <i class="bi bi-arrow-up-circle-fill" *ngIf="getUserVoteType(card) === 1"></i>
+                  <i class="bi bi-arrow-up-circle" *ngIf="getUserVoteType(card) !== 1"></i>
+                </button>
+
+                <!-- Vote Count -->
+                <span
+                  class="vote-count"
+                  [ngClass]="getVoteColorClass(getTotalVotes(card))"
+                >
+                  {{ getVoteDisplay(getTotalVotes(card)) }}
+                </span>
+
+                <!-- Downvote Button -->
+                <button
+                  class="vote-btn downvote-btn"
+                  [ngClass]="{ 'voted': getUserVoteType(card) === -1 }"
+                  (click)="downvoteIdea(card); $event.stopPropagation()"
+                  title="Downvote"
+                >
+                  <i class="bi bi-arrow-down-circle-fill" *ngIf="getUserVoteType(card) === -1"></i>
+                  <i class="bi bi-arrow-down-circle" *ngIf="getUserVoteType(card) !== -1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar / My Space -->
+    <aside class="sidebar col-3">
+      <div class="sidebar-title">MY SPACE:</div>
+      <div class="my-ideas">
+        <div class="my-ideas scrollable-my-ideas">
+          <div
+            *ngFor="let idea of all_my_cards"
+            class="my-idea-card"
+            (click)="open_my_space_idea_modal(idea)"
+            title="Click to view idea"
+          >
+            <div class="my-idea-header">
+              <span class="dot" [ngClass]="getStatusColor(idea.status)"></span>
+              <span class="idea-name">{{ idea.title }}</span>
+            </div>
+            <small class="idea-subject">{{ idea.subject }}</small>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <button class="add-more-btn" (click)="open_add_idea_modal()">＋ ADD MORE</button>
+    </aside>
+  </main>
+</div>
+
+<!-- Ticket Details Modal -->
+<div
+  class="modal fade"
+  id="ticket_details_modal"
+  tabindex="-1"
+  aria-labelledby="ticketDetailsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ticketDetailsModalLabel">
+          {{ selectedCard?.idea_details?.title || 'Idea Details' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-idea-details *ngIf="selectedCard" [cardData]="selectedCard"></app-idea-details>
+        <div *ngIf="!selectedCard" class="text-center p-4">
+          <p>Loading idea details...</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close_ticket_details_modal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- For merged idea model -->
+
+<div
+  class="modal fade"
+  id="merged_ticket_details_modal"
+  tabindex="-1"
+  aria-labelledby="mergedTicketDetailsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mergedTicketDetailsModalLabel">
+          {{ selectedMergedCard?.merged_idea_details?.title || 'Merged Idea Details' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-merged-idea-details *ngIf="selectedMergedCard" [cardData]="selectedMergedCard"></app-merged-idea-details>
+        <div *ngIf="!selectedMergedCard" class="text-center p-4">
+          <p>Loading merged idea details...</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Add Idea Modal -->
+<div
+  class="modal fade"
+  id="addIdea_modal"
+  tabindex="-1"
+  aria-labelledby="addIdeaModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addIdeaModalLabel">Create a New Idea</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-create-add></app-create-add>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User Profile Modal -->
+<div
+  class="modal fade"
+  id="user_profile_modal"
+  tabindex="-1"
+  aria-labelledby="userProfileModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userProfileModalLabel">HELLO!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Content goes here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comments Modal (Preserved as-is) -->
+<!-- <div class="modal fade" id="comments_modal" ...> ... </div> -->

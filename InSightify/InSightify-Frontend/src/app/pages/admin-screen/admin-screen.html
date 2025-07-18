@@ -1,0 +1,41 @@
+<div class="admin-container">
+  <aside class="sidebar">
+    <div class="welcome">WELCOME ADMIN!</div>
+    <div class="avatar">
+      <span class="avatar-icon">&#128100;</span>
+    </div>
+    <div class="admin-info">
+      <div class="email">{{ admin.email }}</div>
+      <div class="phone">{{ admin.phone }}</div>
+      <div class="role">{{ admin.role }}</div>
+    </div>
+    <button class="switch-btn" (click)="onSwitchToUser()">SWITCH TO USER</button>
+  </aside>
+
+  <main class="main-content">
+    <app-navbar></app-navbar>
+    <section class="submissions-section">
+      <div class="submissions-title">NEW SUBMISSIONS</div>
+      <div class="submissions-grid">
+        <div class="submission-card" *ngFor="let idea of submissions">
+          <div class="card-row">
+            <div class="card-main">
+              <div class="idea-avatar">
+                <span class="avatar-initial">I</span>
+              </div>
+              <div class="idea-texts">
+                <div class="idea-name">{{ idea.name }}</div>
+                <div class="idea-desc">{{ idea.desc }}</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="approve-btn" (click)="onApprove(idea)">APPROVE</button>
+              <button class="decline-btn" (click)="onDecline(idea)">DECLINE</button>
+            </div>
+          </div>
+          <div class="card-divider"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
