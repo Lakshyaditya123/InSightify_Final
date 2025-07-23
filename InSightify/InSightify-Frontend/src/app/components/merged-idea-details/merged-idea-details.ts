@@ -9,7 +9,7 @@ import { VotesSection } from '../../components/votes-section/votes-section';
 @Component({
   selector: 'app-merged-idea-details',
   standalone: true,
-  imports: [CommonModule, VotesSection],
+  imports: [CommonModule],
   templateUrl: './merged-idea-details.html',
   styleUrl: './merged-idea-details.css'  // Reusing your existing styles
 })

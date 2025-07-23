@@ -8,7 +8,7 @@ import { VotesSection } from '../../components/votes-section/votes-section';
 @Component({
   selector: 'app-idea-details',
   standalone: true,
-  imports: [CommonModule, VotesSection],
+  imports: [CommonModule],
   templateUrl: './idea-details.html',
   styleUrl: './idea-details.css'
 })

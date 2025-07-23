@@ -203,8 +203,7 @@ body, .homescreen-container {
   background: #181818;
   border-radius: 16px;
   padding: 2rem 1.5rem;
-  min-width: 400px;
-  max-width: 300px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -363,9 +362,17 @@ body, html {
   margin-bottom: 0;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   text-overflow: ellipsis;
   max-width: 100%; /* optional */
+}
+
+
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,105 +1,106 @@
 <div class="idea-creation-modal">
   <form [formGroup]="addIdeaForm" (ngSubmit)="submitIdea()">
-    <!-- Title Field -->
-    <div class="form-group mb-3">
-      <label for="ideaTitle" class="form-label">Title *</label>
-      <input
-        type="text"
-        class="form-control"
-        id="ideaTitle"
-        formControlName="title"
-        placeholder="Enter your idea title"
-        maxlength="100"
-        [ngClass]="{'is-invalid': addIdeaForm.get('title')?.invalid && addIdeaForm.get('title')?.touched}"
-      />
-      <div class="form-text">Keep it concise and descriptive</div>
-    </div>
-
-    <!-- Subject Field -->
-    <div class="form-group mb-3">
-      <label for="ideaSubject" class="form-label">Subject *</label>
-      <input
-        type="text"
-        class="form-control"
-        id="ideaSubject"
-        formControlName="subject"
-        placeholder="Brief subject or category"
-        maxlength="200"
-        [ngClass]="{'is-invalid': addIdeaForm.get('subject')?.invalid && addIdeaForm.get('subject')?.touched}"
-      />
-      <div class="form-text">What category or area does this idea belong to?</div>
-    </div>
-
-    <!-- Description Field with ngx-editor -->
-    <div class="form-group mb-3">
-      <div class="d-flex justify-content-between align-items-center">
-        <label for="ideaDescription" class="form-label">Description *</label>
+    <div class="modal-body">
+      <!-- Title Field -->
+      <div class="form-group mb-3">
+        <label for="ideaTitle" class="form-label">Title *</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ideaTitle"
+          formControlName="title"
+          placeholder="Enter your idea title"
+          maxlength="100"
+          [ngClass]="{'is-invalid': addIdeaForm.get('title')?.invalid && addIdeaForm.get('title')?.touched}"
+        />
+        <div class="form-text">Keep it concise and descriptive</div>
       </div>
-      
-      <!-- ngx-editor implementation -->
-      <div class="ngx-editor-wrapper">
-        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
-        <ngx-editor 
-          [editor]="editor" 
-          formControlName="content"
-          [placeholder]="'Describe your idea in detail'">
-        </ngx-editor>
-      </div>
-      <div class="form-text">Explain your idea keeping what, when, why and How.</div>
-    </div>
 
-    <!-- Tags Field -->
-    <div class="form-group mb-3">
-      <label for="ideaTags" class="form-label">Tags</label>
-      <div class="tags-input-container">
-        <div class="tags-display">
-          <span
-            *ngFor="let tag of selectedTags; let i = index"
-            class="tag-item"
+      <!-- Subject Field -->
+      <div class="form-group mb-3">
+        <label for="ideaSubject" class="form-label">Subject *</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ideaSubject"
+          formControlName="subject"
+          placeholder="Brief subject or category"
+          maxlength="200"
+          [ngClass]="{'is-invalid': addIdeaForm.get('subject')?.invalid && addIdeaForm.get('subject')?.touched}"
+        />
+        <div class="form-text">What category or area does this idea belong to?</div>
+      </div>
+
+      <!-- Description Field with ngx-editor -->
+      <div class="form-group mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <label for="ideaDescription" class="form-label">Description *</label>
+        </div>
+        
+        <!-- ngx-editor implementation -->
+        <div class="ngx-editor-wrapper">
+          <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+          <ngx-editor 
+            [editor]="editor" 
+            formControlName="content"
+            [placeholder]="'Describe your idea in detail'">
+          </ngx-editor>
+        </div>
+        <div class="form-text">Explain your idea keeping what, when, why and How.</div>
+      </div>
+
+      <!-- Tags Field -->
+      <div class="form-group mb-3">
+        <label for="ideaTags" class="form-label">Tags</label>
+        <div class="tags-input-container">
+          <div class="tags-display">
+            <span
+              *ngFor="let tag of selectedTags; let i = index"
+              class="tag-item"
+              [attr.title]="tag.description || 'No description available'"
+            >
+              {{ tag.name }}
+              <button
+                type="button"
+                class="tag-remove"
+                (click)="removeTag(i)"
+                title="Remove tag"
+              >
+                ×
+              </button>
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control tags-input"
+            id="ideaTags"
+            [(ngModel)]="newTag"
+            [ngModelOptions]="{standalone: true}"
+            placeholder="Add tags (press Enter to add)"
+            (keydown.enter)="addTag($event)"
+            (blur)="addTag($event)"
+          />
+        </div>
+        <div class="form-text">Add relevant tags to help others find your idea</div>
+      </div>
+
+      <!-- Suggested Tags -->
+      <div class="form-group mb-3" *ngIf="suggestedTags.length > 0">
+        <label class="form-label">Suggested Tags</label>
+        <div class="suggested-tags">
+          <button
+            *ngFor="let tag of suggestedTags"
+            type="button"
+            class="btn btn-outline-secondary btn-sm me-2 mb-2"
+            (click)="addSuggestedTag(tag)"
+            [disabled]="selectedTags.includes(tag)"
             [attr.title]="tag.description || 'No description available'"
           >
             {{ tag.name }}
-            <button
-              type="button"
-              class="tag-remove"
-              (click)="removeTag(i)"
-              title="Remove tag"
-            >
-              ×
-            </button>
-          </span>
+          </button>
         </div>
-        <input
-          type="text"
-          class="form-control tags-input"
-          id="ideaTags"
-          [(ngModel)]="newTag"
-          [ngModelOptions]="{standalone: true}"
-          placeholder="Add tags (press Enter to add)"
-          (keydown.enter)="addTag($event)"
-          (blur)="addTag($event)"
-        />
-      </div>
-      <div class="form-text">Add relevant tags to help others find your idea</div>
-    </div>
-
-    <!-- Suggested Tags -->
-    <div class="form-group mb-3" *ngIf="suggestedTags.length > 0">
-      <label class="form-label">Suggested Tags</label>
-      <div class="suggested-tags">
-        <button
-          *ngFor="let tag of suggestedTags"
-          type="button"
-          class="btn btn-outline-secondary btn-sm me-2 mb-2"
-          (click)="addSuggestedTag(tag)"
-          [disabled]="selectedTags.includes(tag)"
-          [attr.title]="tag.description || 'No description available'"
-        >
-          {{ tag.name }}
-        </button>
       </div>
     </div>
-
     <!-- Form Actions -->
     <div class="form-actions d-flex justify-content-end gap-2 align-items-center">
       <!-- Icons -->
@@ -118,7 +119,7 @@
       <button
         type="submit"
         class="btn btn-primary ms-2"
-        [disabled]="addIdeaForm.invalid || isSubmitting"
+        [disabled]="addIdeaForm.invalid || isSubmitting || isRefining"
       >
         <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
         {{ isSubmitting ? 'Publishing...' : 'Publish' }}

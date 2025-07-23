@@ -64,12 +64,12 @@
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <!-- <div class="modal-header">
         <h5 class="modal-title" id="ticketDetailsModalLabel">
           {{ selectedCard?.idea_details?.title || 'Idea Details' }}
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      </div> -->
       <div class="modal-body">
         <app-idea-details *ngIf="selectedCard" [cardData]="selectedCard" [mySpace]="mySpace"></app-idea-details>
         <div *ngIf="!selectedCard" class="text-center p-4">
@@ -77,6 +77,9 @@
         </div>
       </div>
       <div class="modal-footer">
+        <div >
+          <app-votes-section *ngIf="selectedCard && selectedCard.idea_details.status>0" [card]="selectedCard" [currentUserId]="currentUserId"></app-votes-section>
+        </div>
         <button type="button" class="btn btn-secondary" (click)="close_ticket_details_modal()">Close</button>
       </div>
     </div>
@@ -94,19 +97,20 @@
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <!-- <div class="modal-header">
         <h5 class="modal-title" id="mergedTicketDetailsModalLabel">
           {{ selectedMergedCard?.merged_idea_details?.title || 'Merged Idea Details' }}
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      </div> -->
       <div class="modal-body">
         <app-merged-idea-details *ngIf="selectedMergedCard" [cardData]="selectedMergedCard"></app-merged-idea-details>
         <div *ngIf="!selectedMergedCard" class="text-center p-4">
           <p>Loading merged idea details...</p>
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" >
+        <app-votes-section *ngIf="selectedMergedCard" [card]="selectedMergedCard" [currentUserId]="currentUserId"></app-votes-section>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -128,7 +132,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addIdeaModalLabel">Create a New Idea</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close_add_idea_modal()"></button>
       </div>
       <div class="modal-body">
         <app-create-add></app-create-add>

@@ -1,6 +1,8 @@
 .idea-details {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeIn 0.3s ease-in;
+  max-height: 40rem; /* or your desired height */
+  overflow-y: auto;
 }
 
 .status-dot {
@@ -251,4 +253,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.modal-body {
+  max-height: 40rem; /* or your desired height */
+  overflow-y: auto;
 }

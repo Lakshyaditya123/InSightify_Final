@@ -10,7 +10,7 @@
 
 <div class="scroll-row">
   <div class="scroll-track slow">
-    @for (box of firstRow; track box) {
+    @for (box of firstRow; track index) {
       <div class="train-card {{ box.size }} m-2">
         <div class="card-body">
           <h5 class="card-title">{{ box.title }}</h5>
@@ -23,7 +23,7 @@
 
 <div class="scroll-row">
   <div class="scroll-track fast">
-    @for (box of secondRow; track box) {
+    @for (box of secondRow; track index) {
       <div class="train-card {{ box.size }} m-2">
         <div class="card-body">
           <h5 class="card-title">{{ box.title }}</h5>

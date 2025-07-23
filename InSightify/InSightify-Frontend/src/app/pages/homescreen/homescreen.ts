@@ -80,7 +80,6 @@ async open_my_space_idea_modal(card: My_idea) {
     } else {
       console.error("Failed to get idea:", result.message);
     }
-
     const modalElement = document.getElementById('ticket_details_modal');
     if (modalElement) new bootstrap.Modal(modalElement).show();
 

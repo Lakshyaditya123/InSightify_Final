@@ -28,6 +28,7 @@ export class Landing {
    shuffledBoxes = this.shuffleArray([...this.ideaBoxes]);
 firstRow = [...this.shuffleArray(this.ideaBoxes), ...this.shuffleArray(this.ideaBoxes)];
 secondRow = [...this.shuffleArray(this.ideaBoxes), ...this.shuffleArray(this.ideaBoxes)];
+// For infinite scroll effect, do NOT keep adding to the array. Use CSS animation instead.
 
 
 shuffleArray(array: any[]) {

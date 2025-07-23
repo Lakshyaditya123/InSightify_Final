@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Merged_idea_small, Idea_small, ApiResponse } from '../../services/api-interfaces';
+import { Merged_idea_small, Idea_small, ApiResponse, Merged_idea_large } from '../../services/api-interfaces';
 import { IdeaService } from '../../services/idea';
 import { firstValueFrom } from 'rxjs';
 import {CommonModule} from '@angular/common';
@@ -16,7 +16,7 @@ export class VotesSection {
 
   constructor(private ideaService: IdeaService) {}
 
-  isMergedIdea(idea: any): idea is Merged_idea_small {
+  isMergedIdea(idea: any): idea is Merged_idea_large | Merged_idea_small {
     return 'merged_idea_details' in idea;
   }
 
