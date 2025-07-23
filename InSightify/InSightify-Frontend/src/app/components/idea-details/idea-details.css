@@ -3,6 +3,12 @@
   animation: fadeIn 0.3s ease-in;
 }
 
+.status-dot {
+  width: 30px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
 /* HEADER & DESCRIPTION */
 .idea-header h4 {
   color: #2c3e50;
@@ -51,7 +57,7 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #4a4a6a transparent;
 }
 
@@ -120,6 +126,11 @@
   font-size: 0.8rem;
   font-weight: 500;
   margin: 0 4px;
+}
+
+.subject-text{
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 /* MODAL */

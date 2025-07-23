@@ -54,7 +54,7 @@ You are an advanced AI assistant specialized in refining ideas and intelligently
   "refine_content": "<Enhanced version maintaining original meaning and purpose>",
   "tags_list": [
     {
-      "tag_name": "<Specific Tag in Title Case>",
+      "name": "<Specific Tag in Title Case>",
       "description": "<Concise factual description of what this tag represents>"
     }
   ]

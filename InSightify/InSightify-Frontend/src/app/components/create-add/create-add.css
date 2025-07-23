@@ -299,3 +299,198 @@
   color: #0a95b8;
   box-shadow: 0 4px 16px rgba(13,202,240,0.18);
 }
+
+/* ngx-editor wrapper styles */
+.ngx-editor-wrapper {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  overflow: visible; /* Changed from hidden to visible */
+  position: relative; /* Add relative positioning */
+  z-index: 1; /* Base z-index for the wrapper */
+
+}
+
+.ngx-editor-wrapper:focus-within {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Menu bar styling - Compact */
+::ng-deep .NgxEditor__MenuBar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  min-height: auto;
+  align-items: center;
+  position: relative; /* Add relative positioning */
+  z-index: 10; /* Higher z-index for menu bar */
+}
+
+/* Menu button styling - Smaller and compact */
+::ng-deep .NgxEditor__MenuItem {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.1875rem;
+  padding: 0.25rem 0.375rem;
+  color: #495057;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  min-width: auto;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  position: relative;
+}
+
+::ng-deep .NgxEditor__MenuItem:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+::ng-deep .NgxEditor__MenuItem--Active {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+/* Editor content area */
+::ng-deep .NgxEditor {
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  z-index: 1; /* Lower z-index than menu bar */
+}
+
+::ng-deep .NgxEditor__Content {
+  padding: 1rem;
+  min-height: 200px;
+  line-height: 1.5;
+  position: relative; /* Add relative positioning */
+  z-index: 1; /* Lower z-index than dropdowns */
+
+}
+
+::ng-deep .NgxEditor__Content:focus {
+  outline: none;
+}
+
+/* Placeholder styling */
+::ng-deep .NgxEditor__Placeholder {
+  font-size: 14px;
+  color: #e9ecef !important;
+  pointer-events: none;
+  /* position: absolute;
+  top: 1rem;
+  left: 1rem; */
+  white-space: nowrap;
+  z-index: 2; 
+}
+
+/* Dropdown menus for headings, etc. - Compact */
+::ng-deep .NgxEditor__Dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+::ng-deep .NgxEditor__Dropdown .NgxEditor__MenuItem {
+  min-width: 4rem;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+}
+
+::ng-deep .NgxEditor__DropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  min-width: 120px;
+  padding: 0.25rem 0;
+  margin: 0;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175); /* Enhanced shadow for better visibility */
+  font-size: 0.8125rem;
+  max-height: 300px; /* Add max-height to prevent overflow */
+  overflow-y: auto; /* Add scroll if needed */
+}
+
+::ng-deep .NgxEditor__DropdownMenu--Show {
+  display: block;
+}
+
+::ng-deep .NgxEditor__DropdownItem {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 0.75rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+::ng-deep .NgxEditor__DropdownItem:hover {
+  background-color: #f8f9fa;
+}
+
+/* Add custom compact styling for specific menu items */
+::ng-deep .NgxEditor__MenuItem svg,
+::ng-deep .NgxEditor__MenuItem i {
+  width: 0.875rem;
+  height: 0.875rem;
+  font-size: 0.875rem;
+}
+
+/* Separator styling */
+::ng-deep .NgxEditor__Separator {
+  width: 1px;
+  height: 1.5rem;
+  background-color: #dee2e6;
+  margin: 0 0.25rem;
+}
+
+/* Make toolbar more responsive */
+::ng-deep .NgxEditor__MenuBar {
+  max-height: 3rem;
+  overflow: visible;
+}
+
+/* Compact group styling */
+::ng-deep .NgxEditor__MenuBar .NgxEditor__Group {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  margin-right: 0.25rem;
+  padding-right: 0.25rem;
+  border-right: 1px solid #dee2e6;
+  position: relative;
+}
+
+::ng-deep .NgxEditor__MenuBar .NgxEditor__Group:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+.ngx-editor-wrapper.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+.ngx-editor-wrapper.ng-invalid.ng-touched:focus-within {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}

@@ -15,26 +15,26 @@ export class Navbar {
 
   }
 
-  tags = ['AI', 'UI/UX', 'Backend', 'ML', 'Research'];
-  selectedTags: string[] = [];
-  toggleTag(tag: string) {
-    const index = this.selectedTags.indexOf(tag);
-    if (index > -1) {
-      this.selectedTags.splice(index, 1); // Remove
-    } else {
-      this.selectedTags.push(tag); // Add
-    }
-  }
+  // tags = ['AI', 'UI/UX', 'Backend', 'ML', 'Research'];
+  // selectedTags: string[] = [];
+  // toggleTag(tag: string) {
+  //   const index = this.selectedTags.indexOf(tag);
+  //   if (index > -1) {
+  //     this.selectedTags.splice(index, 1); // Remove
+  //   } else {
+  //     this.selectedTags.push(tag); // Add
+  //   }
+  // }
 
-  isTagSelected(tag: string): boolean {
-    return this.selectedTags.includes(tag);
-  }
+  // isTagSelected(tag: string): boolean {
+  //   return this.selectedTags.includes(tag);
+  // }
 
   navigateToProfile() {
     this.router.navigate(['/profile']);
   }
   navigateToHome() {
     this.auth.clearUser()
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }

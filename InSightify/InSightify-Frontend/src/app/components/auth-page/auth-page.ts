@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { ApiResponse, CurrUser } from '../../services/api-interfaces';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-auth-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,MatSnackBarModule ],
   templateUrl: './auth-page.html',
   styleUrls: ['./auth-page.css']
 })
+
+
+
 export class AuthPage {
   loginForm: FormGroup;
   signupForm: FormGroup;
@@ -20,11 +25,9 @@ export class AuthPage {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
-
-    // this.authService.clearUser();
-
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -38,7 +41,9 @@ export class AuthPage {
       confirmPassword: ['', Validators.required]
     });
   }
-
+   ngOnInit() {
+    this.authService.clearUser();
+  }
   toggleMode(event: Event): void {
     event.preventDefault();
     this.isSignup = !this.isSignup;
@@ -53,10 +58,10 @@ export class AuthPage {
 
       this.authService.signup(payload).subscribe((res: ApiResponse) => {
         if (res.errCode == 0) {
-          alert('Signup Successfully');
+         this.showSuccess();
           this.isSignup = false;
         } else {
-          alert('Signup Failed!');
+         this.showError()
           this.isSignup = true;
         }
       });
@@ -68,14 +73,29 @@ export class AuthPage {
       let payload: any = this.loginForm.value;
       this.authService.login(payload).subscribe((res: ApiResponse) => {
         if (res.errCode == 0) {
-          alert('Login Successfully');
+          this.showSuccess()
           const user: CurrUser = res.datarec;
           this.authService.setUser(user);
           this.router.navigate(['/homescreen']);
         } else {
-          alert('Login Failed!');
+          this.showError()
         }
       });
     }
   }
+showSuccess() {
+  this.snackBar.open('Login successful!', 'Close', {
+    duration: 3000,
+    panelClass: ['snack-success'],
+  });
 }
+
+showError() {
+  this.snackBar.open('Login failed. Please try again.', 'Close', {
+    duration: 3000,
+    panelClass: ['snack-error'],
+  });
+}
+
+}
+

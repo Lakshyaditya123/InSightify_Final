@@ -157,6 +157,7 @@ class IdeaCRUD(BaseCRUD):
                             "subject": idea.subject,
                             "content": idea.content,
                             "refine_content": idea.refine_content,
+                            "status": idea.status,
                             "tags_list": tags,
                             "link": idea.link,
                             "file_path": idea.file_path,

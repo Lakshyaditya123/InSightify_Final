@@ -3,7 +3,7 @@
  * Using these interfaces ensures type safety across the application.
  */
 
-import { HttpErrorResponse } from "@angular/common/http";
+
 
 /**
  * A generic structure for all API responses from the backend.
@@ -67,10 +67,11 @@ export interface My_idea {
   total_votes: number
 }
 
-export interface Tags{
-  id: number,
+export interface TagsList{
+  id: number | null,
   name: string,
-  description: string
+  description: string,
+  generated_by: String | null
 }
 
 export interface Vote{
@@ -84,6 +85,34 @@ idea_vote_details: {
   total: 0
   }
 }
+
+export interface Idea_details{
+  id: number,
+  title: string,
+  subject: string,
+  content: string,
+  refine_content: string | null;
+  status: number,
+  tags_list: TagsList[] 
+  link: string,
+  file_path: string,
+  created_at: string,
+  comments_count: number
+}
+
+export interface Add_idea{
+  idea: {user_id: number,
+  title: string,
+  subject: string,
+  content: string,
+  link: string | null,
+  file_path: string | null,
+  }
+  refine_content: String,
+  tags_list:TagsList[]
+}
+
+
 export interface Idea_large {
   user_details: {
     id: number,
@@ -91,18 +120,7 @@ export interface Idea_large {
     email:string,
     profile_picture: string
   },
-  idea_details: {
-    id: number,
-    title: string,
-    subject: string,
-    content: string,
-    refine_content: string;
-    tags_list: Tags[]
-    link: string,
-    file_path: string,
-    created_at: string,
-    comments_count: number
-  },
+  idea_details: Idea_details,
   vote_details: Vote
 }
 
@@ -114,7 +132,8 @@ export interface Merged_idea_large {
     title: string,
     subject: string,
     content: string,
-    tags_list: Tags[],
+    tags_list: TagsList[],
+    status: number,
     created_at: string,
     comments_count: number
   },
@@ -130,4 +149,10 @@ export interface CurrUser{
   user_profile_picture: string,
   user_bio: string,
   user_role: string[]
+}
+
+
+export interface RefineContent{
+  refine_content:string,
+  tags_list: TagsList[]
 }

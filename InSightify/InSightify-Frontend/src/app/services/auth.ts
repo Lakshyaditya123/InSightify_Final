@@ -12,6 +12,11 @@ export class AuthService {
   currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {
+    // **FIX: Check for and load the user from localStorage on initialization**
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      this.currentUserSubject.next(JSON.parse(storedUser));
+    }
   }
 
   getCurrentUser(): CurrUser | null {
@@ -28,12 +33,11 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
-login(payload: any): Observable<ApiResponse> {
-  return this.http.post<ApiResponse>(`${this.apiUrl}/login`, payload);
-}
+  login(payload: any): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/login`, payload);
+  }
 
-signup(payload: any): Observable<ApiResponse> {
-  return this.http.post<ApiResponse>(`${this.apiUrl}/signup`, payload);
-}
-
+  signup(payload: any): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/signup`, payload);
+  }
 }

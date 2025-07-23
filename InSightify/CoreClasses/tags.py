@@ -10,15 +10,15 @@ class TagCRUD(BaseCRUD):
     def __init__(self, db_session):
         super().__init__(Tag, db_session)
 
-    def create_tag(self, name, tag_desc, status=0, generated_by="admin"):
+    def create_tag(self, name, description, status=0, generated_by="admin"):
         return self.create(
             name=name,
-            tag_desc=tag_desc,
+            tag_desc=description,
             status=status,
             generated_by=generated_by)
 
-    def update_tag(self, id, name, tag_desc, status=1, generated_by="user"):
-        return self.update(id, name=name, tag_desc=tag_desc, status=status, generated_by=generated_by)
+    def update_tag(self, id, name, description, status=1, generated_by="user"):
+        return self.update(id, name=name, tag_desc=description, status=status, generated_by=generated_by)
 
     def update_tag_status(self, tags_list):
         tags=self.db_session.execute(select(Tag).where(Tag.id.in_(tags_list))).scalars().all()
@@ -70,9 +70,11 @@ class TagCRUD(BaseCRUD):
         new_tags = []
         for tag_data in missing_tags:
             name = tag_data.get("name").strip().title()
-            tag_desc = tag_data.get("tag_desc", "").strip()
+            tag_desc = tag_data.get("description", "").strip()
             tag_status = 0
-            generated_by = tag_data.get("generated_by", "AI").strip()
+            generated_by = tag_data.get("generated_by")
+            if generated_by is None:
+                generated_by = "AI"
             new_tags.append(Tag(name=name, tag_desc=tag_desc,status=tag_status, generated_by=generated_by))
 
         if new_tags:

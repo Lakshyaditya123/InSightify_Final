@@ -11,7 +11,7 @@ class UsersRolesCRUD(BaseCRUD):
         return self.create(id_users=user_id,id_roles=role_id)
 
     def get_user_roles(self, user_id):
-        return self.get_by_fields(id_users=user_id)
+        return self.get_by_fields(id=user_id)
 
     def get_users_with_role(self, role_id):
         return self.get_by_fields(id_roles=role_id)

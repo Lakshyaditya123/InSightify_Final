@@ -42,8 +42,7 @@
   font-weight: 600;
 }
 
-/* Horizontal scrolling tag container */
-/* Horizontal scrolling tag container with snapping */
+
 .scrolling-tags {
   display: flex;
   overflow-x: auto;
@@ -53,7 +52,7 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #4a4a6a transparent;
 }
 
@@ -83,6 +82,12 @@
   border-radius: 8px;
   border-left: 4px solid #007bff;
 }
+
+.subject-text{
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 
 /* VOTE/COMMENT SECTION - smaller and left aligned */
 .idea-bottom-section {

@@ -14,7 +14,7 @@ api.add_resource(VoteUpdate, '/user/vote_update') #Done
 api.add_resource(AddingIdea, '/user/add_idea') #Done
 api.add_resource(UpdateIdeaStatus, '/admin/update_idea_status')
 api.add_resource(IdeaDisplay,"/idea_display") #Done
-api.add_resource(TagCreation, "/admin/tag_creation") #Mostly redundant but can be used by admin to create new tags
+api.add_resource(TagCreation, "/admin/add_tag") #Mostly redundant but can be used by admin to create new tags
 api.add_resource(TagUpdate, "/admin/tag_update")
 api.add_resource(TagDelete, "/admin/tag_delete")
 api.add_resource(TagDisplay, "/admin/tag_display")  #Done

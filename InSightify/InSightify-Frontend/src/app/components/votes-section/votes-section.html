@@ -1,0 +1,28 @@
+<div class="voting-section">
+    <!-- Upvote Button -->
+    <button
+        class="vote-btn upvote-btn"
+        [ngClass]="{ 'voted': getUserVoteType(card) === 1 }"
+        (click)="upvoteIdea(card); $event.stopPropagation()"
+        title="Upvote"
+    >
+        <i class="bi bi-arrow-up-circle-fill" *ngIf="getUserVoteType(card) === 1"></i>
+        <i class="bi bi-arrow-up-circle" *ngIf="getUserVoteType(card) !== 1"></i>
+    </button>
+
+    <!-- Vote Count -->
+    <span class="vote-count" [ngClass]="getVoteColorClass(getTotalVotes(card))" >
+        {{ getVoteDisplay(getTotalVotes(card)) }}
+    </span>
+
+    <!-- Downvote Button -->
+    <button
+        class="vote-btn downvote-btn"
+        [ngClass]="{ 'voted': getUserVoteType(card) === -1 }"
+        (click)="downvoteIdea(card); $event.stopPropagation()"
+        title="Downvote"
+    >
+        <i class="bi bi-arrow-down-circle-fill" *ngIf="getUserVoteType(card) === -1"></i>
+        <i class="bi bi-arrow-down-circle" *ngIf="getUserVoteType(card) !== -1"></i>
+    </button>
+</div>

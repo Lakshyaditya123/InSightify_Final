@@ -12,20 +12,20 @@
 
   <!-- Idea Subject -->
   <div class="idea-subject mb-4">
-    <h6>Subject</h6>
+    <!-- <h6>Subject</h6> -->
     <p class="subject-text">{{ cardData.merged_idea_details.subject }}</p>
   </div>
 
   <!-- Idea Description -->
   <div class="idea-description mb-4">
-    <h6>Description</h6>
+    <!-- <h6>Description</h6> -->
     <p>{{ cardData.merged_idea_details.content }}</p>
   </div>
 
 
 <!-- Tags with Horizontal Scroll & Snap -->
 <div class="idea-tags mb-4" *ngIf="cardData.merged_idea_details?.tags_list?.length">
-  <h6>Tags</h6>
+  <!-- <h6>Tags</h6> -->
   <div class="scrolling-tags">
     <span
       *ngFor="let tag of cardData.merged_idea_details.tags_list"
@@ -52,13 +52,6 @@
 
   <!-- Bottom Like & Comment Buttons -->
   <div class="idea-bottom-section">
-    <button class="vote-btn" title="Upvotes">
-      <i class="bi bi-hand-thumbs-up text-success"></i>
-      <span class="vote-count">{{ cardData.vote_details.idea_vote_details.upvotes }}</span>
-    </button>
-    <button class="icon-btn" title="Comments">
-      <i class="bi bi-chat text-primary"></i>
-      <span class="vote-count">{{ cardData.merged_idea_details.comments_count }}</span>
-    </button>
+    <app-votes-section [card]="cardData" [currentUserId]="currentUserId"></app-votes-section>
   </div>
 </div>

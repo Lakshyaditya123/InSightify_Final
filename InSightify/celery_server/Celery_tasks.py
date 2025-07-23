@@ -14,12 +14,12 @@ def tags_worker(idea_id, tags_list):
     tag_ids_by_name = {}
     for tag in tags_list:
         id = tag.get("id")
-        name = tag.get("tag_name")
+        name = tag.get("name")
         if id and name:
             tag_ids_by_name[name.strip().title()] = id
 
 
-    normalized = [tag.get('tag_name').strip().title() for tag in tags_list if tag.get("tag_name")]
+    normalized = [tag.get('name').strip().title() for tag in tags_list if tag.get("name")]
 
     existing_tags = tag_crud.bulk_select_tags(normalized)["obj"]
     for tag in existing_tags:
@@ -39,14 +39,12 @@ def tags_worker(idea_id, tags_list):
 
     missing = [
         {
-            "name": tag.get("tag_name").strip().title(),
-            "tag_desc": tag.get("description", "").strip(),
-            "generated_by": tag.get("generated_by", "").strip()
+            "name": tag.get("name").strip().title(),
+            "description": tag.get("description", "").strip(),
+            "generated_by": tag.get("generated_by")
         }
-        for tag in tags_list if tag.get("tag_name") and tag.get("tag_name").strip().title() not in tag_ids_by_name
+        for tag in tags_list if tag.get("name") and tag.get("name").strip().title() not in tag_ids_by_name
     ]
-
-    # Insert missing and get updated tag_ids_by_name
     tag_ids_by_name = tag_crud.bulk_insert_tags(missing, tag_ids_by_name)["obj"]
 
     id_list = [tag_ids_by_name[name] for name in normalized]

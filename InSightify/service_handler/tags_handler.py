@@ -9,8 +9,8 @@ class TagHelper:
         self.response = ResponseHandler()
 
     def add_tag(self, tag):
-        tag.setdefault("tag_desc", "No description Available") # handle if this is none then
-        if tag["name"] and tag["tag_desc"]:
+        tag.setdefault("tag_desc", "No description Available")
+        if tag["name"] and tag["description"]:
             created_tag=self.tag_crud.create_tag(**tag)
             if self.tag_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
@@ -21,7 +21,7 @@ class TagHelper:
         return self.response.send_response()
 
     def update_tag(self, tag):
-        if tag["tag_id"] and tag["name"] and tag["tag_desc"]:
+        if tag["tag_id"] and tag["name"] and tag["description"]:
             self.tag_crud.update_tag(**tag)
             if self.tag_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")

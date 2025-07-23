@@ -27,5 +27,8 @@ class UserCRUD(BaseCRUD):
     def update_profile(self, user_id, **kwargs):
         return self.update(user_id, **kwargs)
 
+    def get_user_details(self, user_id):
+        return self.get_by_id(user_id)
+
 
 

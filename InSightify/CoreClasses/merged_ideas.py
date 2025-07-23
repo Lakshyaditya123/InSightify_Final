@@ -141,6 +141,7 @@ class MergedIdeaCRUD(BaseCRUD):
                             "title": merged_idea.title,
                             "subject": merged_idea.subject,
                             "content": merged_idea.content,
+                            "status": merged_idea.status,
                             "tags_list": tags,
                             "created_at": merged_idea.create_datetime.isoformat(),
                             "comments_count": comment_count_map.get(merged_idea.id, 0)

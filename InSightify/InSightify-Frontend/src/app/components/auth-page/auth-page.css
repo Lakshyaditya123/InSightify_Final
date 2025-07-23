@@ -18,18 +18,29 @@ body, html {
 }
 
 .logo {
-  width: 250px;
+  width: 300px;
 }
 
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .auth-card {
   background: rgba(138, 183, 198, 0.3);
-  padding: 30px 25px;
+  padding: 25px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.50);
-  width: 300px;
+  width: 50vh;
+  height: 60vh;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(#5C7285, #09122C);
+  padding: 25px;
 }
-
 .auth-card input {
   width: 100%;
   padding: 10px;
@@ -37,6 +48,7 @@ body, html {
   border-radius: 30px;
   border: 1px solid #ddd;
 }
+
 
 .auth-card button {
   width: 100%;
@@ -57,11 +69,22 @@ body, html {
 
 .switch-text {
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 16px;
+  color: white;
 }
 
 .switch-text a {
   color: #1e88e5;
   text-decoration: none;
   cursor: pointer;
+}
+
+::ng-deep .snack-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+::ng-deep .snack-error {
+  background-color: #f44336;
+  color: white;
 }
