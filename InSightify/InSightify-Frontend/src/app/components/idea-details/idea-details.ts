@@ -68,7 +68,6 @@ export class IdeaDetails implements OnInit, OnChanges {
     });
   }
   
-  
   getStatusColor(status: number): string {
     switch (status) {
       case -1: return 'red';

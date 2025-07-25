@@ -52,7 +52,7 @@ export class MergedIdeaDetails implements OnInit, OnChanges {
     if (!this.cardData) return;
     this.ideaService.get_all_comments(this.currentUserId, null, this.cardData.merged_idea_details.id).subscribe({
       next: (res: ApiResponse) => {
-        this.all_comment_cards = res.data?.all_comments || [];
+        this.all_comment_cards = res.data || [];
       },
       error: (err) => {
         console.error("Error fetching comments:", err);

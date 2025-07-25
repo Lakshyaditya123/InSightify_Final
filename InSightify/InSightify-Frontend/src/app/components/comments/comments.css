@@ -1,11 +1,11 @@
 /* Using :host to contain the styles within this component */
 :host {
   font-family: 'Inter', sans-serif;
-  --primary-text: #1f2937;
-  --secondary-text: #6b7280;
+  --primary-text: #34495e;
+  --secondary-text: #34495e;
   --border-color: #e5e7eb;
-  --accent-color: #4f46e5;
-  --accent-hover: #4338ca;
+  --accent-color: #232323;
+  --accent-hover: #2a2a2a;
   --bg-secondary: #f7f8fc;
   --bg-primary: #ffffff;
   color: var(--primary-text);
@@ -44,7 +44,7 @@
   margin-left: auto;
   margin-top: 0.75rem;
   background-color: var(--accent-color);
-  color: white;
+  color: #b0b0b0;
   border: none;
   border-radius: 6px;
   padding: 0.6rem 1.5rem;
@@ -138,9 +138,9 @@
   margin-top: 1rem;
   border-left: 2px solid var(--border-color);
 }
-.reply-item {
-  padding: 1rem 0 0 1.5rem;
-}
+/* .reply-item {
+  
+} */
 .reply-item .comment-avatar {
   width: 32px;
   height: 32px;
