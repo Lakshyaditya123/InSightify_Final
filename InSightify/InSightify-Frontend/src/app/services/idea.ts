@@ -55,7 +55,6 @@ get_idea(idea_id: number | null, merged_idea_id: number | null, user_id: number)
     return this.http.post<ApiResponse>(this.add_comment_url, payload);
   }
 
-
   // Define a flexible vote payload that can support either idea_id or merged_idea_id
   private isValidVotePayload(payload: any): payload is { user_id: number; vote_type: number; idea_id?: number; merged_idea_id?: number; comment_id?: number } {
     return (

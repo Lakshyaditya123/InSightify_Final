@@ -20,7 +20,7 @@ export class IdeaDetails implements OnInit, OnChanges {
   @ViewChild('scrollToComments') scrollToComments!: ElementRef;
 
   currentUserId: number = -1;
-  all_comment_cards: Comments[] = [];
+  all_comment: Comments[] = [];
 
   constructor(private authService: AuthService, private ideaService: IdeaService) {}
 
@@ -39,6 +39,7 @@ export class IdeaDetails implements OnInit, OnChanges {
     // This is the only place we need to handle the scrolling logic.
     if (changes['isCommentsVisible'] && changes['isCommentsVisible'].currentValue === true) {
       this.get_all_comments();
+      console.log(this.all_comment)
 
       // Use setTimeout to wait for the view to render, then scroll smoothly.
       setTimeout(() => this.scrollToCommentSection(), 500); // 150ms is a safe delay.
@@ -58,15 +59,15 @@ export class IdeaDetails implements OnInit, OnChanges {
     if (!this.cardData) return;
     this.ideaService.get_all_comments(this.currentUserId, this.cardData.idea_details.id).subscribe({
       next: (res: ApiResponse) => {
-        this.all_comment_cards = res.data?.all_comments || [];
+        this.all_comment = res.data || [];
       },
       error: (err) => {
         console.error("Error fetching comments:", err);
-        this.all_comment_cards = [];
+        this.all_comment = [];
       }
     });
-    // this.isCommentsVisible=false;
   }
+  
   
   getStatusColor(status: number): string {
     switch (status) {

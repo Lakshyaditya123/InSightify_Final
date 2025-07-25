@@ -156,23 +156,7 @@ export interface RefineContent{
   refine_content:string,
   tags_list: TagsList[]
 }
-export interface Comments {
-  comment_id: number;
-  user_id: number;
-  user_name: string;
-  idea_id: number | null;
-  merged_idea_id: number | null;
-  content: string;
-  parent_comment: number | null;
-  likes: number; // This will be driven by the votes object
-  user_vote: number; // This will be driven by the votes object
-  created_at: string;
-  replies: Comments[];
-  
-  // Optional UI state properties
-  replying?: boolean;
-  newReplyText?: string;
-}
+
 
 export interface AddComment {
   user_id: number,
@@ -180,4 +164,22 @@ export interface AddComment {
   merged_idea_id: number | null,
   content: string,
   parent_comment: number | null
+}
+
+
+export interface Comments {
+  comment_id: number,
+  user_id: number,
+  user_name: string,
+  idea_id: number | null,
+  merged_idea_id: number | null,
+  content: string,
+  parent_comment: number | null, // Corrected from -1 to allow null
+  likes: number,
+  user_vote: number,
+  created_at: string,
+  replies: Comments[],
+  // UI-specific properties that are not part of the API response
+  replying?: boolean;
+  newReplyText?: string;
 }

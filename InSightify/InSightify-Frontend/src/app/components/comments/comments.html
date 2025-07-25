@@ -1,65 +1,64 @@
 <section class="comments-section">
-    <div class="comments-header">
-        <h3>Comments</h3>
-    </div>
+  <div class="comments-header">
+    <h3>Comments ({{ processed_comments.length || 0 }})</h3>
+  </div>
 
-    <form class="add-comment-form" (ngSubmit)="postNewComment()">
-        <textarea placeholder="Add a comment..." [(ngModel)]="newCommentText" name="newCommentText" required></textarea>
-        <button type="submit">Post Comment</button>
-    </form>
-    
-    <ul class="comments-list">
-        <li *ngFor="let comment of all_comment" class="comment-item">
-            
-            <div class="comment-content">
-                <div class="comment-avatar"></div>
-                <div class="comment-body">
-                    <div>
-                        <span class="comment-author">{{ comment.user_name || 'User' }}</span>
-                        <span class="comment-time">{{ comment.created_at | date:'short' }}</span>
-                    </div>
-                    <p class="comment-text">{{ comment.content }}</p>
-                    
-                    <div class="comment-actions">
-                        <button class="comment-action-btn like-btn" 
-                                [class.liked]="comment.user_vote === 1" 
-                                (click)="toggleLike(comment)">
-                            <span class="icon">👍</span>
-                            <span class="count">{{ comment.likes }}</span>
-                        </button>
-                        <button class="comment-action-btn reply-btn" (click)="toggleReplyForm(comment)">
-                            Reply
-                        </button>
-                    </div>
-                </div>
+  <form class="add-comment-form" (ngSubmit)="postNewComment()">
+    <textarea placeholder="Add a comment..." [(ngModel)]="newCommentText" name="newCommentText" required></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+
+  <!-- This now iterates over the correctly processed internal list -->
+  <ul class="comments-list" *ngIf="processed_comments && processed_comments.length > 0">
+    <li *ngFor="let comment of processed_comments" class="comment-item">
+      <div class="comment-content">
+        <div class="comment-avatar"></div>
+        <div class="comment-body">
+          <div>
+            <span class="comment-author">{{ comment.user_name || 'User' }}</span>
+            <span class="comment-time">{{ comment.created_at | date:'short' }}</span>
+          </div>
+          <p class="comment-text">{{ comment.content }}</p>
+          <div class="comment-actions">
+            <button class="comment-action-btn like-btn" [class.liked]="comment.user_vote === 1"
+              (click)="toggleLike(comment)">
+              <span class="icon">👍</span>
+              <span class="count">{{ comment.likes }}</span>
+            </button>
+            <button class="comment-action-btn reply-btn" (click)="toggleReplyForm(comment)">
+              Reply
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- The reply form binds to properties on the processed comment object -->
+      <div class="reply-form" *ngIf="comment.replying">
+        <textarea placeholder="Write a reply..." [(ngModel)]="comment.newReplyText"></textarea>
+        <div class="reply-form-actions">
+          <button class="cancel-btn" (click)="toggleReplyForm(comment)">Cancel</button>
+          <button class="submit-btn" (click)="postReply(comment)">Reply</button>
+        </div>
+      </div>
+
+      <ul class="replies-list" *ngIf="comment.replies && comment.replies.length > 0">
+        <li *ngFor="let reply of comment.replies" class="reply-item">
+          <div class="comment-content">
+            <div class="comment-avatar"></div>
+            <div class="comment-body">
+              <div>
+                <span class="comment-author">{{ reply.user_name || 'User' }}</span>
+                <span class="comment-time">{{ reply.created_at | date:'short' }}</span>
+              </div>
+              <p class="comment-text">{{ reply.content }}</p>
             </div>
-
-            <div class="reply-form" *ngIf="comment.replying">
-                <textarea placeholder="Write a reply..." [(ngModel)]="comment.newReplyText"></textarea>
-                <div class="reply-form-actions">
-                    <button class="cancel-btn" (click)="toggleReplyForm(comment)">Cancel</button>
-                    <button class="submit-btn" (click)="postReply(comment)">Reply</button>
-                </div>
-            </div>
-            
-            <ul class="replies-list" *ngIf="comment.replies && comment.replies.length > 0">
-                <li *ngFor="let reply of comment.replies" class="reply-item">
-                    <div class="comment-content">
-                        <div class="comment-avatar"></div>
-                        <div class="comment-body">
-                             <div>
-                                <span class="comment-author">{{ reply.user_name || 'User' }}</span>
-                                <span class="comment-time">{{ reply.created_at | date:'short' }}</span>
-                            </div>
-                            <p class="comment-text">{{ reply.content }}</p>
-                            </div>
-                    </div>
-                </li>
-            </ul>
-
+          </div>
         </li>
-    </ul>
-    <div *ngIf="!all_comment || all_comment.length === 0" class="no-comments">
-        Be the first to comment!
-    </div>
+      </ul>
+    </li>
+  </ul>
+
+  <div *ngIf="!processed_comments || processed_comments.length === 0" class="no-comments">
+    Be the first to comment!
+  </div>
 </section>

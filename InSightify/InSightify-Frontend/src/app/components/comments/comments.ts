@@ -1,7 +1,7 @@
-import { Component, Input, Output, OnInit, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ApiResponse, Comments, AddComment } from '../../services/api-interfaces';
+import { ApiResponse, Comments, AddComment, Idea_large, Merged_idea_large } from '../../services/api-interfaces';
 import { IdeaService } from '../../services/idea';
 import { firstValueFrom } from 'rxjs';
 
@@ -12,62 +12,75 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './comments.html',
   styleUrls: ['./comments.css']
 })
-export class CommentsClass implements OnInit, OnChanges {
+export class CommentsClass implements OnChanges {
+  // These inputs are passed down from the parent component (idea-details or merged-idea-details).
   @Input() all_comment: Comments[] = [];
-  @Input() card!: any; // This can be Idea_large or Merged_idea_large
+  @Input() card!: Idea_large | Merged_idea_large;
   @Input() currentUserId!: number;
   @Output() commentPosted = new EventEmitter<void>();
-
+  // This is our internal list that holds the comments with UI-specific properties.
+  // The template will always read from this list.
+  processed_comments: Comments[] = [];
   newCommentText = '';
 
   constructor(private ideaService: IdeaService) {}
 
-  ngOnInit() {
-    this.addUiStateToComments();
-  }
-  
-  // When the input comment list changes, re-apply the UI state properties.
+  // This is the correct lifecycle hook to detect when the parent passes a new list of comments.
   ngOnChanges(changes: SimpleChanges) {
+    console.log(this.all_comment)
     if (changes['all_comment']) {
-      this.addUiStateToComments();
+      this.processIncomingComments();
     }
   }
 
-  // Add properties needed for the UI (like reply form state) to each comment object.
-  private addUiStateToComments() {
-    if (this.all_comment) {
-      this.all_comment.forEach(comment => {
-        comment.replying = false;
-        comment.newReplyText = '';
-        if (comment.replies) {
-          comment.replies.forEach(reply => {
-            reply.replying = false; // Not used, but good for consistency
-            reply.newReplyText = '';
-          });
-        }
-      });
+  /**
+   * This is the key function. It takes the raw comment list from the parent's @Input()
+   * and maps it to our internal 'processed_comments' array, adding the necessary
+   * properties for the UI to function correctly (like 'replying' state).
+   */
+  private processIncomingComments() {
+    if (this.all_comment && Array.isArray(this.all_comment)) {
+      this.processed_comments = this.all_comment.map(comment => ({
+        ...comment,
+        replying: false,
+        newReplyText: '',
+        replies: comment.replies ? comment.replies.map(reply => ({...reply})) : [] // Ensure replies are also processed
+      }));
+    } else {
+      this.processed_comments = [];
+    }
+  }
+
+  /**
+   * Safely determines the correct idea_id or merged_idea_id from the card input.
+   * This uses a type guard to satisfy TypeScript.
+   */
+  private getIdeaIdentifiers(): { ideaId: number | null, mergedIdeaId: number | null } {
+    if ('merged_idea_details' in this.card) {
+      return { ideaId: null, mergedIdeaId: this.card.merged_idea_details.id };
+    } else {
+      return { ideaId: this.card.idea_details.id, mergedIdeaId: null };
     }
   }
 
   postNewComment() {
     if (!this.newCommentText.trim()) return;
 
-    const isMerged = 'merged_idea_details' in this.card;
-    const ideaId = isMerged ? this.card.merged_idea_details.id : this.card.idea_details.id;
+    const { ideaId, mergedIdeaId } = this.getIdeaIdentifiers();
 
     const newCommentPayload: AddComment = {
       user_id: this.currentUserId,
-      idea_id: isMerged ? null : ideaId,
-      merged_idea_id: isMerged ? ideaId : null,
+      idea_id: ideaId,
+      merged_idea_id: mergedIdeaId,
       content: this.newCommentText.trim(),
-      parent_comment: -1 // Top-level comment
+      parent_comment: null
     };
 
     this.ideaService.addComment(newCommentPayload).subscribe({
       next: (res: ApiResponse) => {
         if (res.errCode === 0) {
           this.newCommentText = '';
-          this.commentPosted.emit(); // Notify parent to refresh comments
+          this.commentPosted.emit(); // Notify parent to refresh the comments list
         } else {
           console.error("Failed to add comment:", res.message);
         }
@@ -80,26 +93,25 @@ export class CommentsClass implements OnInit, OnChanges {
     const originalVote = comment.user_vote;
     const originalLikes = comment.likes;
 
-    // Optimistically update UI
+    // Optimistically update the UI for a responsive feel
     comment.user_vote = (comment.user_vote === 1) ? 0 : 1;
     comment.likes += (comment.user_vote === 1) ? 1 : -1;
 
-    const payload = { 
-      comment_id: comment.comment_id, 
-      user_id: this.currentUserId, 
-      vote_type: comment.user_vote 
+    const payload = {
+      comment_id: comment.comment_id,
+      user_id: this.currentUserId,
+      vote_type: comment.user_vote
     };
 
-    try {    
+    try {
       const result: ApiResponse = await firstValueFrom(this.ideaService.updateVote(payload));
       if (result.errCode !== 0) {
-        // Revert UI on error
+        // If the API call fails, revert the UI to its original state
         comment.user_vote = originalVote;
         comment.likes = originalLikes;
         console.error("Failed to update vote:", result.message);
       }
     } catch (error) {
-      // Revert UI on error
       comment.user_vote = originalVote;
       comment.likes = originalLikes;
       console.error('Error liking comment:', error);
@@ -108,8 +120,8 @@ export class CommentsClass implements OnInit, OnChanges {
 
   toggleReplyForm(comment: Comments) {
     const isCurrentlyReplying = comment.replying;
-    // Close all other forms
-    this.all_comment.forEach(c => c.replying = false);
+    // Close all other reply forms
+    this.processed_comments.forEach(c => { c.replying = false; });
     // Toggle the selected one
     comment.replying = !isCurrentlyReplying;
   }
@@ -118,13 +130,12 @@ export class CommentsClass implements OnInit, OnChanges {
     const replyText = parentComment.newReplyText?.trim();
     if (!replyText) return;
 
-    const isMerged = 'merged_idea_details' in this.card;
-    const ideaId = isMerged ? this.card.merged_idea_details.id : this.card.idea_details.id;
-    
+    const { ideaId, mergedIdeaId } = this.getIdeaIdentifiers();
+
     const replyPayload: AddComment = {
       user_id: this.currentUserId,
-      idea_id: isMerged ? null : ideaId,
-      merged_idea_id: isMerged ? ideaId : null,
+      idea_id: ideaId,
+      merged_idea_id: mergedIdeaId,
       content: replyText,
       parent_comment: parentComment.comment_id
     };
@@ -132,9 +143,7 @@ export class CommentsClass implements OnInit, OnChanges {
     this.ideaService.addComment(replyPayload).subscribe({
       next: (res: ApiResponse) => {
         if (res.errCode === 0) {
-          parentComment.replying = false;
-          parentComment.newReplyText = '';
-          this.commentPosted.emit(); // Notify parent to refresh
+          this.commentPosted.emit(); // Notify parent to refresh all comments
         } else {
           console.error("Failed to add reply:", res.message);
         }
