@@ -79,7 +79,7 @@ user_vote_details:{
   vote_id: number,
   vote_type: number
   },
-idea_vote_details: {
+vote_details: {
   upvotes: 0,
   downvotes: 0,
   total: 0
@@ -93,7 +93,7 @@ export interface Idea_details{
   content: string,
   refine_content: string | null;
   status: number,
-  tags_list: TagsList[] 
+  tags_list: TagsList[] | null
   link: string,
   file_path: string,
   created_at: string,
@@ -109,7 +109,7 @@ export interface Add_idea{
   file_path: string | null,
   }
   refine_content: String,
-  tags_list:TagsList[]
+  tags_list:TagsList[] | null
 }
 
 
@@ -155,4 +155,29 @@ export interface CurrUser{
 export interface RefineContent{
   refine_content:string,
   tags_list: TagsList[]
+}
+export interface Comments {
+  comment_id: number;
+  user_id: number;
+  user_name: string;
+  idea_id: number | null;
+  merged_idea_id: number | null;
+  content: string;
+  parent_comment: number | null;
+  likes: number; // This will be driven by the votes object
+  user_vote: number; // This will be driven by the votes object
+  created_at: string;
+  replies: Comments[];
+  
+  // Optional UI state properties
+  replying?: boolean;
+  newReplyText?: string;
+}
+
+export interface AddComment {
+  user_id: number,
+  idea_id: number | null,
+  merged_idea_id: number | null,
+  content: string,
+  parent_comment: number | null
 }

@@ -26,31 +26,29 @@ class CommentHelper:
         return self.response.send_response()
 
     @staticmethod
-    def format_comments(comments):
-        for comment in comments:  # Adds another field Children
-            comment["Children"] = []
-        comment_map={comment["id"]: comment  for comment in comments}
-        for comment in comments:
-            p_id = comment["parent_comment"]
+    def format_comments(comments_send):
+        for comment_send in comments_send:
+            comment_send["replies"] = []
+        comment_map={comment_send["comment_id"]: comment_send  for comment_send in comments_send}
+        for comment_send in comments_send:
+            p_id = comment_send["parent_comment"]
             if p_id !=-1:
                 parent = comment_map.get(p_id)
                 if parent:
-                    parent["Children"].append(comment)
+                    parent["replies"].append(comment_send)
+        return [comment_send for comment_send in comments_send if comment_send["parent_comment"] == -1]
 
-        return [comment for comment in comments if comment["parent_comment"] == -1]
-
-    def comment_display(self, idea_ids):
-        if not (idea_ids.get("idea_id") or idea_ids.get("merged_idea_id")):
+    def comment_display(self, data):
+        if not (data.get("idea_id") or data.get("merged_idea_id")):
             self.response.get_response(400, "Either idea id or merged idea id is required")
         else:
-            if get_comms:= idea_ids.get("idea_id"):
-                comments = self.comment_crud.get_by_idea(get_comms)["obj"]
+            if get_comms:= data.get("idea_id"):
+                comments = self.comment_crud.get_by_idea(idea_id=get_comms, user_id=data.get("user_id"))["obj"]
             else:
-                get_comms= idea_ids.get("merged_idea_id")
-                comments = self.comment_crud.get_by_merged_idea(get_comms)["obj"]
-
+                get_comms= data.get("merged_idea_id")
+                comments = self.comment_crud.get_by_idea(merged_idea_id=get_comms, user_id=data.get("user_id"))["obj"]
             if comments:
-                formated_comments = self.format_comments(self.comment_crud.convert_to_dict_list(comments))
+                formated_comments = self.format_comments(comments)
                 self.response.get_response(0, "Found comment", data=formated_comments)
             else:
                 self.response.get_response(400, "No comment found!")

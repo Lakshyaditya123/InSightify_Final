@@ -26,7 +26,8 @@ export class CreateAdd implements OnInit {
 
   // Data holders
   selectedTags: TagsList[] = [];
-  newTag:TagsList |null=null;
+  newTagtext: string = '';
+  newTag!:TagsList
   Idea!:Add_idea;
   suggestedTags: TagsList[]=[];
   currentUserId!: number;
@@ -80,13 +81,6 @@ editor!: Editor;
       link: ['']
     });
   }
-  // initNewTagForm() {
-  //   this.newTagForm = this.fb.group({
-  //     name: ['', Validators.required],
-  //     description: ['']
-  //   });
-  // }
-  // Add a new tag
 
   onFileSelected(event: Event): void {
   const input = event.target as HTMLInputElement;
@@ -98,10 +92,15 @@ editor!: Editor;
 
   addTag(event: any) {
     event.preventDefault();
-    const tag = this.newTag;
-    if (tag && !this.selectedTags.includes(tag)) {
-      this.selectedTags.push(tag);
-      this.newTag=null;
+    if (this.newTagtext.trim() !== '') {
+      this.newTag = {
+        id: null,
+        name: this.newTagtext.trim(),
+        description: "No description available",
+        generated_by: 'Human',
+      };
+      this.selectedTags.push(this.newTag);
+      this.newTagtext = '';
     }
   }
 
@@ -199,7 +198,12 @@ editor!: Editor;
   resetForm() {
     this.addIdeaForm.reset();
     this.selectedTags=[];
-    this.newTag = null;
+    this.newTag = {
+    id: null,
+    name: '',
+    description: '',
+    generated_by: 'Human',
+  };
     this.selectedFile = null;
     this.isSubmitting= false;
     this.isRefining=false;

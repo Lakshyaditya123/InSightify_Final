@@ -36,22 +36,15 @@
     </span>
   </div>
 </div>
-  <!-- Original Ideas Section -->
-  <div class="idea-tags mb-4" *ngIf="cardData.user_idea_details?.length">
-    <h6>Merged From Ideas</h6>
-    <div class="d-flex flex-column gap-2">
-      <div *ngFor="let original of cardData.user_idea_details" class="d-flex align-items-center gap-2">
-        <img [src]="original.user_details.profile_picture" alt="Profile" width="30" height="30" class="rounded-circle border" />
-        <div>
-          <div class="fw-bold">{{ original.user_details.name }}</div>
-          <small class="text-muted">{{ original.idea_details.title }}</small>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Bottom Like & Comment Buttons -->
-  <!-- <div class="idea-bottom-section">
-    <app-votes-section [card]="cardData" [currentUserId]="currentUserId"></app-votes-section>
-  </div> -->
+
+<div>
+<app-comments
+      *ngIf="isCommentsVisible"
+      [card]="cardData"
+      [all_comment]="all_comment_cards"
+      [currentUserId]="currentUserId"
+      (commentPosted)="get_all_comments()">
+</app-comments>
+</div>
 </div>

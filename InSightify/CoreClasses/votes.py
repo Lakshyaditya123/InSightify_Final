@@ -42,7 +42,7 @@ class VoteCRUD(BaseCRUD):
                 "user_id": result.this_obj2users if result else None,
                 "vote_type": result.vote_type if result else None,
                 },
-                "idea_vote_details": {
+                "vote_details": {
                 "upvotes": upvotes,
                 "downvotes": downvotes,
                 "total": upvotes - downvotes

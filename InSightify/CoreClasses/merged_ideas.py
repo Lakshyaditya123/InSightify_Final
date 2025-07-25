@@ -29,7 +29,6 @@ class MergedIdeaCRUD(BaseCRUD):
         )
 
     def get_vote_and_comment_count(self, merged_ideas):
-        # Get all idea IDs
         idea_ids = [idea.id for idea in merged_ideas]
         # Bulk fetch votes
         votes = self.db_session.query(
@@ -106,7 +105,7 @@ class MergedIdeaCRUD(BaseCRUD):
                         "vote_id": result.id if result else None,
                         "vote_type": result.vote_type if result else None,
                     },
-                    "idea_vote_details": {
+                    "vote_details": {
                         "upvotes": upvotes,
                         "downvotes": downvotes,
                         "total": upvotes - downvotes
@@ -132,7 +131,7 @@ class MergedIdeaCRUD(BaseCRUD):
                 if get_one:
                     tags = [
                         {"id": t.id, "name": t.name, "description": t.tag_desc}
-                        for t in self.db_session.query(Tag).filter(Tag.id.in_(merged_idea.tags_list)).all()
+                        for t in self.db_session.query(Tag).filter(Tag.id.in_(merged_idea.tags_list)).limit(7).all()
                     ]
                     result_list.append({
                         "users_idea_details": users_ideas_list,
@@ -175,95 +174,6 @@ class MergedIdeaCRUD(BaseCRUD):
             )
 
         return self.db_response.send_response()
-
-    # def get_merged_ideas_with_users(self,user_id=None, get_one=False, merged_idea_id=None, status=1):
-    #     if get_one:
-    #         merged_ideas = [self.db_session.query(MergedIdea).options(
-    #             joinedload(MergedIdea.ideas)).filter(MergedIdea.id == merged_idea_id).first()]
-    #         if not merged_ideas:
-    #             self.db_response.get_response(
-    #                 errCode=0,
-    #                 msg="No merged ideas found with the specified status",
-    #                 obj=[]
-    #             )
-    #             return self.db_response.send_response()
-    #     else:
-    #         merged_ideas = (self.db_session.query(MergedIdea).options(
-    #             joinedload(MergedIdea.ideas).joinedload(Idea.user)).filter(MergedIdea.status==status).all())
-    #
-    #     if merged_ideas:
-    #         result = []
-    #         for merged_idea in merged_ideas:
-    #             users_ideas_list = []
-    #             for idea in merged_idea.ideas:
-    #                 user = idea.user
-    #                 users_ideas_list.append({
-    #                     "user_details": {
-    #                         "id": user.id,
-    #                         "name": user.name,
-    #                         "profile_picture": user.profile_picture
-    #                     },
-    #                     "idea_details": {
-    #                         "id": idea.id,
-    #                         "title": idea.title,
-    #                         "subject": idea.subject
-    #                     }
-    #                 })
-    #
-    #             upvotes = sum(1 for vote in merged_idea.votes if vote.vote_type > 0)
-    #             downvotes = sum(1 for vote in merged_idea.votes if vote.vote_type < 0)
-    #
-    #             vote_map, comment_count_map = self.get_vote_and_comment_count(ideas)
-    #             result_idea = self.db_session.query(Vote).filter(Vote.this_obj2merged_ideas == merged_idea.id,
-    #                                                         Vote.this_obj2users == user_id).first()
-    #
-    #             final_result = {
-    #                 "user_vote_details": {
-    #                     "vote_id": result_idea.id if result_idea else None,
-    #                     "vote_type": result_idea.vote_type if result_idea else None,
-    #                 },
-    #                 "idea_vote_details": {
-    #                     "upvotes": upvotes,
-    #                     "downvotes": downvotes,
-    #                     "total": upvotes - downvotes
-    #                 }
-    #             } if status else {}
-    #
-    #             if get_one:
-    #                 tags = [
-    #                     {"id": t.id, "tag_desc": t.tag_desc}
-    #                     for t in self.db_session.query(Tag).filter(Tag.id.in_(merged_idea.tags_list)).all()
-    #                 ]
-    #                 result.append({
-    #                     "users_idea_details": users_ideas_list,
-    #                     "merged_idea_details": {
-    #                         "id": merged_idea.id,
-    #                         "title": merged_idea.title,
-    #                         "subject": merged_idea.subject,
-    #                         "content": merged_idea.content,
-    #                         "tags_list": tags,
-    #                         "created_at": merged_idea.create_datetime.isoformat(),
-    #                         "comments_count": len(merged_idea.comments) if merged_idea.comments else 0,
-    #                     },
-    #                     "vote_details":final_result
-    #                 })
-    #             else:
-    #                 result.append({
-    #                     "users_idea_details": users_ideas_list,
-    #                     "merged_idea_details": {
-    #                         "id": merged_idea.id,
-    #                         "title": merged_idea.title,
-    #                         "subject": merged_idea.subject,
-    #                     },
-    #                     "vote_details":final_result
-    #                 })
-    #
-    #             self.db_response.get_response(errCode=0, msg="Found Records !", obj=result)
-    #     else:
-    #         self.db_response.get_response(errCode=0, msg="Records not found", obj=None)
-    #
-    #     return self.db_response.send_response()
-
 
     def find_similar_merged_ideas(self, idea: Idea):
         if not idea or not idea.tags_list:

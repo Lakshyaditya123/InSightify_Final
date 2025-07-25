@@ -20,8 +20,6 @@ class IdeaHelper:
         idea=data.get("idea")
         tags_list=data.get("tags_list")
         refine_content=data.get("refine_content")
-        print("tags_list", tags_list)
-        print("refine_content", refine_content)
         idea.setdefault("title","untitled")
         idea.setdefault("tags_list",[])
         idea.get("status", 0)

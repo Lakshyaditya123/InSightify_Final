@@ -90,6 +90,8 @@
   border-left: 4px solid #007bff;
 }
 
+
+
 /* VOTE/COMMENT SECTION - smaller and left aligned */
 .idea-bottom-section {
   display: flex;
@@ -258,4 +260,36 @@
 .modal-body {
   max-height: 40rem; /* or your desired height */
   overflow-y: auto;
+}
+
+
+.red {
+  background-color: #f44336;
+}
+
+.green {
+  background-color: #4CAF50;
+}
+
+.blue {
+  background-color: #3498db;
+}
+
+.gray {
+  background-color: #b0b0b0;
+}
+
+#more-tags-btn {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+
+#more-tags-btn:hover {
+    color: var(--accent-hover);
 }

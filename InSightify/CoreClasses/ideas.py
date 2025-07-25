@@ -131,7 +131,7 @@ class IdeaCRUD(BaseCRUD):
                         "vote_id": result.id if result else None,
                         "vote_type": result.vote_type if result else None,
                     },
-                    "idea_vote_details": {
+                    "vote_details": {
                     "upvotes": upvotes,
                     "downvotes": downvotes,
                     "total": upvotes - downvotes
@@ -141,7 +141,7 @@ class IdeaCRUD(BaseCRUD):
                 if get_one:
                     tags = [
                         {"id": t.id, "name":t.name, "description": t.tag_desc}
-                        for t in self.db_session.query(Tag).filter(Tag.id.in_(idea.tags_list)).all()
+                        for t in self.db_session.query(Tag).filter(Tag.id.in_(idea.tags_list)).limit(7).all()
                     ]
                     result_list.append({
                         "user_details": {

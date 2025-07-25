@@ -25,14 +25,14 @@ export class VotesSection {
     const vote_type = 1;
 
     if (idea.vote_details.user_vote_details?.vote_type === vote_type) {
-      await this.removeVote(idea);
+      await this.removeTheVote(idea);
     } else {
       try {
         const payload = this.isMergedIdea(idea)
           ? { merged_idea_id: id, user_id: this.currentUserId, vote_type }
           : { idea_id: id, user_id: this.currentUserId, vote_type };
 
-        const result: ApiResponse = await firstValueFrom(this.ideaService.upvoteIdea(payload));
+        const result: ApiResponse = await firstValueFrom(this.ideaService.updateVote(payload));
         if (result.errCode === 0 && result.datarec?.vote_details) {
           idea.vote_details = result.datarec.vote_details;
         } else {
@@ -50,14 +50,14 @@ export class VotesSection {
     const vote_type = -1;
 
     if (idea.vote_details.user_vote_details?.vote_type === vote_type) {
-      await this.removeVote(idea);
+      await this.removeTheVote(idea);
     } else {
       try {
         const payload = this.isMergedIdea(idea)
           ? { merged_idea_id: id, user_id: this.currentUserId, vote_type }
           : { idea_id: id, user_id: this.currentUserId, vote_type };
 
-        const result: ApiResponse = await firstValueFrom(this.ideaService.downvoteIdea(payload));
+        const result: ApiResponse = await firstValueFrom(this.ideaService.updateVote(payload));
         if (result.errCode === 0 && result.datarec?.vote_details) {
           idea.vote_details = result.datarec.vote_details;
         } else {
@@ -69,14 +69,14 @@ export class VotesSection {
     }
   }
 
-  async removeVote(idea: Idea_small | Merged_idea_small) {
+  async removeTheVote(idea: Idea_small | Merged_idea_small) {
     const id = this.isMergedIdea(idea) ? idea.merged_idea_details.id : idea.idea_details.id;
     try {
       const payload = this.isMergedIdea(idea)
         ? { merged_idea_id: id, user_id: this.currentUserId, vote_type: 0 }
         : { idea_id: id, user_id: this.currentUserId, vote_type: 0 };
 
-      const result: ApiResponse = await firstValueFrom(this.ideaService.removeVote(payload));
+      const result: ApiResponse = await firstValueFrom(this.ideaService.updateVote(payload));
       if (result.errCode === 0 && result.datarec?.vote_details) {
         idea.vote_details = result.datarec.vote_details;
       } else {
@@ -96,15 +96,15 @@ export class VotesSection {
   }
 
   getTotalVotes(idea: Idea_small | Merged_idea_small): number {
-    return idea.vote_details.idea_vote_details.total;
+    return idea.vote_details.vote_details.total;
   }
 
   getUpvotes(idea: Idea_small | Merged_idea_small): number {
-    return idea.vote_details.idea_vote_details.upvotes;
+    return idea.vote_details.vote_details.upvotes;
   }
 
   getDownvotes(idea: Idea_small | Merged_idea_small): number {
-    return idea.vote_details.idea_vote_details.downvotes;
+    return idea.vote_details.vote_details.downvotes;
   }
 
   getUserVoteType(idea: Idea_small | Merged_idea_small): number {

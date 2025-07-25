@@ -1,50 +1,57 @@
 <div class="homescreen-container">
   <app-navbar></app-navbar>
-  <!-- Main Content -->
   <main class="main-content">
     <section class="wall col-8">
       <div class="main-idea-card">
         <div class="idea-row-scroll">
           <div *ngFor="let card of all_merged_cards" class="idea-card">
-            <div class="idea-content" (click)="open_merged_ticket_details_modal(card)" style="cursor: pointer;">
+            <div class="idea-content" (click)="open_merged_ticket_details_modal(card, false)" style="cursor: pointer;">
               <h5 class="idea-title">{{ card?.merged_idea_details?.title }}</h5>
               <p class="idea-subject">{{ card?.merged_idea_details?.subject }}</p>
             </div>
-            <!-- Bottom Section with Voting -->
             <div class="idea-bottom-section">
               <app-votes-section [card]="card" [currentUserId]="currentUserId"></app-votes-section>
+              <div class="comments-display" (click)="open_merged_ticket_details_modal(card, true)">
+                <i class="bi bi-chat-dots"></i>
+                <span class="comment-count" *ngIf="card.merged_idea_details.comments_count != null">
+                  {{ getCommentsDisplay(card.merged_idea_details.comments_count) }}
+                </span>
+              </div>
             </div>
           </div>
           <div *ngFor="let card of all_cards" class="idea-card">
-            <div class="idea-content" (click)="open_ticket_details_modal(card)" style="cursor: pointer;">
+            <div class="idea-content" (click)="open_ticket_details_modal(card, false)" style="cursor: pointer;">
               <h5 class="idea-title">{{ card?.idea_details?.title }}</h5>
               <p class="idea-subject">{{ card?.idea_details?.subject }}</p>
             </div>
-            <!-- Bottom Section with Voting -->
             <div class="idea-bottom-section">
               <app-votes-section [card]="card" [currentUserId]="currentUserId"></app-votes-section>
+              <div class="comments-display" (click)="open_ticket_details_modal(card, true)">
+                <i class="bi bi-chat-dots"></i>
+                <span class="comment-count" *ngIf="card.idea_details.comments_count != null">
+                  {{ getCommentsDisplay(card.idea_details.comments_count) }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sidebar / My Space -->
     <aside class="sidebar col-3">
       <div class="sidebar-title">MY SPACE:</div>
       <div class="my-ideas">
         <div class="my-ideas scrollable-my-ideas">
-          <div
-            *ngFor="let idea of all_my_cards"
-            class="my-idea-card"
-            (click)="open_my_space_idea_modal(idea)"
-            title="Click to view idea"
-          >
+          <div *ngIf="all_my_cards.length === 0" class="idea-name">
+            <p>No ideas in your space.</p>
+          </div>
+          <div *ngFor="let idea of all_my_cards" class="my-idea-card" (click)="open_my_space_idea_modal(idea, false)"
+            title="Click to view idea">
             <div class="my-idea-header">
               <span class="dot" [ngClass]="getStatusColor(idea.status)"></span>
               <span class="idea-name">{{ idea.title }}</span>
             </div>
-              <small class="my-idea-subject">{{ idea.subject }}</small>
+            <small class="my-idea-subject">{{ idea.subject }}</small>
           </div>
         </div>
       </div>
@@ -53,32 +60,27 @@
     </aside>
   </main>
 </div>
-
 <!-- Ticket Details Modal -->
-<div
-  class="modal fade"
-  id="ticket_details_modal"
-  tabindex="-1"
-  aria-labelledby="ticketDetailsModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="ticket_details_modal" tabindex="-1" aria-labelledby="ticketDetailsModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h5 class="modal-title" id="ticketDetailsModalLabel">
-          {{ selectedCard?.idea_details?.title || 'Idea Details' }}
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div> -->
+    <div #modelContent class="modal-content">
       <div class="modal-body">
-        <app-idea-details *ngIf="selectedCard" [cardData]="selectedCard" [mySpace]="mySpace"></app-idea-details>
+        <app-idea-details *ngIf="selectedCard" [cardData]="selectedCard" [mySpace]="mySpace" [isCommentsVisible]="isCommentsVisible"  [modalWidth]="modalWidth"></app-idea-details>
         <div *ngIf="!selectedCard" class="text-center p-4">
           <p>Loading idea details...</p>
+          
         </div>
       </div>
       <div class="modal-footer">
-        <div >
-          <app-votes-section *ngIf="selectedCard && selectedCard.idea_details.status>0" [card]="selectedCard" [currentUserId]="currentUserId"></app-votes-section>
+        <div class="modal-actions">
+          <app-votes-section *ngIf="selectedCard && selectedCard.idea_details.status>0" [card]="selectedSmallCard || selectedCard" [currentUserId]="currentUserId"></app-votes-section>
+          <div class="comments-display" (click)="toggleCommentsVisibility()" *ngIf="selectedCard && selectedCard.idea_details.status > 0">
+            <i class="bi bi-chat-dots"></i>
+            <span class="comment-count" *ngIf="selectedCard.idea_details.comments_count != null">
+              {{ getCommentsDisplay(selectedCard.idea_details.comments_count) }}
+            </span>
+          </div>
         </div>
         <button type="button" class="btn btn-secondary" (click)="close_ticket_details_modal()">Close</button>
       </div>
@@ -86,53 +88,41 @@
   </div>
 </div>
 
-<!-- For merged idea model -->
-
-<div
-  class="modal fade"
-  id="merged_ticket_details_modal"
-  tabindex="-1"
-  aria-labelledby="mergedTicketDetailsModalLabel"
-  aria-hidden="true"
->
+<!-- Merged Ticket Details Modal -->
+<div class="modal fade" id="merged_ticket_details_modal" tabindex="-1" aria-labelledby="mergedTicketDetailsModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h5 class="modal-title" id="mergedTicketDetailsModalLabel">
-          {{ selectedMergedCard?.merged_idea_details?.title || 'Merged Idea Details' }}
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div> -->
       <div class="modal-body">
-        <app-merged-idea-details *ngIf="selectedMergedCard" [cardData]="selectedMergedCard"></app-merged-idea-details>
+        <app-merged-idea-details *ngIf="selectedMergedCard" [cardData]="selectedMergedCard" [isCommentsVisible]="isCommentsVisible" ></app-merged-idea-details>
         <div *ngIf="!selectedMergedCard" class="text-center p-4">
           <p>Loading merged idea details...</p>
         </div>
       </div>
-      <div class="modal-footer" >
-        <app-votes-section *ngIf="selectedMergedCard" [card]="selectedMergedCard" [currentUserId]="currentUserId"></app-votes-section>
+      <div class="modal-footer">
+        <div class="modal-actions">
+          <app-votes-section *ngIf="selectedMergedCard" [card]="selectedMergedSmallCard" [currentUserId]="currentUserId"></app-votes-section>
+          <div class="comments-display" (click)="toggleCommentsVisibility()" *ngIf="selectedMergedCard">
+            <i class="bi bi-chat-dots"></i>
+            <span class="comment-count" *ngIf="selectedMergedCard.merged_idea_details.comments_count != null">
+              {{ getCommentsDisplay(selectedMergedCard.merged_idea_details.comments_count) }}
+            </span>
+          </div>
+        </div>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
 <!-- Add Idea Modal -->
-<div
-  class="modal fade"
-  id="addIdea_modal"
-  tabindex="-1"
-  aria-labelledby="addIdeaModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="addIdea_modal" tabindex="-1" aria-labelledby="addIdeaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addIdeaModalLabel">Create a New Idea</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close_add_idea_modal()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="close_add_idea_modal()"></button>
       </div>
       <div class="modal-body">
         <app-create-add></app-create-add>
@@ -142,13 +132,7 @@
 </div>
 
 <!-- User Profile Modal -->
-<div
-  class="modal fade"
-  id="user_profile_modal"
-  tabindex="-1"
-  aria-labelledby="userProfileModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="user_profile_modal" tabindex="-1" aria-labelledby="userProfileModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -156,11 +140,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Content goes here -->
-      </div>
+        </div>
     </div>
   </div>
 </div>
-
-<!-- Comments Modal (Preserved as-is) -->
-<!-- <div class="modal fade" id="comments_modal" ...> ... </div> -->

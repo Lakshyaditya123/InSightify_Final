@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import { Navbar } from '../../components/navbar/navbar';
 import { IdeaDetails } from '../../components/idea-details/idea-details';
 import { MergedIdeaDetails } from '../../components/merged-idea-details/merged-idea-details';
 import { CreateAdd } from '../../components/create-add/create-add';
-import { Comments } from '../../components/comments/comments';
 import { IdeaService } from '../../services/idea';
 import { ApiResponse, Idea_small, Idea_large, Merged_idea_small, My_idea, Merged_idea_large, CurrUser} from '../../services/api-interfaces';
 import { AuthService } from '../../services/auth';
@@ -23,6 +22,8 @@ declare var bootstrap: any;
   styleUrl: './homescreen.css'
 })
 export class Homescreen implements OnInit {
+  selectedSmallCard: Idea_small | null = null;
+  selectedMergedSmallCard: Merged_idea_small | null = null;
   selectedCard: Idea_large | null = null;
   selectedMergedCard: Merged_idea_large | null = null;
   selectedCommentCard: Comment | null = null;
@@ -31,7 +32,9 @@ export class Homescreen implements OnInit {
   all_my_cards: My_idea[] = [];
   currentUserId: number = -1;
   mySpace=false;
-
+  isCommentsVisible = false;
+  @ViewChild('modelContent') modelContent!:ElementRef;
+  modalWidth: number = 0;
   constructor(private ideaService: IdeaService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
@@ -44,6 +47,28 @@ export class Homescreen implements OnInit {
       console.error('User not logged in!');
     }
   }
+
+  @HostListener('window:resize')
+  onResize(){
+
+  }
+
+  ngAfterViewInit() {
+    const temp=document.getElementById('ticket_details_modal');
+    temp?.addEventListener('shown.bs.modal', () => {
+      this.modalWidth = this.modelContent.nativeElement.offsetWidth;
+      console.log("Modal width:", this.modalWidth);
+    })
+  }
+  ngOnDestroy() {
+    // Clean up any subscriptions or resources if needed
+  console.log("Homescreen component destroyed");
+  const modalElement = document.querySelector('.modal-backdrop');
+  if (modalElement) {
+    modalElement.remove();
+  }
+  document.body.classList.remove('modal-open');
+}
 
   get_all_ideas() {
     this.ideaService.get_all_main_walls(this.currentUserId).subscribe((res: ApiResponse) => {
@@ -67,10 +92,21 @@ getStatusColor(status: number): string {
     default: return 'gray'; // fallback
   }
 }
-async open_my_space_idea_modal(card: My_idea) {
+
+getCommentsDisplay(count: number): string {
+    return count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count.toString();
+}
+
+toggleCommentsVisibility() {
+    this.isCommentsVisible = !this.isCommentsVisible;
+  }
+
+async open_my_space_idea_modal(card: My_idea, isVisible:boolean=false) {
   this.mySpace = true;
+  this.selectedSmallCard = this.all_cards.find(idea => idea.idea_details.id === card.idea_id) || null;
+  this.isCommentsVisible = isVisible;
+  
   try {
-    
     const result: ApiResponse = await firstValueFrom(
       this.ideaService.get_idea(card.idea_id, null, this.currentUserId)
     );
@@ -89,7 +125,9 @@ async open_my_space_idea_modal(card: My_idea) {
 }
 
 
-async open_ticket_details_modal(card: Idea_small ) {
+async open_ticket_details_modal(card: Idea_small,isVisible:boolean=false ) {
+  this.selectedSmallCard=card;
+  this.isCommentsVisible = isVisible;
   try {
     this.mySpace = false;
     const result: ApiResponse = await firstValueFrom(
@@ -109,8 +147,9 @@ async open_ticket_details_modal(card: Idea_small ) {
   }
 }
 
-
-async open_merged_ticket_details_modal(card: Merged_idea_small) {
+async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean=false ) {
+  this.selectedMergedSmallCard = card;
+  this.isCommentsVisible = isVisible;
   try {
     const result: ApiResponse = await firstValueFrom(
       this.ideaService.get_idea(null, card.merged_idea_details.id, this.currentUserId)
@@ -130,6 +169,7 @@ async open_merged_ticket_details_modal(card: Merged_idea_small) {
   }
 }
 
+
   close_ticket_details_modal() {
     // Move focus before hiding modal
     const mainBtn = document.querySelector('.add-more-btn') as HTMLElement;
@@ -141,6 +181,8 @@ async open_merged_ticket_details_modal(card: Merged_idea_small) {
       if (modal) modal.hide();
     }
     this.selectedCard = null;
+    this.isCommentsVisible = false;
+    this.selectedSmallCard = null;
   }
 
   close_merged_ticket_details_modal() {
@@ -154,6 +196,8 @@ async open_merged_ticket_details_modal(card: Merged_idea_small) {
       if (modal) modal.hide();
     }
     this.selectedMergedCard = null;
+    this.isCommentsVisible = false;
+    this.selectedMergedSmallCard = null;
   }
 
   open_add_idea_modal() {

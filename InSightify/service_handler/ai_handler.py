@@ -318,7 +318,8 @@ class AiHelper:
                 elif result.get("merge_status") == "rejected":
                     merge_stat="rejected"
                 else:
-                    tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
+                    # tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
+                    tags_list=list(set(idea.tags_list) & set(idea2.tags_list)) + list(set(idea.tags_list) ^ set(idea2.tags_list))
                     merged_idea = result.get("merged_idea")
                     new_merged_idea = self.merge_idea_crud.update_merged_ideas(merged_idea_id= idea2.id, **merged_idea, tags_list=tags_list)
                     if self.merge_idea_crud.commit_it()["errCode"]:

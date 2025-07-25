@@ -17,14 +17,10 @@ def tags_worker(idea_id, tags_list):
         name = tag.get("name")
         if id and name:
             tag_ids_by_name[name.strip().title()] = id
-
-
     normalized = [tag.get('name').strip().title() for tag in tags_list if tag.get("name")]
-
     existing_tags = tag_crud.bulk_select_tags(normalized)["obj"]
     for tag in existing_tags:
         tag_ids_by_name[tag.name] = tag.id
-
     id_list = tag_ids_by_name.values()
     if id_list:
         tag_crud.update_tag_status(id_list)

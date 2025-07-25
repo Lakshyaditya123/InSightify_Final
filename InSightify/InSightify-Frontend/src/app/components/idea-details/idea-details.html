@@ -25,25 +25,32 @@
   <!-- Idea Description -->
   <div class="idea-description mb-4">
     <!-- <h6>Description</h6> -->
-    <p>{{ cardData.idea_details.refine_content }}</p>
+    <p>{{ cardData.idea_details.refine_content || cardData.idea_details.content}}</p>
   </div>
 
   <!-- Tags with Tooltip -->
   <div class="idea-tags mb-4" *ngIf="cardData.idea_details?.tags_list?.length">
   <!-- <h6>Tags</h6> -->
-  <div class="scrolling-tags">
-    <span
-      *ngFor="let tag of cardData.idea_details?.tags_list"
+  <div #measureWidth class="tags-container d-flex flex-wrap gap-2">
+    <span *ngFor="let tag of visibleTags"
       class="badge bg-secondary scroll-tag"
-      [attr.title]="tag.description || 'No description available'"
-    >
+      [attr.title]="tag.description || 'No description available'">
       {{ tag.name }}
     </span>
+    <button *ngIf="shouldShowMoreButton" 
+              id="more-tags-btn" 
+              (click)="showMoreTags()">
+        +{{ hiddenTagsCount }} more
+    </button>
   </div>
 </div>
-
-  <!-- Like & Comment Inline Buttons -->
-  <!-- <div class="idea-bottom-section">
-    <app-votes-section [card]="cardData" [currentUserId]="currentUserId" *ngIf="cardData.idea_details.status>0"></app-votes-section>
-  </div> -->
+<div>
+<app-comments
+      *ngIf="isCommentsVisible"
+      [card]="cardData"
+      [all_comment]="all_comment_cards"
+      [currentUserId]="currentUserId"
+      (commentPosted)="get_all_comments()">
+</app-comments>
+</div>
 </div>

@@ -5,6 +5,11 @@
   background: #232323;
   border-radius: 6px;
   padding: 0.3rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.voting-section:hover {
+  transform: scale(1.05);
 }
 
 .vote-btn {
