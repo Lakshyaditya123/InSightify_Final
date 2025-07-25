@@ -57,7 +57,6 @@ export class Homescreen implements OnInit {
     const temp=document.getElementById('ticket_details_modal');
     temp?.addEventListener('shown.bs.modal', () => {
       this.modalWidth = this.modelContent.nativeElement.offsetWidth;
-      console.log("Modal width:", this.modalWidth);
     })
   }
   ngOnDestroy() {
@@ -117,7 +116,14 @@ async open_my_space_idea_modal(card: My_idea, isVisible:boolean=false) {
       console.error("Failed to get idea:", result.message);
     }
     const modalElement = document.getElementById('ticket_details_modal');
-    if (modalElement) new bootstrap.Modal(modalElement).show();
+    if (modalElement) {
+      new bootstrap.Modal(modalElement).show();
+     setTimeout(() => {
+        modalElement.removeAttribute('aria-hidden');
+        modalElement.setAttribute('aria-modal', 'true');
+        modalElement.setAttribute('role', 'dialog');
+      }, 150);
+    }
 
   } catch (error: any) {
     console.error('Error fetching idea details:', error);
@@ -141,7 +147,14 @@ async open_ticket_details_modal(card: Idea_small,isVisible:boolean=false ) {
     }
 
     const modalElement = document.getElementById('ticket_details_modal');
-    if (modalElement) new bootstrap.Modal(modalElement).show();
+    if (modalElement) {
+      new bootstrap.Modal(modalElement).show();
+     setTimeout(() => {
+        modalElement.removeAttribute('aria-hidden');
+        modalElement.setAttribute('aria-modal', 'true');
+        modalElement.setAttribute('role', 'dialog');
+      }, 150);
+    }
   } catch (error: any) {
     console.error('Error fetching idea details:', error);
   }
@@ -162,7 +175,14 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
     }
 
     const modalElement = document.getElementById('merged_ticket_details_modal');
-    if (modalElement) new bootstrap.Modal(modalElement).show();
+    if (modalElement) {
+      new bootstrap.Modal(modalElement).show();
+     setTimeout(() => {
+        modalElement.removeAttribute('aria-hidden');
+        modalElement.setAttribute('aria-modal', 'true');
+        modalElement.setAttribute('role', 'dialog');
+      }, 150);
+    }
 
   } catch (error) {
     console.error("Error loading merged idea details:", error);
@@ -172,6 +192,9 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
 
   close_ticket_details_modal() {
     // Move focus before hiding modal
+    this.selectedCard = null;
+    this.isCommentsVisible = false;
+    this.selectedSmallCard = null;
     const mainBtn = document.querySelector('.add-more-btn') as HTMLElement;
     if (mainBtn) mainBtn.focus();
     else document.body.focus();
@@ -180,13 +203,13 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) modal.hide();
     }
-    this.selectedCard = null;
-    this.isCommentsVisible = false;
-    this.selectedSmallCard = null;
   }
 
   close_merged_ticket_details_modal() {
     // Move focus before hiding modal
+    this.selectedMergedCard = null;
+    this.isCommentsVisible = false;
+    this.selectedMergedSmallCard = null;
     const mainBtn = document.querySelector('.add-more-btn') as HTMLElement;
     if (mainBtn) mainBtn.focus();
     else document.body.focus();
@@ -195,14 +218,18 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) modal.hide();
     }
-    this.selectedMergedCard = null;
-    this.isCommentsVisible = false;
-    this.selectedMergedSmallCard = null;
   }
 
   open_add_idea_modal() {
     const modalElement = document.getElementById('addIdea_modal');
-    if (modalElement) new bootstrap.Modal(modalElement).show();
+    if (modalElement) {
+      new bootstrap.Modal(modalElement).show();
+     setTimeout(() => {
+        modalElement.removeAttribute('aria-hidden');
+        modalElement.setAttribute('aria-modal', 'true');
+        modalElement.setAttribute('role', 'dialog');
+      }, 150);
+    }
   }
 
   close_add_idea_modal() {
