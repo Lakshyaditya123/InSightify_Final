@@ -6,6 +6,9 @@
         <div class="idea-row-scroll">
           <div *ngFor="let card of all_merged_cards" class="idea-card">
             <div class="idea-content" (click)="open_merged_ticket_details_modal(card, false)" style="cursor: pointer;">
+              <!-- <div *ngFor="let user of card.user_idea_details" class="idea-card">
+              <img class="idea-image"  [src]="user.user_details.profile_picture" alt="Idea Image" />
+              </div> -->
               <h5 class="idea-title">{{ card?.merged_idea_details?.title }}</h5>
               <p class="idea-subject">{{ card?.merged_idea_details?.subject }}</p>
             </div>
@@ -60,17 +63,18 @@
     </aside>
   </main>
 </div>
+
 <!-- Ticket Details Modal -->
 <div class="modal fade" id="ticket_details_modal" tabindex="-1" aria-labelledby="ticketDetailsModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div #modelContent class="modal-content">
+      <div class="modal-header gap-2 text-muted" *ngIf="selectedCard" style="min-height: 68.67px; padding: 15px;">
+        <img [src]="selectedCard.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="selectedCard.user_details.name">
+         <span class="idea_header">{{ selectedCard.idea_details.title}}</span>
+      </div>
       <div class="modal-body">
         <app-idea-details *ngIf="selectedCard" [cardData]="selectedCard" [mySpace]="mySpace" [isCommentsVisible]="isCommentsVisible"></app-idea-details>
-        <div *ngIf="!selectedCard" class="text-center p-4">
-          <p>Loading idea details...</p>
-          
-        </div>
       </div>
       <div class="modal-footer">
         <div class="modal-actions">
@@ -93,11 +97,18 @@
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
+      <div class="modal-header gap-3 text-muted" *ngIf="selectedMergedCard" style="padding: 15px;">
+        <span style="gap: 3px;" (click)="showMergedIdea=true">
+          <img src='/assets/groupProfile.png' width="60px">
+          Merged Idea
+        </span>
+        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header" >
+         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name">
+         {{ user.idea_details.title }}
+        </div>
+      </div>
       <div class="modal-body">
         <app-merged-idea-details *ngIf="selectedMergedCard" [cardData]="selectedMergedCard" [isCommentsVisible]="isCommentsVisible" ></app-merged-idea-details>
-        <div *ngIf="!selectedMergedCard" class="text-center p-4">
-          <p>Loading merged idea details...</p>
-        </div>
       </div>
       <div class="modal-footer">
         <div class="modal-actions">
@@ -143,3 +154,7 @@
     </div>
   </div>
 </div>
+
+
+
+

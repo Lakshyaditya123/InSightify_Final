@@ -26,7 +26,6 @@ export class IdeaDetails implements OnInit, OnChanges {
 
   ngOnInit() {
     const currentUser: CurrUser | null = this.authService.getCurrentUser();
-    console.log("this.isCommentsVisible, oninit", this.isCommentsVisible)
     if (currentUser) {
       this.currentUserId = currentUser.user_id;
     } else {

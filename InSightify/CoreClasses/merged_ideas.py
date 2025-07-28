@@ -134,7 +134,7 @@ class MergedIdeaCRUD(BaseCRUD):
                         for t in self.db_session.query(Tag).filter(Tag.id.in_(merged_idea.tags_list)).limit(7).all()
                     ]
                     result_list.append({
-                        "users_idea_details": users_ideas_list,
+                        "user_idea_details": users_ideas_list,
                         "merged_idea_details": {
                             "id": merged_idea.id,
                             "title": merged_idea.title,
@@ -149,7 +149,7 @@ class MergedIdeaCRUD(BaseCRUD):
                     })
                 else:
                     result_list.append({
-                        "users_idea_details": users_ideas_list,
+                        "user_idea_details": users_ideas_list,
                         "merged_idea_details": {
                             "id": merged_idea.id,
                             "title": merged_idea.title,

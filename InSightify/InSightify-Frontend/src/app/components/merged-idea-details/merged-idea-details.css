@@ -1,7 +1,7 @@
 .idea-details {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeIn 0.3s ease-in;
-  max-height: 40rem; /* or your desired height */
+  max-height: 40rem; 
   overflow-y: auto;
 }
 

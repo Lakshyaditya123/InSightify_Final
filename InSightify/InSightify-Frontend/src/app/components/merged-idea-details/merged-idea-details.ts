@@ -38,7 +38,6 @@ export class MergedIdeaDetails implements OnInit, OnChanges {
       this.get_all_comments();
       // Wait for the view to render, then scroll smoothly.
       setTimeout(() => this.scrollToCommentSection(), 500);
-      // this.isCommentsVisible=false;
     }
   }
 
@@ -59,6 +58,5 @@ export class MergedIdeaDetails implements OnInit, OnChanges {
         this.all_comment_cards = [];
       }
     });
-    // this.isCommentsVisible=false;
   }
 }

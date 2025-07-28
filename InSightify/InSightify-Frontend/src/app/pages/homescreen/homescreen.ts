@@ -32,6 +32,7 @@ export class Homescreen implements OnInit {
   all_my_cards: My_idea[] = [];
   currentUserId: number = -1;
   mySpace=false;
+  showMergedIdea=true;
   isCommentsVisible = false;
   @ViewChild('modelContent') modelContent!:ElementRef;
   modalWidth: number = 0;
@@ -170,6 +171,7 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
 
     if (result.errCode === 0 && result.datarec) {
       this.selectedMergedCard = result.datarec; // Full Merged_idea_large
+      console.log("selectedMergedCard", this.selectedMergedCard)
     } else {
       console.error("Failed to fetch merged idea details:", result.message);
     }
@@ -191,10 +193,6 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
 
 
   close_ticket_details_modal() {
-    // Move focus before hiding modal
-    this.selectedCard = null;
-    this.isCommentsVisible = false;
-    this.selectedSmallCard = null;
     const mainBtn = document.querySelector('.add-more-btn') as HTMLElement;
     if (mainBtn) mainBtn.focus();
     else document.body.focus();
@@ -203,13 +201,12 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) modal.hide();
     }
+    // this.selectedCard = null;
+    // this.isCommentsVisible = false;
+    // this.selectedSmallCard = null;
   }
 
   close_merged_ticket_details_modal() {
-    // Move focus before hiding modal
-    this.selectedMergedCard = null;
-    this.isCommentsVisible = false;
-    this.selectedMergedSmallCard = null;
     const mainBtn = document.querySelector('.add-more-btn') as HTMLElement;
     if (mainBtn) mainBtn.focus();
     else document.body.focus();
@@ -218,6 +215,9 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) modal.hide();
     }
+    // this.selectedMergedCard = null;
+    // this.isCommentsVisible = false;
+    // this.selectedMergedSmallCard = null;
   }
 
   open_add_idea_modal() {
