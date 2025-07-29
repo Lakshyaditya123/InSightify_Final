@@ -6,9 +6,19 @@
         <div class="idea-row-scroll">
           <div *ngFor="let card of all_merged_cards" class="idea-card">
             <div class="idea-content" (click)="open_merged_ticket_details_modal(card, false)" style="cursor: pointer;">
-              <!-- <div *ngFor="let user of card.user_idea_details" class="idea-card">
-              <img class="idea-image"  [src]="user.user_details.profile_picture" alt="Idea Image" />
-              </div> -->
+              <div class="card-authors" *ngIf="card.user_idea_details?.length">
+                 <ng-container *ngIf="card.user_idea_details.length > 3">
+                   <img *ngFor="let user of card.user_idea_details.slice(0, 2)"
+                        [src]="user.user_details.profile_picture || 'assets/default-user.png'"
+                        class="author-avatar" [title]="user.user_details.name">
+                   <div class="avatar-counter">+{{ card.user_idea_details.length - 2 }}</div>
+                 </ng-container>
+                 <ng-container *ngIf="card.user_idea_details.length <= 3">
+                   <img *ngFor="let user of card.user_idea_details"
+                        [src]="user.user_details.profile_picture || 'assets/default-user.png'"
+                        class="author-avatar" [title]="user.user_details.name">
+                 </ng-container>
+               </div>
               <h5 class="idea-title">{{ card?.merged_idea_details?.title }}</h5>
               <p class="idea-subject">{{ card?.merged_idea_details?.subject }}</p>
             </div>
@@ -24,6 +34,10 @@
           </div>
           <div *ngFor="let card of all_cards" class="idea-card">
             <div class="idea-content" (click)="open_ticket_details_modal(card, false)" style="cursor: pointer;">
+              <div class="card-authors">
+                <img [src]="card.user_details.profile_picture || 'assets/default-user.png'"
+                     alt="Author" class="author-avatar" [title]="card.user_details.name">
+              </div>
               <h5 class="idea-title">{{ card?.idea_details?.title }}</h5>
               <p class="idea-subject">{{ card?.idea_details?.subject }}</p>
             </div>
@@ -64,22 +78,22 @@
   </main>
 </div>
 
-<!-- Ticket Details Modal -->
+
 <div class="modal fade" id="ticket_details_modal" tabindex="-1" aria-labelledby="ticketDetailsModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div #modelContent class="modal-content">
-      <div class="modal-header gap-2 text-muted" *ngIf="selectedCard" style="min-height: 68.67px; padding: 15px;">
+      <div class="modal-header gap-2 text-muted" *ngIf="selectedCard">
         <img [src]="selectedCard.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="selectedCard.user_details.name">
-         <span class="idea_header">{{ selectedCard.idea_details.title}}</span>
+         <span>{{ selectedCard.idea_details.title}}</span>
       </div>
       <div class="modal-body">
-        <app-idea-details *ngIf="selectedCard" [cardData]="selectedCard" [mySpace]="mySpace" [isCommentsVisible]="isCommentsVisible"></app-idea-details>
+        <app-idea-details  *ngIf="selectedCard && model_opened" [cardData]="selectedCard" [mySpace]="mySpace" [isIdeaCommentsVisible]="isIdeaCommentsVisible"></app-idea-details>
       </div>
       <div class="modal-footer">
         <div class="modal-actions">
           <app-votes-section *ngIf="selectedCard && selectedCard.idea_details.status>0" [card]="selectedSmallCard || selectedCard" [currentUserId]="currentUserId"></app-votes-section>
-          <div class="comments-display" (click)="toggleCommentsVisibility()" *ngIf="selectedCard && selectedCard.idea_details.status > 0">
+          <div class="comments-display" (click)="toggleIdeaCommentsVisibility()" *ngIf="selectedCard && selectedCard.idea_details.status > 0">
             <i class="bi bi-chat-dots"></i>
             <span class="comment-count" *ngIf="selectedCard.idea_details.comments_count != null">
               {{ getCommentsDisplay(selectedCard.idea_details.comments_count) }}
@@ -92,31 +106,45 @@
   </div>
 </div>
 
-<!-- Merged Ticket Details Modal -->
+
 <div class="modal fade" id="merged_ticket_details_modal" tabindex="-1" aria-labelledby="mergedTicketDetailsModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header gap-3 text-muted" *ngIf="selectedMergedCard" style="padding: 15px;">
-        <span style="gap: 3px;" (click)="showMergedIdea=true">
-          <img src='/assets/groupProfile.png' width="60px">
+      <div class="modal-header text-muted" *ngIf="selectedMergedCard" style="padding: 15px;">
+        <!-- <span class="idea_header" style="gap: 3px;" (click)="showMergedIdea=true;isMergedCommentsVisible=false"> -->
+          <!-- <img src='/assets/groupProfile.png' width="60px" title="Merged Idea"> -->
+          <!-- Merged Idea -->
+        <div class="idea_header" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false">
+          <img *ngFor="let user of selectedMergedCard.user_idea_details.slice(0, 3)"
+                [src]="user.user_details.profile_picture || 'assets/userLogo.png'" width="30px"
+                class="author-avatar" [title]="user.user_details.name">
           Merged Idea
-        </span>
-        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header" >
-         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name">
+        </div>
+        <!-- </span> -->
+        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header" (click)="showChildIdea(user.idea_details.id)" >
+         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;">
          {{ user.idea_details.title }}
         </div>
       </div>
       <div class="modal-body">
-        <app-merged-idea-details *ngIf="selectedMergedCard" [cardData]="selectedMergedCard" [isCommentsVisible]="isCommentsVisible" ></app-merged-idea-details>
+        <app-merged-idea-details *ngIf="selectedMergedCard && showMergedIdea" [cardData]="selectedMergedCard" [isMergedCommentsVisible]="isMergedCommentsVisible" ></app-merged-idea-details>
+        <app-idea-details  *ngIf="selectedCard && !showMergedIdea" [cardData]="selectedCard" [mySpace]="mySpace" [isIdeaCommentsVisible]="isIdeaCommentsVisible"></app-idea-details>
       </div>
       <div class="modal-footer">
         <div class="modal-actions">
-          <app-votes-section *ngIf="selectedMergedCard" [card]="selectedMergedSmallCard" [currentUserId]="currentUserId"></app-votes-section>
-          <div class="comments-display" (click)="toggleCommentsVisibility()" *ngIf="selectedMergedCard">
+          <app-votes-section *ngIf="selectedMergedCard && showMergedIdea" [card]="selectedMergedSmallCard" [currentUserId]="currentUserId"></app-votes-section>
+          <app-votes-section *ngIf="selectedCard && selectedCard.idea_details.status>0 && !showMergedIdea" [card]="selectedSmallCard || selectedCard" [currentUserId]="currentUserId"></app-votes-section>
+          <div class="comments-display" (click)="toggleMergedCommentsVisibility()" *ngIf="selectedMergedCard && showMergedIdea">
             <i class="bi bi-chat-dots"></i>
             <span class="comment-count" *ngIf="selectedMergedCard.merged_idea_details.comments_count != null">
               {{ getCommentsDisplay(selectedMergedCard.merged_idea_details.comments_count) }}
+            </span>
+          </div>
+          <div class="comments-display" (click)="toggleIdeaCommentsVisibility()" *ngIf="selectedCard && selectedCard.idea_details.status > 0 && !showMergedIdea">
+            <i class="bi bi-chat-dots"></i>
+            <span class="comment-count" *ngIf="selectedCard.idea_details.comments_count != null">
+              {{ getCommentsDisplay(selectedCard.idea_details.comments_count) }}
             </span>
           </div>
         </div>
@@ -126,7 +154,7 @@
   </div>
 </div>
 
-<!-- Add Idea Modal -->
+
 <div class="modal fade" id="addIdea_modal" tabindex="-1" aria-labelledby="addIdeaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">

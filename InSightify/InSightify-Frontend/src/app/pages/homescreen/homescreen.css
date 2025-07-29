@@ -89,9 +89,9 @@ body, .homescreen-container {
 .idea-row-scroll {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  grid-auto-rows: 200px;
+  /* grid-auto-rows: max-content; */
   gap: 32px 24px;
-  height: 100%;
+  /* height: 100%; */
   overflow-y: auto;
   padding: 10px;
 }
@@ -120,8 +120,6 @@ body, .homescreen-container {
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
-  min-width: 0;
-  min-height: 0;
   width: 100%;
   height: 100%;
   color: #fff;
@@ -136,6 +134,49 @@ body, .homescreen-container {
   display: flex;
   flex-direction: column;
 }
+
+/* Styles for Author Avatars on Cards */
+.card-authors {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem; /* Space between authors and title */
+  min-height: 32px; /* Reserve space */
+}
+
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  /* border: 2px solid #2a2a45; Border to separate from card bg */
+  object-fit: cover;
+  background-color:#b0b0b0; /* Fallback color */
+  transition: transform 0.2s ease;
+}
+
+.card-authors:hover .author-avatar {
+  transform: translateX(-2px);
+}
+
+/* For overlapping effect */
+.author-avatar:not(:first-child) {
+  margin-left: -18px;
+}
+
+.avatar-counter {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #4a4a6a; /* A different color for the counter */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 2px solid #2a2a45;
+  margin-left: -12px;
+}
+
 
 .idea-title {
   font-size: 1.1rem;
@@ -381,6 +422,14 @@ body, html {
   max-width: 100%; 
 }
 
+/* Unified Modal Styles */
+.modal-header-custom {
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 .modal-footer {
   display: flex;
   justify-content: space-between;
@@ -398,5 +447,18 @@ body, html {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 10rem;
+    border: solid #b2b2b2 2px;
+    background-color: #b0b0b0;
+    border-radius: 10px; 
+    padding: 5px;
+    margin:0px 6px;
+    transition: all 0.2s ease;
+}
+
+.idea_header:hover{
+  transform: scale(1.05);
+}
+
+.modal-header{
+  padding:15px;
 }

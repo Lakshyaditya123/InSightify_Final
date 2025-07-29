@@ -14,7 +14,7 @@
 }
 
 .comments-section {
-  padding: 1.5rem;
+  padding: 1rem;
   border-top: 1px solid var(--border-color);
 }
 
@@ -37,7 +37,7 @@
   background-color: var(--bg-secondary);
   color: var(--primary-text);
   resize: vertical;
-  min-height: 80px;
+  min-height: 10px;
 }
 .add-comment-form button {
   display: block;
@@ -98,7 +98,7 @@
 }
 .comment-text {
   color: var(--primary-text);
-  margin: 0.25rem 0 0.5rem;
+  margin: 0.25rem 0 0;
   line-height: 1.6;
   white-space: pre-wrap;
 }
@@ -135,7 +135,7 @@
   list-style: none;
   padding-left: 1.5rem;
   margin-left: 3.5rem; /* 40px avatar + 1rem gap */
-  margin-top: 1rem;
+  margin-top:0.5rem;
   border-left: 2px solid var(--border-color);
 }
 /* .reply-item {

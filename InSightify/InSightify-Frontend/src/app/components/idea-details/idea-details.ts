@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Idea_large, CurrUser, Comments, ApiResponse } from '../../services/api-interfaces';
 import { AuthService } from '../../services/auth';
@@ -15,7 +15,7 @@ import { CommentsClass } from '../../components/comments/comments';
 export class IdeaDetails implements OnInit, OnChanges {
   @Input() cardData!: Idea_large;
   @Input() mySpace!: boolean;
-  @Input() isCommentsVisible!: boolean;
+  @Input() isIdeaCommentsVisible!: boolean;
 
   @ViewChild('scrollToComments') scrollToComments!: ElementRef;
 
@@ -28,25 +28,26 @@ export class IdeaDetails implements OnInit, OnChanges {
     const currentUser: CurrUser | null = this.authService.getCurrentUser();
     if (currentUser) {
       this.currentUserId = currentUser.user_id;
-    } else {
-      console.error('User not logged in!');
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("this.isCommentsVisible onchanges before", this.isCommentsVisible)
-    // This is the only place we need to handle the scrolling logic.
-    if (changes['isCommentsVisible'] && changes['isCommentsVisible'].currentValue === true) {
-      this.get_all_comments();
-      console.log(this.all_comment)
-
-      // Use setTimeout to wait for the view to render, then scroll smoothly.
-      setTimeout(() => this.scrollToCommentSection(), 500); // 150ms is a safe delay.
-      console.log("this.isCommentsVisible onchanges after", this.isCommentsVisible)
+    if (changes['isIdeaCommentsVisible']) {
+      const commentsVisibleChange = changes['isIdeaCommentsVisible'];
+        // if (commentsVisibleChange.currentValue === true && this.all_comment.length === 0) {
+        //   console.log("On changes get all comments triggered");
+        //     this.get_all_comments();
+        // }
+        // Clear comments when the section is hidden
+        // if (commentsVisibleChange.currentValue === false && commentsVisibleChange.previousValue === true) {
+        //     this.all_comment = [];
+        // }
+        if (commentsVisibleChange.currentValue === true) {
+            this.get_all_comments();
+            setTimeout(() => this.scrollToCommentSection(), 500);
+        }
     }
   }
-
-
 
   private scrollToCommentSection() {
     if (this.scrollToComments?.nativeElement) {
@@ -56,9 +57,10 @@ export class IdeaDetails implements OnInit, OnChanges {
   
   get_all_comments() {
     if (!this.cardData) return;
-    this.ideaService.get_all_comments(this.currentUserId, this.cardData.idea_details.id).subscribe({
+    this.ideaService.get_all_comments(this.currentUserId, this.cardData.idea_details.id, null).subscribe({
       next: (res: ApiResponse) => {
         this.all_comment = res.data || [];
+        console.log("Comments for single idea fetched:", this.all_comment);
       },
       error: (err) => {
         console.error("Error fetching comments:", err);

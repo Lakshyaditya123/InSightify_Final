@@ -36,11 +36,12 @@
   <div>
     <div #scrollToComments></div>
     <app-comments
-      *ngIf="isCommentsVisible"
+      *ngIf="isIdeaCommentsVisible"
       [card]="cardData"
       [all_comment]="all_comment"
       [currentUserId]="currentUserId"
-      (commentPosted)="get_all_comments()">
+      (commentPosted)="get_all_comments()"
+      [isCommentsVisible]="isIdeaCommentsVisible">
     </app-comments>
   </div>
 </div>
