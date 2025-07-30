@@ -111,18 +111,15 @@
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header text-muted" *ngIf="selectedMergedCard" style="padding: 15px;">
-        <!-- <span class="idea_header" style="gap: 3px;" (click)="showMergedIdea=true;isMergedCommentsVisible=false"> -->
-          <!-- <img src='/assets/groupProfile.png' width="60px" title="Merged Idea"> -->
-          <!-- Merged Idea -->
-        <div class="idea_header" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false">
+      <div class="modal-header text-muted row" *ngIf="selectedMergedCard">
+        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false">
           <img *ngFor="let user of selectedMergedCard.user_idea_details.slice(0, 3)"
                 [src]="user.user_details.profile_picture || 'assets/userLogo.png'" width="30px"
                 class="author-avatar" [title]="user.user_details.name">
           Merged Idea
         </div>
         <!-- </span> -->
-        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header" (click)="showChildIdea(user.idea_details.id)" >
+        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header col" (click)="showChildIdea(user.idea_details.id)" >
          <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;" class="author-avatar">
          {{ user.idea_details.title }}
         </div>

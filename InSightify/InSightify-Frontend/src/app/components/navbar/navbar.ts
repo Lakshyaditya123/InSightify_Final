@@ -1,28 +1,57 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { CurrUser } from '../../services/api-interfaces';
 import { AuthService } from '../../services/auth';
+import { UserProfile } from '../user-profile/user-profile';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UserProfile],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  styleUrls: ['./navbar.css']
 })
 export class Navbar implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
-  ngOnInit() {
-    const currentUser: CurrUser | null = this.authService.getCurrentUser();
+  isDropdownOpen = false;
+  isProfilePanelOpen = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private elementRef: ElementRef
+  ) {}
+
+  ngOnInit() {}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    // This will now correctly close the dropdown only when clicking OUTSIDE the profile section.
+    if (!this.elementRef.nativeElement.querySelector('.profile-section').contains(event.target)) {
+      this.isDropdownOpen = false;
+    }
   }
-  
-  show_profile:boolean=false;
-  navigateToProfile(){
-    this.show_profile=!this.show_profile;
+
+  toggleDropdown(event: Event) {
+    event.stopPropagation(); // Prevents the document click listener from firing immediately.
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  openProfilePanel() {
+    this.isProfilePanelOpen = true;
+    this.isDropdownOpen = false; // This line ensures the dropdown closes.
+  }
+
+  closeProfilePanel() {
+    this.isProfilePanelOpen = false;
+  }
+
+  logout() {
+    this.authService.clearUser();
+    this.router.navigate(['/login']);
+    this.isDropdownOpen = false;
   }
 
   navigateToHome() {
-    this.authService.clearUser()
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/homescreen']);
   }
 }

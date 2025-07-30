@@ -1,33 +1,24 @@
-.custom-navbar {
-  background-color: rgb(14, 12, 12); /* Dark clean background */
+ .custom-navbar {
+  background-color: rgb(14, 12, 12);
   padding: 10px 20px;
 }
 
-.navbar-brand{
+.navbar-brand {
   height: 70px;
   width: auto;
 }
 
-.nav-img{
+.nav-img {
   height: 90px;
-  width:auto;
-  transition: transform 0.2s ease;;
+  width: auto;
+  transition: transform 0.2s ease;
 }
 
-.nav-img:hover{
+.nav-img:hover {
   transform: scale(1.03);
 }
 
-.navbar-brand span {
-  color: #f1f1f1;
-}
-
 /* Search Container */
-.search-container {
-  position: relative;
-}
-
-/* Pill-shaped search design */
 .search-pill {
   display: flex;
   align-items: center;
@@ -35,33 +26,17 @@
   border-radius: 50px;
   padding: 8px 16px;
   border: 1px solid #3a3a4a;
-  transition: all 0.3s ease;
-  min-width: 280px;
 }
 
-.search-pill:focus-within {
-  border-color: #b6e0fe;
-  box-shadow: 0 0 0 2px rgba(182, 224, 254, 0.2);
-}
-
-/* Search Input */
 .search-input {
   flex: 1;
   background: transparent;
   border: none;
   color: #f1f1f1;
   font-size: 14px;
-  padding: 8px 12px 8px 0;
   outline: none;
-  min-width: 0;
 }
 
-.search-input::placeholder {
-  color: #b0b0b0;
-  opacity: 0.7;
-}
-
-/* Search Button */
 .search-button {
   background: #b6e0fe;
   border: none;
@@ -73,27 +48,12 @@
   justify-content: center;
   color: #13131d;
   cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
-.search-button:hover {
-  background: #9dd1f8;
-  transform: scale(1.05);
-}
-
-.search-button:active {
-  transform: scale(0.95);
-}
-
-.search-button i {
-  font-size: 14px;
-}
-
-/* Profile Section */
+/* --- Profile Section & Dropdown --- */
 .profile-section {
-  display: flex;
-  align-items: center;
+  position: relative; /* Required for dropdown positioning */
+  cursor: pointer;
 }
 
 .profile-btn {
@@ -104,54 +64,64 @@
   justify-content: center;
   border: 1px solid #b6e0fe;
   color: #b6e0fe;
-  transition: all 0.2s ease;
 }
 
 .profile-btn:hover {
   background: #b6e0fe;
   color: #13131d;
-  transform: scale(1.05);
 }
 
-.profile-btn i {
-  font-size: 18px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .search-pill {
-    min-width: 220px;
-  }
-
-  .search-input {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 576px) {
-  .search-pill {
-    min-width: 180px;
-  }
-
-  .search-container {
-    margin-right: 10px !important;
-  }
-}
-
-/* Legacy styles for compatibility */
-.dropdown-toggle {
-  background-color: transparent;
-  border: none;
-  color: #f1f1f1;
-}
-
+/* Dropdown Menu Styling */
 .dropdown-menu {
-  background-color: #1e1e1e;
-  color: white;
-  border-radius: 10px;
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 120%; /* Position below the button */
+  right: 0;
+  background-color: #161625;
+  border: 1px solid #2d2d4a;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  z-index: 1000;
+  padding: 0.5rem 0;
 }
 
-.form-check-label {
-  color: white;
+.dropdown-menu.show {
+  display: block; /* Shown when the 'show' class is added */
 }
 
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.2rem;
+  margin:auto;
+  max-width: 160px;
+  border-radius: 5px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #2d2d4a;
+}
+
+.dropdown-item i {
+  color: #b6e0fe;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #2d2d4a;
+  margin: 0.5rem 0;
+}
+
+.dropdown-item.logout {
+  color: #ff8a80; /* Reddish color for logout */
+}
+.dropdown-item.logout i {
+  color: #ff8a80;
+}

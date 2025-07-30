@@ -1,43 +1,36 @@
 <div class="admin-container">
-  <!-- Sidebar for Admin Information -->
-  <aside class="sidebar">
-    <h2 class="welcome-title">WELCOME ADMIN!</h2>
-    <div class="profile-card">
-      <div class="profile-avatar-placeholder">
-        <i class="bi bi-person-fill"></i>
-      </div>
-      <div class="admin-details">
-        <p class="admin-email">{{ admin.email }}</p>
-        <p class="admin-phone">{{ admin.phone }}</p>
-        <p class="admin-role">{{ admin.role }}</p>
-      </div>
-    </div>
-    <button class="switch-to-user-btn" (click)="onSwitchToUser()">
-      SWITCH TO USER
-    </button>
-  </aside>
-
-  <!-- Main content area -->
-  <main class="main-content">
+<main class="main-content">
     <app-navbar></app-navbar>
-
     <div class="content-body">
       <section class="submissions-container">
         <h3 class="submissions-header">NEW SUBMISSIONS</h3>
         <div class="submissions-list">
-          <!-- Updated submission item with click event -->
-          <div class="submission-item" *ngFor="let idea of submissions" (click)="openSubmissionModal(idea)">
+
+          <div class="submission-item" *ngFor="let idea of all_merged_cards" (click)="open_merged_ticket_details_modal(idea)">
             <div class="idea-info">
               <div class="idea-icon"></div>
               <div class="idea-text">
-                <div class="idea-name">{{ idea.name }}</div>
-                <div class="idea-description">{{ idea.desc }}</div>
+                <div class="idea-name">{{ idea.merged_idea_details.title }}</div>
+                <div class="idea-description">{{ idea.merged_idea_details.subject }}</div>
               </div>
             </div>
-            <!-- Buttons now stop event propagation -->
+
             <div class="action-buttons">
-              <button class="approve-btn" (click)="onApprove(idea, $event)">APPROVE</button>
-              <button class="decline-btn" (click)="onDecline(idea, $event)">DECLINE</button>
+              <button class="approve-btn" (click)="onApprove(idea)">APPROVE</button>
+              <button class="decline-btn" (click)="onDecline(idea)">DECLINE</button>
+            </div>
+          </div>
+          <div class="submission-item" *ngFor="let idea of all_cards" (click)="open_ticket_details_modal(idea)">
+            <div class="idea-info">
+              <div class="idea-icon"></div>
+              <div class="idea-text">
+                <div class="idea-name">{{ idea.idea_details.title }}</div>
+                <div class="idea-description">{{ idea.idea_details.subject }}</div>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button class="approve-btn" (click)="onApprove(idea)">APPROVE</button>
+              <button class="decline-btn" (click)="onDecline(idea)">DECLINE</button>
             </div>
           </div>
         </div>
@@ -46,31 +39,58 @@
   </main>
 </div>
 
-<!-- Unified Idea Details Modal for Admin Screen -->
-<div class="modal fade" id="admin_idea_details_modal" tabindex="-1" aria-labelledby="adminIdeaDetailsModalLabel" aria-hidden="true">
+<div class="modal fade" id="ticket_details_modal" tabindex="-1" aria-labelledby="ticketDetailsModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content text-dark">
-      <div class="modal-body p-4">
-        <!-- Conditionally render single idea details -->
-        <app-idea-details 
-          *ngIf="modalType === 'idea' && selectedCard"
-          [cardData]="selectedCard"
-          [mySpace]="false"
-          [isIdeaCommentsVisible]="isCommentsVisible">
-        </app-idea-details>
-
-        <!-- Conditionally render merged idea details -->
-        <app-merged-idea-details 
-          *ngIf="modalType === 'merged-idea' && selectedMergedCard"
-          [cardData]="selectedMergedCard"
-          [isMergedCommentsVisible]="isCommentsVisible">
-        </app-merged-idea-details>
+    <div #modelContent class="modal-content">
+      <div class="modal-header gap-2 text-muted" *ngIf="selectedCard">
+        <img [src]="selectedCard.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="selectedCard.user_details.name" class="author-avatar">
+         <span>{{ selectedCard.idea_details.title}}</span>
       </div>
-
+      <div class="modal-body">
+        <app-idea-details  *ngIf="selectedCard && model_opened" [cardData]="selectedCard" [mySpace]=false [isIdeaCommentsVisible]=false></app-idea-details>
+      </div>
       <div class="modal-footer">
         <div class="modal-actions">
+          <button class="approve-btn" (click)="onApprove(selectedMergedCard)">APPROVE</button>
+          <button class="decline-btn" (click)="onDecline(selectedMergedCard)">DECLINE</button>
         </div>
-        <button type="button" class="btn btn-dark" (click)="closeIdeaModal()">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="close_ticket_details_modal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="merged_ticket_details_modal" tabindex="-1" aria-labelledby="mergedTicketDetailsModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-muted row" *ngIf="selectedMergedCard">
+        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true">
+          <img *ngFor="let user of selectedMergedCard.user_idea_details.slice(0, 3)"
+                [src]="user.user_details.profile_picture || 'assets/userLogo.png'" width="30px"
+                class="author-avatar" [title]="user.user_details.name">
+          Merged Idea
+        </div>
+
+        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header col" (click)="showChildIdea(user.idea_details.id)" >
+         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;" class="author-avatar">
+         {{ user.idea_details.title }}
+        </div>
+      </div>
+      <div class="modal-body">
+        <app-merged-idea-details *ngIf="selectedMergedCard && showMergedIdea" [cardData]="selectedMergedCard" [isMergedCommentsVisible]=false ></app-merged-idea-details>
+        <app-idea-details  *ngIf="selectedCard && !showMergedIdea" [cardData]="selectedCard" [mySpace]=false [isIdeaCommentsVisible]=false></app-idea-details>
+      </div>
+      <div class="modal-footer">
+        <div>
+          <div class="modal-actions" *ngIf="selectedMergedCard && showMergedIdea">
+            <button class="approve-btn" (click)="onApprove(selectedMergedCard)">APPROVE</button>
+            <button class="decline-btn" (click)="onDecline(selectedMergedCard)">DECLINE</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" (click)="close_merged_ticket_details_modal()">Close</button>
       </div>
     </div>
   </div>

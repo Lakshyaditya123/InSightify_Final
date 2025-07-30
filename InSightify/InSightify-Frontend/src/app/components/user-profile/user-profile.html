@@ -1,0 +1,68 @@
+<!-- 
+<div class="profile-backdrop" (click)="onBackdropClick()">
+
+  <aside class="profile-panel" (click)="onPanelClick($event)">
+    <div class="panel-header">
+      <h3>User Profile</h3>
+      <button class="close-btn" (click)="closeProfile.emit()">&times;</button>
+    </div>
+    <div class="panel-body" *ngIf="currentUser">
+      <div class="profile-avatar-large">
+        <img [src]="currentUser.user_profile_picture || 'assets/userLogo.png'" [attr.title]="currentUser.user_name">
+      </div>
+      <div class="profile-info">
+        <h4 class="user-name">{{ currentUser.user_name }}</h4>
+        <p class="user-role">{{ currentUser.user_role.join(', ') | titlecase }}</p>
+        <div class="user-details">
+          <p><i class="bi bi-envelope-fill"></i> {{ currentUser.user_email }}</p>
+          <p><i class="bi bi-telephone-fill"></i> {{ currentUser.user_mobile }}</p>
+        </div>
+        <div class="user-bio">
+          <h5>Bio</h5>
+          <p>{{ currentUser.user_bio || 'No bio provided.' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="logout-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
+    </div>
+  </aside>
+</div> -->
+
+<div class="profile-backdrop" [class.fade-out]="isClosing" (click)="onBackdropClick()">
+  <aside class="profile-panel" [class.slide-out]="isClosing" (click)="onPanelClick($event)">
+    <div class="panel-header">
+      <h3>User Profile</h3>
+      <button class="close-btn" (click)="startClose()">&times;</button>
+    </div>
+    <div class="panel-body" *ngIf="currentUser">
+      <div class="profile-avatar-large">
+        <img [src]="currentUser.user_profile_picture || 'assets/userLogo.png'" [attr.title]="currentUser.user_name">
+      </div>
+      <div class="profile-info">
+        <h4 class="user-name">{{ currentUser.user_name }}</h4>
+        <p class="user-role">{{ currentUser.user_role.join(', ') | titlecase }}</p>
+        <div class="user-details">
+          <p><i class="bi bi-envelope-fill"></i> {{ currentUser.user_email }}</p>
+          <p><i class="bi bi-telephone-fill"></i> {{ currentUser.user_mobile }}</p>
+        </div>
+        <div class="user-bio">
+          <h5>Bio</h5>
+          <p>{{ currentUser.user_bio || 'No bio provided.' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="switch-btn" (click)="switchProfile()">
+        <i class="bi bi-box-arrow-right"></i> Switch To {{profile}}
+      </button>
+    </div>
+    <div class="panel-footer">
+      <button class="logout-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
+    </div>
+  </aside>
+</div>

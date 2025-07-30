@@ -66,7 +66,7 @@ export class Homescreen implements OnInit {
       this.modalWidth = this.modelContent.nativeElement.offsetWidth;
     })
     merged_ticket_modal?.addEventListener('hidden.bs.modal',()=>{
-      this.close_ticket_details_modal();
+      this.close_merged_ticket_details_modal();
     })
 
     const add_idea_ticket_modal=document.getElementById('addIdea_modal');
@@ -74,7 +74,7 @@ export class Homescreen implements OnInit {
       this.modalWidth = this.modelContent.nativeElement.offsetWidth;
     })
     add_idea_ticket_modal?.addEventListener('hidden.bs.modal',()=>{
-      this.close_ticket_details_modal();
+      this.close_add_idea_modal();
     })
   }
 
