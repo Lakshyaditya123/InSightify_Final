@@ -16,10 +16,13 @@ export class UserProfile implements OnInit {
   currentUser: CurrUser | null = null;
   isClosing = false; // New state to control the slide-out animation
   profile="User"
+  isSuperAdmin=false
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
+    this.profile=this.currentUser?.user_role[0] || ""
+    if(this.profile==="Super Admin")this.isSuperAdmin=true;
   }
 
   // This function starts the closing animation.
@@ -38,7 +41,8 @@ export class UserProfile implements OnInit {
   }
 
   switchProfile() {
-    this.router.navigate(['/homescreen']); 
+    if(this.router.url.includes('/admin') && this.isSuperAdmin) this.router.navigate(['/homescreen']); 
+    else if (this.router.url.includes('/homescreen') && this.isSuperAdmin) this.router.navigate(['/admin']); 
     this.startClose();
   }
 
