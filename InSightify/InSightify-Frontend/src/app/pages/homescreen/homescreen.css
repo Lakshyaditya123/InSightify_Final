@@ -147,14 +147,13 @@ body, .homescreen-container {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  /* border: 2px solid #2a2a45; Border to separate from card bg */
   object-fit: cover;
   background-color:#b0b0b0; /* Fallback color */
   transition: transform 0.2s ease;
 }
 
-.card-authors:hover .author-avatar {
-  transform: translateX(-2px);
+.author-avatar:hover {
+  transform: scale(1.1);
 }
 
 /* For overlapping effect */
@@ -406,6 +405,7 @@ body, html {
   display: flex;
   align-items: center;   /* Vertically centers items */
   gap: 2px;              /* Space between dot and title (optional) */
+  
 }
 
 .my-idea-subject{
@@ -457,6 +457,7 @@ body, html {
 
 .idea_header:hover{
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .modal-header{

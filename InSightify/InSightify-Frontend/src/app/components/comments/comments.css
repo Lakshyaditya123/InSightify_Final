@@ -23,7 +23,10 @@
   font-size: 1.25rem;
   font-weight: 600;
 }
-
+.comments-body{
+  overflow-y: auto;
+  max-height: 25rem; 
+}
 /* Add Comment Form */
 .add-comment-form {
   margin-bottom: 2rem;
@@ -81,7 +84,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #c7d2fe; /* Placeholder color */
+  background-color: #b2b2b2; /* Placeholder color */
   flex-shrink: 0;
 }
 .comment-body {
@@ -189,4 +192,17 @@
   padding: 2rem;
   color: var(--secondary-text);
   font-style: italic;
+}
+
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color:#b0b0b0; /* Fallback color */
+  transition: transform 0.2s ease;
+}
+
+.author-avatar:hover {
+  transform: scale(1.1);
 }

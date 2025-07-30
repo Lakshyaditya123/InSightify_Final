@@ -94,7 +94,7 @@ class IdeaCRUD(BaseCRUD):
         comment_counts = self.db_session.query(
             Comment.this_obj2ideas,
             func.count(Comment.id)
-        ).filter(Comment.this_obj2ideas.in_(idea_ids)).group_by(Comment.this_obj2ideas).all()
+        ).filter(Comment.this_obj2ideas.in_(idea_ids), Comment.parent_comment==-1).group_by(Comment.this_obj2ideas).all()
 
         comment_count_map = dict(comment_counts)
 

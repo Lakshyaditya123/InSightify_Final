@@ -44,7 +44,7 @@ class MergedIdeaCRUD(BaseCRUD):
         comment_counts = self.db_session.query(
             Comment.this_obj2merged_ideas,
             func.count(Comment.id)
-        ).filter(Comment.this_obj2merged_ideas.in_(idea_ids)).group_by(Comment.this_obj2merged_ideas).all()
+        ).filter(Comment.this_obj2merged_ideas.in_(idea_ids), Comment.parent_comment==-1).group_by(Comment.this_obj2merged_ideas).all()
 
         comment_count_map = dict(comment_counts)
 

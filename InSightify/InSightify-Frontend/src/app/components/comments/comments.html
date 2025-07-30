@@ -9,10 +9,11 @@
   </form>
 
   <!-- This now iterates over the correctly processed internal list -->
+  <div class="comments-body">
   <ul class="comments-list" *ngIf="processed_comments && processed_comments.length > 0">
     <li *ngFor="let comment of processed_comments" class="comment-item">
       <div class="comment-content">
-        <div class="comment-avatar"></div>
+        <div><img [src]="comment.user_profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="comment.user_name" class="author-avatar"></div>
         <div class="comment-body">
           <div>
             <span class="comment-author">{{ comment.user_name || 'User' }}</span>
@@ -44,7 +45,7 @@
       <ul class="replies-list" *ngIf="comment.replies && comment.replies.length > 0">
         <li *ngFor="let reply of comment.replies" class="reply-item">
           <div class="comment-content">
-            <div class="comment-avatar"></div>
+           <div><img [src]="reply.user_profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="reply.user_name" class="author-avatar"></div>
             <div class="comment-body">
               <div>
                 <span class="comment-author">{{ reply.user_name || 'User' }}</span>
@@ -57,7 +58,7 @@
       </ul>
     </li>
   </ul>
-
+  </div>
   <div *ngIf="!processed_comments || processed_comments.length === 0" class="no-comments">
     Be the first to comment!
   </div>

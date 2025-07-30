@@ -75,7 +75,7 @@ editor!: Editor;
 
   initForm() {
     this.addIdeaForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(60)]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
       subject: ['', [Validators.required, Validators.maxLength(200)]],
       content: ['', Validators.required], // This was missing
       link: ['']

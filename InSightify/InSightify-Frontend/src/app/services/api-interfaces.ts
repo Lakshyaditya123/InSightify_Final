@@ -171,6 +171,7 @@ export interface Comments {
   comment_id: number,
   user_id: number,
   user_name: string,
+  user_profile_picture: string,
   idea_id: number | null,
   merged_idea_id: number | null,
   content: string,

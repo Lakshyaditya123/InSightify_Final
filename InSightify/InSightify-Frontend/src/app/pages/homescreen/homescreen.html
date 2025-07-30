@@ -84,7 +84,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div #modelContent class="modal-content">
       <div class="modal-header gap-2 text-muted" *ngIf="selectedCard">
-        <img [src]="selectedCard.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="selectedCard.user_details.name">
+        <img [src]="selectedCard.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="selectedCard.user_details.name" class="author-avatar">
          <span>{{ selectedCard.idea_details.title}}</span>
       </div>
       <div class="modal-body">
@@ -123,7 +123,7 @@
         </div>
         <!-- </span> -->
         <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header" (click)="showChildIdea(user.idea_details.id)" >
-         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;">
+         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;" class="author-avatar">
          {{ user.idea_details.title }}
         </div>
       </div>

@@ -1,41 +1,77 @@
 <div class="admin-container">
+  <!-- Sidebar for Admin Information -->
   <aside class="sidebar">
-    <div class="welcome">WELCOME ADMIN!</div>
-    <div class="avatar">
-      <span class="avatar-icon">&#128100;</span>
+    <h2 class="welcome-title">WELCOME ADMIN!</h2>
+    <div class="profile-card">
+      <div class="profile-avatar-placeholder">
+        <i class="bi bi-person-fill"></i>
+      </div>
+      <div class="admin-details">
+        <p class="admin-email">{{ admin.email }}</p>
+        <p class="admin-phone">{{ admin.phone }}</p>
+        <p class="admin-role">{{ admin.role }}</p>
+      </div>
     </div>
-    <div class="admin-info">
-      <div class="email">{{ admin.email }}</div>
-      <div class="phone">{{ admin.phone }}</div>
-      <div class="role">{{ admin.role }}</div>
-    </div>
-    <button class="switch-btn" (click)="onSwitchToUser()">SWITCH TO USER</button>
+    <button class="switch-to-user-btn" (click)="onSwitchToUser()">
+      SWITCH TO USER
+    </button>
   </aside>
 
+  <!-- Main content area -->
   <main class="main-content">
     <app-navbar></app-navbar>
-    <section class="submissions-section">
-      <div class="submissions-title">NEW SUBMISSIONS</div>
-      <div class="submissions-grid">
-        <div class="submission-card" *ngFor="let idea of submissions">
-          <div class="card-row">
-            <div class="card-main">
-              <div class="idea-avatar">
-                <span class="avatar-initial">I</span>
-              </div>
-              <div class="idea-texts">
+
+    <div class="content-body">
+      <section class="submissions-container">
+        <h3 class="submissions-header">NEW SUBMISSIONS</h3>
+        <div class="submissions-list">
+          <!-- Updated submission item with click event -->
+          <div class="submission-item" *ngFor="let idea of submissions" (click)="openSubmissionModal(idea)">
+            <div class="idea-info">
+              <div class="idea-icon"></div>
+              <div class="idea-text">
                 <div class="idea-name">{{ idea.name }}</div>
-                <div class="idea-desc">{{ idea.desc }}</div>
+                <div class="idea-description">{{ idea.desc }}</div>
               </div>
             </div>
-            <div class="card-actions">
-              <button class="approve-btn" (click)="onApprove(idea)">APPROVE</button>
-              <button class="decline-btn" (click)="onDecline(idea)">DECLINE</button>
+            <!-- Buttons now stop event propagation -->
+            <div class="action-buttons">
+              <button class="approve-btn" (click)="onApprove(idea, $event)">APPROVE</button>
+              <button class="decline-btn" (click)="onDecline(idea, $event)">DECLINE</button>
             </div>
           </div>
-          <div class="card-divider"></div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
+</div>
+
+<!-- Unified Idea Details Modal for Admin Screen -->
+<div class="modal fade" id="admin_idea_details_modal" tabindex="-1" aria-labelledby="adminIdeaDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content text-dark">
+      <div class="modal-body p-4">
+        <!-- Conditionally render single idea details -->
+        <app-idea-details 
+          *ngIf="modalType === 'idea' && selectedCard"
+          [cardData]="selectedCard"
+          [mySpace]="false"
+          [isIdeaCommentsVisible]="isCommentsVisible">
+        </app-idea-details>
+
+        <!-- Conditionally render merged idea details -->
+        <app-merged-idea-details 
+          *ngIf="modalType === 'merged-idea' && selectedMergedCard"
+          [cardData]="selectedMergedCard"
+          [isMergedCommentsVisible]="isCommentsVisible">
+        </app-merged-idea-details>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-actions">
+        </div>
+        <button type="button" class="btn btn-dark" (click)="closeIdeaModal()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

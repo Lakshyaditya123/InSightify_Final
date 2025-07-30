@@ -11,6 +11,11 @@
 .nav-img{
   height: 90px;
   width:auto;
+  transition: transform 0.2s ease;;
+}
+
+.nav-img:hover{
+  transform: scale(1.03);
 }
 
 .navbar-brand span {

@@ -1,4 +1,4 @@
-<div class="auth-container">
+<!-- <div class="auth-container">
   <div class="auth-wrapper">
     <img src="assets/Heading.png" alt="InSightify Logo" class="logo" />
         <div class="auth-card" *ngIf="isSignup">
@@ -27,5 +27,51 @@
           </p>
         </form>
       </div>
+  </div>
+</div> -->
+
+
+
+
+
+<div class="auth-container">
+  <div class="auth-wrapper">
+    <img src="assets/Heading.png" alt="InSightify Logo" class="logo" />
+    <!-- Signup Form -->
+    <div class="auth-card" *ngIf="isSignup">
+      <form [formGroup]="signupForm" (ngSubmit)="signup()">
+        <input type="text" formControlName="name" placeholder="Full Name" required />
+        <input type="number" formControlName="mobile" placeholder="Mobile" required />
+        <input type="email" formControlName="email" placeholder="Email" required />
+        <input type="password" formControlName="password" placeholder="Password" required />
+        <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required />
+        <button type="submit">Sign Up</button>
+        <p class="switch-text">
+          Already have an account?
+          <a href="#" (click)="toggleMode($event)">Login</a>
+        </p>
+      </form>
+    </div>
+    <!-- Login Form -->
+    <div class="auth-card" *ngIf="!isSignup" style="height: auto;">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <input type="email" formControlName="email" placeholder="Email" required />
+        <input type="password" formControlName="password" placeholder="Password" required />
+        
+        <!-- Role Selection Dropdown -->
+        <select formControlName="role" class="role-select">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        
+        <button type="submit">Login</button>
+        <div class="form-footer">
+          <p class="switch-text">
+            Don’t have an account?
+            <a href="#" (click)="toggleMode($event)">Sign up</a>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

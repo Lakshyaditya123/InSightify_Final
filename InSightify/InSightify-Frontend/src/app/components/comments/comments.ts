@@ -106,18 +106,14 @@ export class CommentsClass implements OnChanges {
 
   toggleReplyForm(comment: Comments) {
     const isCurrentlyReplying = comment.replying;
-    // Close all other reply forms
     this.processed_comments.forEach(c => { c.replying = false; });
-    // Toggle the selected one
     comment.replying = !isCurrentlyReplying;
   }
 
   postReply(parentComment: Comments) {
     const replyText = parentComment.newReplyText?.trim();
     if (!replyText) return;
-
     const { ideaId, mergedIdeaId } = this.getIdeaIdentifiers();
-
     const replyPayload: AddComment = {
       user_id: this.currentUserId,
       idea_id: ideaId,

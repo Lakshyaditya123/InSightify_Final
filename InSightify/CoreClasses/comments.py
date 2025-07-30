@@ -34,6 +34,7 @@ class CommentCRUD(BaseCRUD):
             "comment_id": comment.id,
             "user_id": comment.this_obj2users,
             "user_name": comment.user.name,
+            "user_profile_picture":comment.user.profile_picture,
             "idea_id": comment.this_obj2ideas,
             "merged_idea_id": comment.this_obj2merged_ideas,
             "content": comment.content,

@@ -46,7 +46,9 @@
 
 .tags-container {
   max-width: 90%;
+  cursor: pointer;
 }
+
 
 .additional-details {
   background-color: #f8f9fa;
