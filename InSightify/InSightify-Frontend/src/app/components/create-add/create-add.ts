@@ -179,6 +179,7 @@ editor!: Editor;
         if(res.errCode==0){
           this.resetForm();
           this.closeModal();
+          
         }
         else{
           alert("Error Submitting!")

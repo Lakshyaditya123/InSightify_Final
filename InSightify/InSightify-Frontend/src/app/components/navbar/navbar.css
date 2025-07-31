@@ -11,14 +11,17 @@
 .nav-img {
   height: 90px;
   width: auto;
-  transition: transform 0.2s ease;
+  transition: ease-out 0.2s;
+}
+.nav-img:hover{
+  transform: scale(1.05)
 }
 
-.nav-img:hover {
-  transform: scale(1.03);
+/* --- Search Container & Suggestions --- */
+.search-container {
+  position: relative; /* Crucial for positioning the suggestions dropdown */
 }
 
-/* Search Container */
 .search-pill {
   display: flex;
   align-items: center;
@@ -50,9 +53,44 @@
   cursor: pointer;
 }
 
+/* Suggestions Dropdown Styling */
+.search-suggestions-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #161625;
+  border: 1px solid #2d2d4a;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  margin-top: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.suggestion-item {
+  padding: 0.75rem 1.25rem;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+  background-color: #2d2d4a;
+}
+
+
 /* --- Profile Section & Dropdown --- */
 .profile-section {
-  position: relative; /* Required for dropdown positioning */
+  position: relative;
   cursor: pointer;
 }
 
@@ -71,11 +109,10 @@
   color: #13131d;
 }
 
-/* Dropdown Menu Styling */
 .dropdown-menu {
-  display: none; /* Hidden by default */
+  display: none;
   position: absolute;
-  top: 120%; /* Position below the button */
+  top: 120%;
   right: 0;
   background-color: #161625;
   border: 1px solid #2d2d4a;
@@ -87,7 +124,7 @@
 }
 
 .dropdown-menu.show {
-  display: block; /* Shown when the 'show' class is added */
+  display: block;
 }
 
 .dropdown-item {
@@ -120,7 +157,7 @@
 }
 
 .dropdown-item.logout {
-  color: #ff8a80; /* Reddish color for logout */
+  color: #ff8a80;
 }
 .dropdown-item.logout i {
   color: #ff8a80;

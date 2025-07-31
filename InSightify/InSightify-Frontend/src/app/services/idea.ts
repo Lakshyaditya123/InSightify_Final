@@ -18,7 +18,8 @@ export class IdeaService {
   private get_all_comments_url = `${this.apiUrl}/user/comment_display`;
   private add_comment_url = `${this.apiUrl}/user/add_comment`;
   private get_user_profile = `${this.apiUrl}/user_profile`;
-  private get_admin_wall =`${this.apiUrl}/admin/main_wall`
+  private get_admin_wall =`${this.apiUrl}/admin/main_wall`;
+  private update_idea_status=`${this.apiUrl}/admin/update_idea_status`
 
   constructor(private http: HttpClient) {}
 
@@ -88,6 +89,9 @@ get_idea(idea_id: number | null, merged_idea_id: number | null, user_id: number)
   }
   get_all_admin_main_walls(): Observable<any> {
   return this.http.get(this.get_admin_wall);
-}
+} 
+  update_user_idea(payload:any):Observable<any>{
+    return this.http.post(this.update_idea_status,payload)
+  }
 
 }

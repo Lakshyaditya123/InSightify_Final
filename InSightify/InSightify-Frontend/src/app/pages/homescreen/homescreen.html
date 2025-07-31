@@ -1,5 +1,10 @@
 <div class="homescreen-container">
-  <app-navbar></app-navbar>
+    <!-- <app-navbar (ideaSearch)="onSearchReceived($event)"></app-navbar> -->
+    <app-navbar 
+    (ideaSearch)="onSearchReceived($event)" 
+    [allIdeas]="unfiltered_cards" 
+    [allMergedIdeas]="unfiltered_merged_cards">
+  </app-navbar>
   <main class="main-content">
     <section class="wall col-8">
       <div class="main-idea-card">

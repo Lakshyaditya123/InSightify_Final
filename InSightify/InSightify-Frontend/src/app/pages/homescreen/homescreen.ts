@@ -1,3 +1,95 @@
+// import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+// import { CommonModule } from '@angular/common';
+// import { firstValueFrom } from 'rxjs';
+// import { Navbar } from '../../components/navbar/navbar';
+// import { IdeaDetails } from '../../components/idea-details/idea-details';
+// import { MergedIdeaDetails } from '../../components/merged-idea-details/merged-idea-details';
+// import { CreateAdd } from '../../components/create-add/create-add';
+// import { IdeaService } from '../../services/idea';
+// import { ApiResponse, Idea_small, Idea_large, Merged_idea_small, My_idea, Merged_idea_large, CurrUser} from '../../services/api-interfaces';
+// import { AuthService } from '../../services/auth';
+// import { Router } from '@angular/router';
+// import { VotesSection } from '../../components/votes-section/votes-section';
+
+
+// declare var bootstrap: any;
+
+// @Component({
+//   selector: 'app-homescreen',
+//   standalone: true,
+//   imports: [CommonModule, Navbar, IdeaDetails, CreateAdd, MergedIdeaDetails, VotesSection],
+//   templateUrl: './homescreen.html',
+//   styleUrl: './homescreen.css'
+// })
+// export class Homescreen implements OnInit {
+//   selectedSmallCard: Idea_small | null = null;
+//   selectedMergedSmallCard: Merged_idea_small | null = null;
+//   selectedCard: Idea_large | null = null;
+//   selectedMergedCard: Merged_idea_large | null = null;
+//   selectedCommentCard: Comment | null = null;
+//   all_cards: Idea_small[] = [];
+//   all_merged_cards: Merged_idea_small[] = [];
+//   all_my_cards: My_idea[] = [];
+//   currentUserId: number = -1;
+//     // Master lists to hold original, unfiltered data
+//   private unfiltered_cards: Idea_small[] = [];
+//   private unfiltered_merged_cards: Merged_idea_small[] = [];
+//   mySpace=false;
+//   model_opened=false;
+//   showMergedIdea=true;
+//   isMergedCommentsVisible = false;
+//   isIdeaCommentsVisible=false;
+//   @ViewChild('modelContent') modelContent!:ElementRef;
+//   modalWidth: number = 0;
+//   constructor(private ideaService: IdeaService, private authService: AuthService, private router: Router) {}
+
+//   ngOnInit() {
+//     const currentUser: CurrUser | null = this.authService.getCurrentUser();
+//     if (currentUser) {
+//       this.currentUserId = currentUser.user_id;
+//       this.get_all_ideas();
+//     } else {
+//       this.router.navigate(['/']);
+//       console.error('User not logged in!');
+//     }
+//   }
+
+//   navbar_events(event:string){
+//     console.log(event);
+//   }
+
+//     const add_idea_ticket_modal=document.getElementById('addIdea_modal');
+//     add_idea_ticket_modal?.addEventListener('shown.bs.modal', () => {
+//       this.modalWidth = this.modelContent.nativeElement.offsetWidth;
+//     })
+//     add_idea_ticket_modal?.addEventListener('hidden.bs.modal',()=>{
+//       this.close_add_idea_modal();
+//     })
+//   }
+
+//   ngOnDestroy() {
+//     // Clean up any subscriptions or resources if needed
+//   console.log("Homescreen component destroyed");
+//   const modalElement = document.querySelector('.modal-backdrop');
+//   if (modalElement) {
+//     modalElement.remove();
+//   }
+//   document.body.classList.remove('modal-open');
+// }
+
+//   get_all_ideas() {
+//     this.ideaService.get_all_main_walls(this.currentUserId).subscribe((res: ApiResponse) => {
+//       if (res.errCode === 0 && res.datarec?.all_ideas) {
+//         this.all_cards = res.datarec.all_ideas;
+//         this.all_merged_cards = res.datarec.all_merged_ideas;
+//         this.all_my_cards = res.datarec.all_my_ideas;
+//         console.log("all_merged_ideas", this.all_merged_cards);
+//         console.log("all_my_ideas", this.all_my_cards);
+//       } else {
+//         console.error("Failed to load ideas:", res.message);
+//       }
+//     });
+//   }
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
@@ -11,7 +103,6 @@ import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { VotesSection } from '../../components/votes-section/votes-section';
 
-
 declare var bootstrap: any;
 
 @Component({
@@ -22,15 +113,22 @@ declare var bootstrap: any;
   styleUrl: './homescreen.css'
 })
 export class Homescreen implements OnInit {
+  // Arrays for displaying ideas on the wall
+  all_cards: Idea_small[] = [];
+  all_merged_cards: Merged_idea_small[] = [];
+  
+  // Master lists to hold the original, unfiltered data
+  unfiltered_cards: Idea_small[] = [];
+  unfiltered_merged_cards: Merged_idea_small[] = [];
+
+  all_my_cards: My_idea[] = [];
+  currentUserId: number = -1;
+  
+  // Other component properties...
   selectedSmallCard: Idea_small | null = null;
   selectedMergedSmallCard: Merged_idea_small | null = null;
   selectedCard: Idea_large | null = null;
   selectedMergedCard: Merged_idea_large | null = null;
-  selectedCommentCard: Comment | null = null;
-  all_cards: Idea_small[] = [];
-  all_merged_cards: Merged_idea_small[] = [];
-  all_my_cards: My_idea[] = [];
-  currentUserId: number = -1;
   mySpace=false;
   model_opened=false;
   showMergedIdea=true;
@@ -47,12 +145,10 @@ export class Homescreen implements OnInit {
       this.get_all_ideas();
     } else {
       this.router.navigate(['/']);
-      console.error('User not logged in!');
     }
   }
 
-
-  ngAfterViewInit() {
+   ngAfterViewInit() {
     const ticket_modal=document.getElementById('ticket_details_modal');
     ticket_modal?.addEventListener('shown.bs.modal', () => {
       this.modalWidth = this.modelContent.nativeElement.offsetWidth;
@@ -68,34 +164,47 @@ export class Homescreen implements OnInit {
     merged_ticket_modal?.addEventListener('hidden.bs.modal',()=>{
       this.close_merged_ticket_details_modal();
     })
-
-    const add_idea_ticket_modal=document.getElementById('addIdea_modal');
-    add_idea_ticket_modal?.addEventListener('shown.bs.modal', () => {
-      this.modalWidth = this.modelContent.nativeElement.offsetWidth;
-    })
-    add_idea_ticket_modal?.addEventListener('hidden.bs.modal',()=>{
-      this.close_add_idea_modal();
-    })
   }
+  /**
+   * Handles the search term emitted from the navbar.
+   */
+  onSearchReceived(searchTerm: string) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
 
-  ngOnDestroy() {
-    // Clean up any subscriptions or resources if needed
-  console.log("Homescreen component destroyed");
-  const modalElement = document.querySelector('.modal-backdrop');
-  if (modalElement) {
-    modalElement.remove();
+    if (!lowerCaseSearchTerm) {
+      // If search is empty, restore the wall to its original state
+      this.all_cards = [...this.unfiltered_cards];
+      this.all_merged_cards = [...this.unfiltered_merged_cards];
+      return;
+    }
+
+    // Filter single ideas based on title, subject, or user name
+    this.all_cards = this.unfiltered_cards.filter(card =>
+      card.idea_details.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      card.idea_details.subject.toLowerCase().includes(lowerCaseSearchTerm) ||
+      card.user_details.name.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+
+    // Filter merged ideas based on title, subject, or any of the user names
+    this.all_merged_cards = this.unfiltered_merged_cards.filter(card =>
+      card.merged_idea_details.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      card.merged_idea_details.subject.toLowerCase().includes(lowerCaseSearchTerm) ||
+      card.user_idea_details.some(user => user.user_details.name.toLowerCase().includes(lowerCaseSearchTerm))
+    );
   }
-  document.body.classList.remove('modal-open');
-}
 
   get_all_ideas() {
     this.ideaService.get_all_main_walls(this.currentUserId).subscribe((res: ApiResponse) => {
-      if (res.errCode === 0 && res.datarec?.all_ideas) {
-        this.all_cards = res.datarec.all_ideas;
-        this.all_merged_cards = res.datarec.all_merged_ideas;
-        this.all_my_cards = res.datarec.all_my_ideas;
-        console.log("all_merged_ideas", this.all_merged_cards);
-        console.log("all_my_ideas", this.all_my_cards);
+      if (res.errCode === 0 && res.datarec) {
+        // Store the original data in our master lists
+        this.unfiltered_cards = res.datarec.all_ideas || [];
+        this.unfiltered_merged_cards = res.datarec.all_merged_ideas || [];
+        
+        // The lists displayed on the wall are initially a copy of the master lists
+        this.all_cards = [...this.unfiltered_cards];
+        this.all_merged_cards = [...this.unfiltered_merged_cards];
+        
+        this.all_my_cards = res.datarec.all_my_ideas || [];
       } else {
         console.error("Failed to load ideas:", res.message);
       }
@@ -159,11 +268,6 @@ async open_my_space_idea_modal(card: My_idea, isVisible:boolean=false) {
     const modalElement = document.getElementById('ticket_details_modal');
     if (modalElement) {
       new bootstrap.Modal(modalElement).show();
-    //  setTimeout(() => {
-    //     modalElement.removeAttribute('aria-hidden');
-    //     modalElement.setAttribute('aria-modal', 'true');
-    //     modalElement.setAttribute('role', 'dialog');
-    //   }, 150);
     }
 
   } catch (error: any) {
@@ -191,11 +295,6 @@ async open_ticket_details_modal(card: Idea_small,isVisible:boolean=false ) {
     const modalElement = document.getElementById('ticket_details_modal');
     if (modalElement) {
       new bootstrap.Modal(modalElement).show();
-    //  setTimeout(() => {
-    //     modalElement.removeAttribute('aria-hidden');
-    //     modalElement.setAttribute('aria-modal', 'true');
-    //     modalElement.setAttribute('role', 'dialog');
-    //   }, 150);
     }
   } catch (error: any) {
     console.error('Error fetching idea details:', error);
@@ -220,11 +319,6 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
     const modalElement = document.getElementById('merged_ticket_details_modal');
     if (modalElement) {
       new bootstrap.Modal(modalElement).show();
-    //  setTimeout(() => {
-    //     modalElement.removeAttribute('aria-hidden');
-    //     modalElement.setAttribute('aria-modal', 'true');
-    //     modalElement.setAttribute('role', 'dialog');
-    //   }, 150);
     }
 
   } catch (error) {
@@ -270,11 +364,6 @@ async open_merged_ticket_details_modal(card: Merged_idea_small,isVisible:boolean
     const modalElement = document.getElementById('addIdea_modal');
     if (modalElement) {
       new bootstrap.Modal(modalElement).show();
-    //  setTimeout(() => {
-    //     modalElement.removeAttribute('aria-hidden');
-    //     modalElement.setAttribute('aria-modal', 'true');
-    //     modalElement.setAttribute('role', 'dialog');
-    //   }, 150);
     }
   }
 

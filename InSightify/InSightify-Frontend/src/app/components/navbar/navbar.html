@@ -1,16 +1,36 @@
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
   <div class="container-fluid">
-    <a (click)="navigateToHome()" class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
+    <a class="navbar-brand d-flex align-items-center" (click)="refreshPage()" style="cursor: pointer;">
       <img src="assets/Heading.png" alt="Logo" width="80" class="me-2 nav-img" />
     </a>
     <div class="flex-grow-1"></div>
 
+    <!-- Search container now handles suggestions -->
     <div class="search-container me-3">
-      <div class="search-pill">
-        <input class="search-input" type="search" placeholder="Search ideas..." aria-label="Search" />
-        <button class="search-button" type="submit">
-          <i class="bi bi-search"></i>
-        </button>
+      <form class="search-pill-form" (ngSubmit)="onSearchSubmit()">
+        <div class="search-pill">
+          <!-- Added (input) and (focus) events to trigger suggestions -->
+          <input class="search-input" 
+                 [(ngModel)]="idea_search_input" 
+                 name="searchInput" 
+                 (input)="onSearchInput()" 
+                 (focus)="onSearchInput()" 
+                 type="search" 
+                 placeholder="Search ideas..." 
+                 aria-label="Search" 
+                 autocomplete="off" />
+          <button class="search-button" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+      <!-- Suggestions Dropdown -->
+      <div class="search-suggestions-container" *ngIf="isSuggestionsVisible && suggestions.length > 0">
+        <ul class="suggestions-list">
+          <li *ngFor="let suggestion of suggestions" class="suggestion-item" (click)="selectSuggestion(suggestion)">
+            {{ suggestion }}
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -20,8 +40,7 @@
         <i class="bi bi-person-circle"></i>
       </button>
 
-      <!-- Dropdown Menu -->
-      <div class="dropdown-menu" [class.show]="isDropdownOpen">
+      <div class="dropdown-menu" [class.show]="isDropdownOpen" (click)="$event.stopPropagation()">
         <a class="dropdown-item" (click)="openProfilePanel()">
           <i class="bi bi-person-badge-fill"></i> User Profile
         </a>
@@ -34,6 +53,4 @@
   </div>
 </nav>
 
-<!-- User Profile Side Panel Component -->
-<!-- It is only rendered when isProfilePanelOpen is true -->
 <app-user-profile *ngIf="isProfilePanelOpen" (closeProfile)="closeProfilePanel()"></app-user-profile>

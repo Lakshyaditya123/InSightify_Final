@@ -316,12 +316,15 @@ class AiHelper:
                 if "Error connecting to LM Studio:" in result:
                     self.response.get_response(400, "Internal Server Error with LM Studio")
                 elif result.get("merge_status") == "rejected":
+                    app_logger.info("merged_idea merge rejected")
                     merge_stat="rejected"
                 else:
                     # tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
                     tags_list=list(set(idea.tags_list) & set(idea2.tags_list)) + list(set(idea.tags_list) ^ set(idea2.tags_list))
                     merged_idea = result.get("merged_idea")
                     new_merged_idea = self.merge_idea_crud.update_merged_ideas(merged_idea_id= idea2.id, **merged_idea, tags_list=tags_list)
+                    app_logger.info(f"New merged idea: {new_merged_idea}")
+                    app_logger.info(f"New merged idea idea:{self.merge_idea_crud.convert_to_dict(new_merged_idea['obj'])}")
                     if self.merge_idea_crud.commit_it()["errCode"]:
                         self.response.get_response(500, "Internal Server Error")
                     else:
@@ -329,12 +332,11 @@ class AiHelper:
                         if self.ideas_merged_ideas_crud.commit_it()["errCode"]:
                             self.response.get_response(500, "Internal Server Error")
                         else:
-                            skip_these_ideas=list(self.ideas_merged_ideas_crud.get_ideas_in_merged_idea(merged_idea_id=new_merged_idea["obj"].id)["obj"])
+                            skip_these_ideas=self.ideas_merged_ideas_crud.get_ideas_in_merged_idea(merged_idea_id=idea2.id)["obj"]
                             app_logger.info(f"Ideas to skip: {skip_these_ideas}")
-                            print("skipped ideas:- ", self.skip_ideas)
-                            self.skip_ideas.extend([idea.id for idea in skip_these_ideas])
+                            self.skip_ideas+=[idea.id_ideas for idea in skip_these_ideas]
+                            app_logger.info(f"Skip ideas: {self.skip_ideas}")
                             self.response.get_response(0, "Ideas merged successfully", data_rec=result)
-            print("skipped ideas:- ", self.skip_ideas)
             for idea2 in idea_list:
                 if idea2.id in self.skip_ideas:
                     continue

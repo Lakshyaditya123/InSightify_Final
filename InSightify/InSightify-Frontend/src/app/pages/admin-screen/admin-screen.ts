@@ -2,16 +2,14 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef} from '@angular
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-
-// Import child components and services
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Navbar } from '../../components/navbar/navbar';
 import { IdeaDetails } from '../../components/idea-details/idea-details';
 import { MergedIdeaDetails } from '../../components/merged-idea-details/merged-idea-details';
 import { AuthService } from '../../services/auth';
 import { IdeaService } from '../../services/idea';
-import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small} from '../../services/api-interfaces';
+import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small, TagsList} from '../../services/api-interfaces';
 
-// Declare bootstrap for modal control
 declare var bootstrap: any;
 
 @Component({
@@ -19,60 +17,106 @@ declare var bootstrap: any;
   templateUrl: './admin-screen.html',
   styleUrls: ['./admin-screen.css'],
   standalone: true,
-  imports: [CommonModule, Navbar, IdeaDetails, MergedIdeaDetails],
+  imports: [CommonModule, Navbar, IdeaDetails, MergedIdeaDetails, MatSnackBarModule],
 })
 export class AdminScreen implements OnInit, AfterViewInit {
+  // Arrays for displaying ideas
   all_cards: Idea_small[] = [];
   all_merged_cards: Merged_idea_small[] = [];
+
+  // Master lists to hold original, unfiltered data
+  unfiltered_cards: Idea_small[] = [];
+  unfiltered_merged_cards: Merged_idea_small[] = [];
+
   selectedCard: Idea_large | null = null;
   selectedMergedCard: Merged_idea_large | null = null;
-
   
-  // State for managing the modal
   currentUserId: number = -1;
-  currentUser!:CurrUser;
-  model_opened=false;
-  showMergedIdea=true;
-  @ViewChild('modelContent') modelContent!:ElementRef;
+  currentUser!: CurrUser;
+  model_opened = false;
+  showMergedIdea = true;
+  @ViewChild('modelContent') modelContent!: ElementRef;
   modalWidth: number = 0;
+  updatedTagsList: TagsList[] = [];
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private authService: AuthService,
-    private ideaService: IdeaService 
+    private ideaService: IdeaService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     const currentUser: CurrUser | null = this.authService.getCurrentUser();
     if (currentUser) {
-      this.currentUser=currentUser
+      this.currentUser = currentUser;
       this.currentUserId = currentUser.user_id;
       this.get_all_ideas();
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
       console.error('User not logged in!');
     }
   }
 
-   ngAfterViewInit() {
-    const ticket_modal=document.getElementById('ticket_details_modal');
-    ticket_modal?.addEventListener('shown.bs.modal', () => {
-      this.modalWidth = this.modelContent.nativeElement.offsetWidth;
-    })
-    ticket_modal?.addEventListener('hidden.bs.modal',()=>{
+  ngAfterViewInit() {
+    const ticket_modal = document.getElementById('ticket_details_modal');
+    ticket_modal?.addEventListener('hidden.bs.modal', () => {
       this.close_ticket_details_modal();
-    })
+    });
 
-    const merged_ticket_modal=document.getElementById('merged_ticket_details_modal');
-    merged_ticket_modal?.addEventListener('shown.bs.modal', () => {
-      this.modalWidth = this.modelContent.nativeElement.offsetWidth;
-    })
-    merged_ticket_modal?.addEventListener('hidden.bs.modal',()=>{
+    const merged_ticket_modal = document.getElementById('merged_ticket_details_modal');
+    merged_ticket_modal?.addEventListener('hidden.bs.modal', () => {
       this.close_merged_ticket_details_modal();
-    })
+    });
   }
 
-  async showChildIdea(card_id:number){
+  /**
+   * Handles the search term emitted from the navbar and filters the submissions.
+   */
+  onSearchReceived(searchTerm: string) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
+
+    if (!lowerCaseSearchTerm) {
+      // If search is empty, restore the original lists
+      this.all_cards = [...this.unfiltered_cards];
+      this.all_merged_cards = [...this.unfiltered_merged_cards];
+      return;
+    }
+
+    // Filter single ideas
+    this.all_cards = this.unfiltered_cards.filter(card =>
+      card.idea_details.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      card.idea_details.subject.toLowerCase().includes(lowerCaseSearchTerm)||
+      card.user_details.name.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+
+    // Filter merged ideas
+    this.all_merged_cards = this.unfiltered_merged_cards.filter(card =>
+      card.merged_idea_details.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      card.merged_idea_details.subject.toLowerCase().includes(lowerCaseSearchTerm)||
+      card.user_idea_details.some(user => user.user_details.name.toLowerCase().includes(lowerCaseSearchTerm))
+    );
+  }
+
+  get_all_ideas() {
+    // Assuming 'get_all_admin_main_walls' is the correct method for fetching admin submissions
+    this.ideaService.get_all_admin_main_walls().subscribe((res: ApiResponse) => {
+      if (res.errCode === 0 && res.datarec) {
+        // Store the original, unfiltered data
+        this.unfiltered_cards = res.datarec.all_ideas || [];
+        this.unfiltered_merged_cards = res.datarec.all_merged_ideas || [];
+
+        // Initially, the displayed lists are a copy of the master lists
+        this.all_cards = [...this.unfiltered_cards];
+        this.all_merged_cards = [...this.unfiltered_merged_cards];
+      } else {
+        console.error("Failed to load admin ideas:", res.message);
+      }
+    });
+  }
+
+
+    async showChildIdea(card_id:number){
     console.log("Method triggered");
     this.showMergedIdea=false;
     const result: ApiResponse = await firstValueFrom(
@@ -87,31 +131,28 @@ export class AdminScreen implements OnInit, AfterViewInit {
     }
   }
 
-  get_all_ideas() {
-  this.ideaService.get_all_admin_main_walls().subscribe((res: ApiResponse) => {
-    if (res.errCode === 0 && res.datarec?.all_ideas) {
-      this.all_cards = res.datarec.all_ideas;
-      this.all_merged_cards = res.datarec.all_merged_ideas;
-      console.log("all_merged_ideas", this.all_merged_cards);
-    } else {
-      console.error("Failed to load ideas:", res.message);
-    }
-  });
-  }
-
-  onApprove(idea: any) {
-
+  async onApprove(idea_id: number|null, merged_idea_id:number|null) {
+    const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: 1, tags_list:[],update_idea_tags:null }
+    const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
+    if (result.errCode === 0 && result.datarec) {
+        this.showSuccess('Idea Approved');
+      } else {
+        this.showError('Failed to Approve Idea');
+        console.error("Failed to get idea:", result.message);
+      }
   }
 
 
-  onDecline(idea: any) {
-
+  async onDecline(idea_id: number|null, merged_idea_id:number|null) {
+    const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: -1, tags_list:[],update_idea_tags:null }
+    const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
+    if (result.errCode === 0 && result.datarec) {
+        this.showSuccess('Idea Declined');
+      } else {
+        console.error("Failed to get idea:", result.message);
+        this.showError('Failed to Decline Idea');
+      }
   }
-
-  // onSwitchToUser() {
-  //   this.router.navigate(['/homescreen']);
-  // }
-
 
   async open_ticket_details_modal(card: Idea_small,isVisible:boolean=false ) {
     this.model_opened=true;
@@ -152,7 +193,6 @@ export class AdminScreen implements OnInit, AfterViewInit {
       if (modalElement) {
         new bootstrap.Modal(modalElement).show();
       }
-  
     } catch (error) {
       console.error("Error loading merged idea details:", error);
     }
@@ -184,5 +224,19 @@ export class AdminScreen implements OnInit, AfterViewInit {
     this.selectedMergedCard = null;
     this.showMergedIdea=true;
      }, 150);
+  }
+
+    showSuccess(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: ['snack-success'],
+    });
+  }
+
+  showError(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: ['snack-error'],
+    });
   }
 }

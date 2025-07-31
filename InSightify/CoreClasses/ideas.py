@@ -2,7 +2,7 @@ from sqlalchemy import or_, func
 from sqlalchemy.orm import joinedload
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.Flask_app import app_logger
-from InSightify.db_server.app_orm import Idea, Vote, Comment, Tag
+from InSightify.db_server.app_orm import Idea, Vote, Comment, Tag, MergedIdea
 
 
 class IdeaCRUD(BaseCRUD):
@@ -42,7 +42,9 @@ class IdeaCRUD(BaseCRUD):
                     "comments_count": comment_count_map.get(idea.id, 0),
                     "total_votes": upvotes - downvotes
                 })
-            self.db_response.get_response(errCode=0, msg="Found Record !", obj=final_ideas)
+            status_order = {1: 0, 0: 1, -1: 2}
+            sorted_ideas = sorted(final_ideas, key=lambda x: status_order.get(x['status'], 3))
+            self.db_response.get_response(errCode=0, msg="Found Record !", obj=sorted_ideas)
         else:
             self.db_response.get_response(errCode=0, msg="Record not found", obj=None)
         return self.db_response.send_response()
@@ -108,7 +110,14 @@ class IdeaCRUD(BaseCRUD):
                 query = query.filter(Idea.id == idea_id)
             else:
                 query = query.filter(Idea.status == status, ~Idea.merged_ideas.any())
+
             ideas = query.all()
+            if status==1:
+                merged_ideas = self.db_session.query(MergedIdea).options(
+                    joinedload(MergedIdea.ideas)
+                ).filter(MergedIdea.status == 0).all()
+                for merged_idea in merged_ideas:
+                    ideas.extend(merged_idea.ideas)
             if not ideas:
                 self.db_response.get_response(
                     errCode=0,
@@ -116,12 +125,11 @@ class IdeaCRUD(BaseCRUD):
                     obj=[]
                 )
                 return self.db_response.send_response()
-
-            # Build result
-
             vote_map, comment_count_map = self.get_vote_and_comment_count(ideas)
             result_list = []
             for idea in ideas:
+                if idea.status==0 and status==1:
+                    continue
                 result = self.db_session.query(Vote).filter(Vote.this_obj2ideas == idea.id, Vote.this_obj2users==user_id).first()
                 idea_votes = vote_map.get(idea.id, [])
                 upvotes = sum(1 for v in idea_votes if v > 0)

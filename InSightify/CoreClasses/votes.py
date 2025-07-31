@@ -19,7 +19,6 @@ class VoteCRUD(BaseCRUD):
     def get_user_vote(self, user_id, idea_id=None, comment_id=None, merged_idea_id=None):
         filters = [Vote.this_obj2users == user_id]
         votes = []
-
         if idea_id:
             filters.append(Vote.this_obj2ideas == idea_id)
             votes = self.get_by_fields(this_obj2ideas=idea_id)["obj"]
