@@ -13,7 +13,4 @@ class IdeasMergedIdeasCRUD(BaseCRUD):
         return self.create(id_ideas=idea_id, id_merged_ideas=merged_idea_id)
 
     def get_ideas_in_merged_idea(self, merged_idea_id):
-        return self.convert_to_dict_list(self.get_by_field("id_merged_ideas", merged_idea_id)["obj"])
-
-    def get_merged_ideas_for_idea(self, idea_id):
-       return self.convert_to_dict_list(self.get_by_field("id_ideas", idea_id)["obj"])
+        return self.get_by_fields(id_merged_ideas=merged_idea_id)

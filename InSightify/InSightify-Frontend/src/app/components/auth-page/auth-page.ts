@@ -27,7 +27,7 @@ export class AuthPage implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      role: ['user', Validators.required] // Add role control with 'user' as default
+      role: ['User', Validators.required] // Add role control with 'user' as default
     });
 
     this.signupForm = this.fb.group({
@@ -46,7 +46,7 @@ export class AuthPage implements OnInit {
   toggleMode(event: Event): void {
     event.preventDefault();
     this.isSignup = !this.isSignup;
-    this.loginForm.reset({ role: 'user' }); // Reset form but keep default role
+    this.loginForm.reset({ role: 'User' }); // Reset form but keep default role
     this.signupForm.reset();
   }
 
@@ -74,17 +74,16 @@ export class AuthPage implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      const { role, ...payload } = this.loginForm.value;
-
+      const payload= this.loginForm.value;
       this.authService.login(payload).subscribe({
         next: (res: ApiResponse) => {
           if (res.errCode === 0 && res.datarec) {
             this.showSuccess('Login successful!');
             const user: CurrUser = res.datarec;
+            console.log(user)
             this.authService.setUser(user);
-
             // Navigate based on the selected role
-            if (role === 'admin') {
+            if (payload.role === 'Admin' || payload.role==="Super Admin") {
               this.router.navigate(['/admin']);
             } else {
               this.router.navigate(['/homescreen']);

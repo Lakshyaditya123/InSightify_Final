@@ -8,7 +8,7 @@ import { IdeaDetails } from '../../components/idea-details/idea-details';
 import { MergedIdeaDetails } from '../../components/merged-idea-details/merged-idea-details';
 import { AuthService } from '../../services/auth';
 import { IdeaService } from '../../services/idea';
-import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small, TagsList} from '../../services/api-interfaces';
+import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small, TagsList, User_idea_details} from '../../services/api-interfaces';
 
 declare var bootstrap: any;
 
@@ -38,6 +38,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
   @ViewChild('modelContent') modelContent!: ElementRef;
   modalWidth: number = 0;
   updatedTagsList: TagsList[] = [];
+  users!:User_idea_details[]
 
   constructor(
     private router: Router,
@@ -131,6 +132,12 @@ export class AdminScreen implements OnInit, AfterViewInit {
     }
   }
 
+  removeThisIdea(user:User_idea_details){
+    this.showMergedIdea=true;
+    this.users = this.users.filter(
+      obj => obj.idea_details.id !== user.idea_details.id);
+  }
+
   async onApprove(idea_id: number|null, merged_idea_id:number|null) {
     const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: 1, tags_list:[],update_idea_tags:null }
     const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
@@ -185,6 +192,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
   
       if (result.errCode === 0 && result.datarec) {
         this.selectedMergedCard = result.datarec; // Full Merged_idea_large
+        this.users=this.selectedMergedCard!.user_idea_details
       } else {
         console.error("Failed to fetch merged idea details:", result.message);
       }

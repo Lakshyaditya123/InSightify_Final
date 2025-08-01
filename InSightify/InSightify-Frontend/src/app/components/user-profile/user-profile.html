@@ -43,7 +43,7 @@
       </div>
       <div class="profile-info">
         <h4 class="user-name">{{ currentUser.user_name }}</h4>
-        <p class="user-role">{{ currentUser.user_role.join(', ') | titlecase }}</p>
+        <p class="user-role">{{ currentUser.user_role | titlecase }}</p>
         <div class="user-details">
           <p><i class="bi bi-envelope-fill"></i> {{ currentUser.user_email }}</p>
           <p><i class="bi bi-telephone-fill"></i> {{ currentUser.user_mobile }}</p>

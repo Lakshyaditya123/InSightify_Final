@@ -4,7 +4,7 @@ class ResponseHandler:
         self.errCode = None
         self.response = dict()
     def get_response(self,errCode, msg, data=None, data_rec=None):
-        self.response = {"errCode": errCode, "msg": msg if msg else "No Message", "data": data if data else [],"datarec": data_rec if data_rec else {}}
+        self.response = {"errCode": errCode, "message": msg if msg else "No Message", "data": data if data else [],"datarec": data_rec if data_rec else {}}
 
     def send_response(self):
         return self.response

@@ -16,7 +16,8 @@ class ProfileHelper:
         user_id=data.get("user_id")
         user_rec=self.user_crud.get_by_id(id=user_id)["obj"]
         if user_rec:
-            user_roles = self.user_role_crud.get_user_roles(user_id=user_rec.id)["obj"]
+            user_role_id = self.user_role_crud.get_user_roles(user_id=user_rec.id)["obj"]
+            user_role = self.role_crud.get_role_id(user_role_id.id_roles)["obj"].roles
             output = {
                 "user_id": user_rec.id,
                 "user_name": user_rec.name,
@@ -24,8 +25,7 @@ class ProfileHelper:
                 "user_mobile": user_rec.mobile,
                 "user_profile_picture": user_rec.profile_picture,
                 "user_bio": user_rec.bio,
-                "user_role": [self.role_crud.get_role_id(role.id_roles)["obj"].roles for role in
-                         user_roles] if user_roles else []
+                "user_role": user_role
             }
             self.response.get_response(0,"Profile found Successful", data_rec=output) #pass the token here
         else:

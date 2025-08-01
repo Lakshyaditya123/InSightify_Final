@@ -1,6 +1,6 @@
 <div class="admin-container">
 <main class="main-content">
-    <app-navbar 
+    <app-navbar
       (ideaSearch)="onSearchReceived($event)"
       [allIdeas]="unfiltered_cards"
       [allMergedIdeas]="unfiltered_merged_cards">
@@ -81,16 +81,18 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header text-muted row" *ngIf="selectedMergedCard">
-        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true">
+        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true" style="max-width: fit-content;">
           <img *ngFor="let user of selectedMergedCard.user_idea_details.slice(0, 3)"
                 [src]="user.user_details.profile_picture || 'assets/userLogo.png'" width="30px"
                 class="author-avatar" [title]="user.user_details.name">
           Merged Idea
         </div>
-
-        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header col" (click)="showChildIdea(user.idea_details.id)" >
-         <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;" class="author-avatar">
-         {{ user.idea_details.title }}
+        <div *ngFor="let user of users" class="idea_header col">
+          <div class="idea-tab-content" (click)="showChildIdea(user.idea_details.id)">
+            <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" class="author-avatar">
+            <span class="idea-header-title">{{ user.idea_details.title }}</span>
+          </div>
+          <button class="close-btn" (click)="removeThisIdea(user); $event.stopPropagation()">×</button>
         </div>
       </div>
       <div class="modal-body">
@@ -104,8 +106,14 @@
             <button class="decline-btn" (click)="onDecline(null,selectedMergedCard.merged_idea_details.id)">DECLINE</button>
           </div>
         </div>
-        <button type="button" class="btn btn-secondary" (click)="close_merged_ticket_details_modal()">Close</button>
-      </div>
+      <span class="row">
+        <button type="button" class="icon-btn refine-icon col gap-2" title="Remerge Ideas with AI">
+          <i class="bi bi-magic"></i>
+          <span  class="spinner-border spinner-border-sm me-2"></span>
+        </button>
+          <button type="button" class="btn btn-secondary col" (click)="close_merged_ticket_details_modal()">Close</button>
+      </span>
+    </div>
     </div>
   </div>
 </div>

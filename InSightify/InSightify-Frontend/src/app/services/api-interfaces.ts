@@ -148,7 +148,7 @@ export interface CurrUser{
   user_mobile: string,
   user_profile_picture: string,
   user_bio: string,
-  user_role: string[]
+  user_role: string
 }
 
 

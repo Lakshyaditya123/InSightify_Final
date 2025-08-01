@@ -117,7 +117,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header text-muted row" *ngIf="selectedMergedCard">
-        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false">
+        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false" style="max-width: 15rem;">
           <img *ngFor="let user of selectedMergedCard.user_idea_details.slice(0, 3)"
                 [src]="user.user_details.profile_picture || 'assets/userLogo.png'" width="30px"
                 class="author-avatar" [title]="user.user_details.name">

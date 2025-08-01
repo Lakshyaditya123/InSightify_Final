@@ -13,6 +13,7 @@ class IdeaHelper:
         self.vote_crud = VoteCRUD(dbsession)
         self.comment_crud = CommentCRUD(dbsession)
         self.tag_crud = TagCRUD(dbsession)
+        self.ideas_merged_ideas_crud = IdeasMergedIdeasCRUD(dbsession)
         self.session = dbsession
         self.response = ResponseHandler()
 
@@ -70,10 +71,18 @@ class IdeaHelper:
                         celery_app.send_task('merge_idea_worker', args=[idea["obj"].id])
             else:
                 merged_idea=self.merge_ideas_crud.update_status(data.get("merged_idea_id"),  data.get("status"))
-                if self.merge_ideas_crud.commit_it()["errCode"]:
+                skip_these_ideas = self.ideas_merged_ideas_crud.get_ideas_in_merged_idea(merged_idea_id=21)["obj"]
+                print("skip_these_ideas", skip_these_ideas)
+                app_logger.info(f"skip_these_ideas: {skip_these_ideas}")
+                child_idea_list=[idea.id_ideas for idea in skip_these_ideas]
+                print("child_idea_list", child_idea_list)
+                app_logger.info(f"child_idea_list: {child_idea_list}")
+                for idea_id in child_idea_list:
+                    idea = self.idea_crud.update_status(idea_id, 1)
+                if self.merge_ideas_crud.commit_it()["errCode"] and  self.idea_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")
                 else:
-                    self.response.get_response(0, "Idea status updated successfully",data_rec=self.idea_crud.convert_to_dict(merged_idea["obj"]))
+                    self.response.get_response(0, "Idea status updated successfully",data_rec=self.merge_ideas_crud.convert_to_dict(merged_idea["obj"]))
         else:
             self.response.get_response(400, "idea_id or merged_idea_id and status are required")
         return self.response.send_response()

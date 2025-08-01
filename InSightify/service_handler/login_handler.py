@@ -19,18 +19,22 @@ class LoginHelper:
             if user_rec:
                 if user_rec.password == data['password']:
                     #token = create_access_token(identity={"user_name": self.username, "user_id": self.user_rec.id}, expires_delta=timedelta(days=1))
-                    user_roles = self.user_role_crud.get_user_roles(user_id=user_rec.id)["obj"]
-                    output = {
-                        "user_id": user_rec.id,
-                        "user_name": user_rec.name,
-                        "user_email": user_rec.email,
-                        "user_mobile": user_rec.mobile,
-                        "user_profile_picture": user_rec.profile_picture,
-                        "user_bio": user_rec.bio,
-                        "user_role": [self.role_crud.get_role_id(role.id_roles)["obj"].roles for role in
-                                      user_roles] if user_roles else []
-                    }
-                    self.response.get_response(0,"Login Successful", data_rec=output) #pass the token here
+                    user_role_id = self.user_role_crud.get_user_roles(user_id=user_rec.id)["obj"]
+                    user_role = self.role_crud.get_role_id(user_role_id.id_roles)["obj"].roles
+                    role=data.get('role')
+                    if role==user_role or "Super Admin" ==user_role:
+                        output = {
+                            "user_id": user_rec.id,
+                            "user_name": user_rec.name,
+                            "user_email": user_rec.email,
+                            "user_mobile": user_rec.mobile,
+                            "user_profile_picture": user_rec.profile_picture,
+                            "user_bio": user_rec.bio,
+                            "user_role": user_role
+                        }
+                        self.response.get_response(0,"Login Successful", data_rec=output) #pass the token here
+                    else:
+                        self.response.get_response(1,"You don't have access to this role.")
                 else:
                     self.response.get_response(1,"Username or password is incorrect")
             else:

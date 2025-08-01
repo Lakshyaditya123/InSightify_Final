@@ -159,18 +159,11 @@
 .idea-name {
   font-weight: 600;
   color: #ffffff;
-  min-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 90%;
 }
 
 .idea-description {
   font-size: 0.9rem;
   color: #adb5bd;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 90%;
 }
 
 .action-buttons {
@@ -222,6 +215,7 @@
   object-fit: cover;
   background-color:#b0b0b0; /* Fallback color */
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .author-avatar:hover {
@@ -254,7 +248,7 @@
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #fff;
-  
+
 }
 .idea-subject {
   font-size: 0.85rem;
@@ -298,24 +292,105 @@
 }
 
 
-.idea_header{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.idea_header {
+    position: relative;
+    display: flex;
+    align-items: center;
     border: solid #b2b2b2 2px;
     background-color: #b0b0b0;
-    border-radius: 10px; 
+    border-radius: 10px;
     padding: 5px;
-    margin:0px 6px;
+    margin: 0px 6px;
     transition: all 0.2s ease;
-    max-width:fit-content;
+    cursor: pointer;
+    overflow: hidden; /* Hide overflow from children */
+    max-width: 15rem ;
 }
 
 .idea_header:hover{
   transform: scale(1.05);
-  cursor: pointer;
 }
 
 .modal-header{
   padding:15px;
+}
+
+.idea-tab-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden; /* Hide overflow */
+}
+
+.idea-header-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+   background: none;
+  border: none;
+  color: #2c3e50;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+
+}
+
+
+
+
+.close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background-color: #a0a0a0;
+}
+
+
+.refine-icon {
+  color: #0dcaf0;
+  box-shadow: 0 2px 8px rgba(13,202,240,0.08);
+}
+
+.refine-icon:hover {
+  background: #e3f8fc;
+  color: #0a95b8;
+  box-shadow: 0 4px 16px rgba(13,202,240,0.18);
+}
+
+
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #6c757d;
+  font-size: 1.3rem;
+  padding: 6px 10px;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:last-child {
+  margin-right: 0;
+}
+
+.icon-btn:hover, .icon-btn:focus {
+  background: #f0f4fa;
+  color: #007bff;
 }

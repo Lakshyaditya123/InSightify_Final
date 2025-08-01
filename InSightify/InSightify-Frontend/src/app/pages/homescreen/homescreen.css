@@ -453,7 +453,7 @@ body, html {
     padding: 5px;
     margin:0px 6px;
     transition: all 0.2s ease;
-    max-width: fit-content;
+    max-width: 15rem;
 }
 
 .idea_header:hover{

@@ -23,7 +23,7 @@ export class UserProfile implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-    this.profile_role=this.currentUser?.user_role[0] || ""
+    this.profile_role=this.currentUser!.user_role
     if(this.profile_role==="Super Admin")this.isSuperAdmin=true;
     if(this.router.url.includes('/admin') && this.isSuperAdmin) {
       this.profile="User"

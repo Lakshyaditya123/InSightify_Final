@@ -108,14 +108,22 @@ class IdeaCRUD(BaseCRUD):
             query = self.db_session.query(Idea).options(joinedload(Idea.user))
             if get_one:
                 query = query.filter(Idea.id == idea_id)
+                merged_ideas = []
             else:
                 query = query.filter(Idea.status == status, ~Idea.merged_ideas.any())
+                if status == 1:
+                    merged_ideas = self.db_session.query(MergedIdea).options(
+                        joinedload(MergedIdea.ideas)
+                    ).filter(MergedIdea.status == 0).all()
+                elif status == 0:
+                    merged_ideas = self.db_session.query(MergedIdea).options(
+                        joinedload(MergedIdea.ideas)
+                    ).filter(MergedIdea.status == 0).all()
+                else:
+                    merged_ideas = []
 
             ideas = query.all()
-            if status==1:
-                merged_ideas = self.db_session.query(MergedIdea).options(
-                    joinedload(MergedIdea.ideas)
-                ).filter(MergedIdea.status == 0).all()
+            if merged_ideas:
                 for merged_idea in merged_ideas:
                     ideas.extend(merged_idea.ideas)
             if not ideas:
@@ -128,7 +136,9 @@ class IdeaCRUD(BaseCRUD):
             vote_map, comment_count_map = self.get_vote_and_comment_count(ideas)
             result_list = []
             for idea in ideas:
-                if idea.status==0 and status==1:
+                if idea.status==0 and status==1 and merged_ideas:
+                    continue
+                elif idea.status==1 and status==0 and merged_ideas:
                     continue
                 result = self.db_session.query(Vote).filter(Vote.this_obj2ideas == idea.id, Vote.this_obj2users==user_id).first()
                 idea_votes = vote_map.get(idea.id, [])
