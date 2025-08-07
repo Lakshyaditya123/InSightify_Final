@@ -184,3 +184,10 @@ export interface Comments {
   replying?: boolean;
   newReplyText?: string;
 }
+
+export interface bulkMerge{
+    id: number,
+    title: string,
+    subject: string,
+    content: string
+}

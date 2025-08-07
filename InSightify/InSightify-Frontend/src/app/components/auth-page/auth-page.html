@@ -1,39 +1,3 @@
-<!-- <div class="auth-container">
-  <div class="auth-wrapper">
-    <img src="assets/Heading.png" alt="InSightify Logo" class="logo" />
-        <div class="auth-card" *ngIf="isSignup">
-        <form  [formGroup]="signupForm">
-          <input type="text" formControlName="name" placeholder="Full Name" required />
-          <input type="number" formControlName="mobile" placeholder="Mobile" required />
-          <input type="email" formControlName="email" placeholder="Email" required />
-          <input type="password" formControlName="password" placeholder="Password" required />
-          <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required />
-
-          <button type="submit" (click)="signup()">Sign Up</button>
-          <p class="switch-text">
-            Already have an account?
-            <a href="#" (click)="toggleMode($event)">Login</a>
-          </p>
-        </form>
-      </div>
-      <div class="auth-card" *ngIf="!isSignup" style="height: 350px">
-        <form *ngIf="!isSignup" [formGroup]="loginForm">
-          <input type="email" formControlName="email" placeholder="Email" required />
-          <input type="password" formControlName="password" placeholder="Password" required />
-          <button type="submit" (click)="login()">Login</button>
-          <p class="switch-text">
-            Don’t have an account?
-            <a href="#" (click)="toggleMode($event)">Sign up</a>
-          </p>
-        </form>
-      </div>
-  </div>
-</div> -->
-
-
-
-
-
 <div class="auth-container">
   <div class="auth-wrapper">
     <img src="assets/Heading.png" alt="InSightify Logo" class="logo" />
@@ -43,8 +7,19 @@
         <input type="text" formControlName="name" placeholder="Full Name" required />
         <input type="number" formControlName="mobile" placeholder="Mobile" required />
         <input type="email" formControlName="email" placeholder="Email" required />
-        <input type="password" formControlName="password" placeholder="Password" required />
-        <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required />
+        
+        <!-- Signup Password with Toggle -->
+        <div class="password-wrapper">
+          <input [type]="showSignupPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" required />
+          <i class="bi" [ngClass]="showSignupPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('signup')"></i>
+        </div>
+        
+        <!-- Confirm Password with Toggle -->
+        <div class="password-wrapper">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" required />
+          <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('confirm')"></i>
+        </div>
+
         <button type="submit">Sign Up</button>
         <p class="switch-text">
           Already have an account?
@@ -56,7 +31,12 @@
     <div class="auth-card" *ngIf="!isSignup" style="height: auto;">
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <input type="email" formControlName="email" placeholder="Email" required />
-        <input type="password" formControlName="password" placeholder="Password" required />
+        
+        <!-- Login Password with Toggle -->
+        <div class="password-wrapper">
+          <input [type]="showLoginPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" required />
+          <i class="bi" [ngClass]="showLoginPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('login')"></i>
+        </div>
         
         <!-- Role Selection Dropdown -->
         <select formControlName="role" class="role-select">

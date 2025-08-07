@@ -77,4 +77,12 @@ export class IdeaDetails implements OnInit, OnChanges {
       default: return 'gray';
     }
   }
+  getStatusTitle(status:number){
+  switch(status){
+    case -1: return 'Idea Declined';
+    case 0: return 'Awating Approval';
+    case 1: return 'Idea Approved';
+    default: return 'Status Unknown'; // fallback
+  }
+}
 }

@@ -5,7 +5,7 @@ from InSightify.Common_files.config import config
 from InSightify.Common_files.response import ResponseHandler
 import json
 from InSightify.db_server.Flask_app import dbsession
-from InSightify.CoreClasses import IdeaCRUD, MergedIdeaCRUD, IdeasMergedIdeasCRUD
+from InSightify.CoreClasses import IdeaCRUD, MergedIdeaCRUD, IdeasMergedIdeasCRUD, TagCRUD
 
 SYSTEM_PROMPT = """
 # Intelligent Idea Refinement and Merging Assistant
@@ -252,6 +252,7 @@ class AiHelper:
         self.response = ResponseHandler()
         self.idea_crud = IdeaCRUD(dbsession)
         self.merge_idea_crud=MergedIdeaCRUD(dbsession)
+        self.tag_crud=TagCRUD(dbsession)
         self.ideas_merged_ideas_crud=IdeasMergedIdeasCRUD(dbsession)
         self.skip_ideas=[]
 
@@ -319,7 +320,6 @@ class AiHelper:
                     app_logger.info("merged_idea merge rejected")
                     merge_stat="rejected"
                 else:
-                    # tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
                     tags_list=list(set(idea.tags_list) & set(idea2.tags_list)) + list(set(idea.tags_list) ^ set(idea2.tags_list))
                     merged_idea = result.get("merged_idea")
                     new_merged_idea = self.merge_idea_crud.update_merged_ideas(merged_idea_id= idea2.id, **merged_idea, tags_list=tags_list)
@@ -348,7 +348,7 @@ class AiHelper:
                     app_logger.info("Idea merge rejected")
                     merge_stat="rejected"
                 else:
-                    tags_list=list(set(idea.tags_list) | set(idea2.tags_list))
+                    tags_list=list(set(idea.tags_list) & set(idea2.tags_list)) + list(set(idea.tags_list) ^ set(idea2.tags_list))
                     merged_idea=result.get("merged_idea")
                     new_merged_idea=self.merge_idea_crud.create_merged_idea(**merged_idea, tags_list=tags_list)
                     if self.merge_idea_crud.commit_it()["errCode"]:
@@ -365,5 +365,35 @@ class AiHelper:
         if merge_stat=="rejected":
             self.response.get_response(0, "Idea merge rejected")
         return self.response.send_response()
+
+
+    def merge_bulk_ideas(self,data):
+        merged_idea_id=data.get("merged_idea_id")
+        idea_id_list=data.get("idea_id_list",[])
+        if merged_idea_id and  idea_id_list:
+            ideas_list = self.idea_crud.bulk_select_ideas(idea_id_list)
+            if ideas_list["errCode"]:
+                self.response.get_response(500, "Internal Server Error")
+            else:
+                prompt = f"1 Merge the following ideas into single idea if and only if it is possible and provide the output in the specified format.\n "
+                for idea in ideas_list["obj"]:
+                    prompt+=f"\n{idea.refine_content if idea.refine_content else idea.content}\n"
+                result = self.call_lm_studio(prompt)
+                if "Error connecting to LM Studio:" in result:
+                    self.response.get_response(400, "Internal Server Error with LM Studio")
+                else:
+                    merged_idea = result.get("merged_idea")
+                    output={
+                        "title": merged_idea.get("title"),
+                        "subject": merged_idea.get("subject"),
+                        "content": merged_idea.get("content")
+                    }
+                    self.response.get_response(0, "Ideas merged successfully", data_rec=output)
+        else:
+            self.response.get_response(1, "merged idea id or idea list is empty")
+        return self.response.send_response()
+
+
+
 
 

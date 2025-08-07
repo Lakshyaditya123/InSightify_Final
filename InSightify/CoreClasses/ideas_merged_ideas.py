@@ -14,3 +14,17 @@ class IdeasMergedIdeasCRUD(BaseCRUD):
 
     def get_ideas_in_merged_idea(self, merged_idea_id):
         return self.get_by_fields(id_merged_ideas=merged_idea_id)
+
+    def unlink_some_ideas(self, merged_idea_id, removed_idea_ids):
+        deleted_count = self.db_session.query(IdeasMergedIdeas).filter(
+            IdeasMergedIdeas.id_merged_ideas == merged_idea_id,
+            IdeasMergedIdeas.id_ideas.in_(removed_idea_ids)
+        ).delete(synchronize_session=False)
+        self.db_session.flush()
+        if deleted_count == 0:
+            self.db_response.get_response(errCode=0, msg="No matching ideas found to unlink", obj=None)
+        else:
+            self.db_response.get_response(errCode=0, msg=f"{deleted_count} idea(s) unlinked successfully", obj=None)
+
+        return self.db_response.send_response()
+

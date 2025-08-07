@@ -157,3 +157,9 @@ class UpdateIdeaStatus(Resource):
         data=request.get_json()
         return idea.update_idea_status(data)
 
+class BulkMerge(Resource):
+    @staticmethod
+    def post():
+        merger=AiHelper()
+        data=request.get_json()
+        return merger.merge_bulk_ideas(data)

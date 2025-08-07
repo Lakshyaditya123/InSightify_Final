@@ -9,7 +9,7 @@ class IdeaHelper:
     def __init__(self):
         self.user_crud = UserCRUD(dbsession)
         self.idea_crud = IdeaCRUD(dbsession)
-        self.merge_ideas_crud = MergedIdeaCRUD(dbsession)
+        self.merge_idea_crud = MergedIdeaCRUD(dbsession)
         self.vote_crud = VoteCRUD(dbsession)
         self.comment_crud = CommentCRUD(dbsession)
         self.tag_crud = TagCRUD(dbsession)
@@ -46,7 +46,7 @@ class IdeaHelper:
         if data.get("idea_id"):
             idea_with_details=self.idea_crud.get_all_ideas_with_details(get_one=True,user_id= data.get("user_id"), idea_id=data.get("idea_id"))
         else:
-            idea_with_details=self.merge_ideas_crud.get_merged_ideas_with_users(get_one=True, user_id= data.get("user_id"), merged_idea_id=data.get("merged_idea_id"))
+            idea_with_details=self.merge_idea_crud.get_merged_ideas_with_users(get_one=True, user_id= data.get("user_id"), merged_idea_id=data.get("merged_idea_id"))
         idea_obj=idea_with_details["obj"][0]
         print("idea_ob", idea_obj)
         if idea_with_details["errCode"]:
@@ -60,7 +60,7 @@ class IdeaHelper:
     def update_idea_status(self, data):
         if (data.get("idea_id") or data.get("merged_idea_id")) and data.get("status"):
             if data.get("idea_id"):
-                if data.get("update_idea_tags") and data.get("tags_list"):
+                if data.get("update_idea_tags") and data.get("tags_list",[]):
                     self.idea_crud.update_tags(data.get("idea_id"), data.get("tags_list"))
                 idea=self.idea_crud.update_status(data.get("idea_id"),  data.get("status"))
                 if self.idea_crud.commit_it()["errCode"]:
@@ -70,19 +70,27 @@ class IdeaHelper:
                     if data.get("status")==1:
                         celery_app.send_task('merge_idea_worker', args=[idea["obj"].id])
             else:
-                merged_idea=self.merge_ideas_crud.update_status(data.get("merged_idea_id"),  data.get("status"))
-                skip_these_ideas = self.ideas_merged_ideas_crud.get_ideas_in_merged_idea(merged_idea_id=21)["obj"]
-                print("skip_these_ideas", skip_these_ideas)
-                app_logger.info(f"skip_these_ideas: {skip_these_ideas}")
-                child_idea_list=[idea.id_ideas for idea in skip_these_ideas]
-                print("child_idea_list", child_idea_list)
-                app_logger.info(f"child_idea_list: {child_idea_list}")
-                for idea_id in child_idea_list:
-                    idea = self.idea_crud.update_status(idea_id, 1)
-                if self.merge_ideas_crud.commit_it()["errCode"] and  self.idea_crud.commit_it()["errCode"]:
+                if data.get("merged_idea_details"):
+                    merged_idea_data=data.get("merged_idea_details")
+                    removed_idea_ids=data.get("removed_idea_ids",[])
+                    if removed_idea_ids:
+                        self.ideas_merged_ideas_crud.unlink_some_ideas(merged_idea_data.id, removed_idea_ids)
+                        if self.ideas_merged_ideas_crud.commit_it()["errCode"]:
+                            self.response.get_response(500, "Internal Server Error")
+                    new_merged_idea = self.merge_idea_crud.update_merged_ideas(**merged_idea_data, status=1)["obj"]
+                else:
+                    new_merged_idea = self.merge_idea_crud.update_status(merged_idea_id=data.get("merged_idea_id"), status=data.get("status"))["obj"]
+                if self.merge_idea_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")
                 else:
-                    self.response.get_response(0, "Idea status updated successfully",data_rec=self.merge_ideas_crud.convert_to_dict(merged_idea["obj"]))
+                    child_ideas = self.ideas_merged_ideas_crud.get_ideas_in_merged_idea(merged_idea_id=new_merged_idea.id)["obj"]
+                    child_idea_list=[idea.id_ideas for idea in child_ideas]
+                    for idea_id in child_idea_list:
+                        self.idea_crud.update_status(idea_id, 1)
+                    if self.merge_idea_crud.commit_it()["errCode"] and  self.idea_crud.commit_it()["errCode"]:
+                        self.response.get_response(500, "Internal Server Error")
+                    else:
+                        self.response.get_response(0, "Idea status updated successfully", data_rec=self.merge_idea_crud.convert_to_dict(new_merged_idea))
         else:
             self.response.get_response(400, "idea_id or merged_idea_id and status are required")
         return self.response.send_response()

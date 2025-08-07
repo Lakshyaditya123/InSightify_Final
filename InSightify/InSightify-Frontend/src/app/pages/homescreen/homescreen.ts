@@ -248,6 +248,16 @@ toggleIdeaCommentsVisibility() {
     this.isIdeaCommentsVisible = !this.isIdeaCommentsVisible;
   }
 
+getStatusTitle(status:number){
+  switch(status){
+    case -1: return 'Idea Declined';
+    case 0: return 'Awating Approval';
+    case 1: return 'Idea Approved';
+    default: return 'Status Unknown'; // fallback
+  }
+}
+
+
 async open_my_space_idea_modal(card: My_idea, isVisible:boolean=false) {
   this.mySpace = true;
   this.model_opened=true;

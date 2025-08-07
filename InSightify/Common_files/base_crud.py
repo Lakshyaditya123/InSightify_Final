@@ -58,13 +58,18 @@ class BaseCRUD:
             self.db_response.get_response(errCode=0, msg="Record updated successfully", obj=db_obj)
         return self.db_response.send_response()
 
-    def delete(self, id):
-        db_obj = self.db_session.query(self.model).filter(self.model.id == id).first()
-        if not db_obj:
-            self.db_response.get_response(errCode=0, msg="Record not found", obj=None)
+    def delete_record(self, id=None):
+        if id is not None:
+            db_obj = self.db_session.query(self.model).filter(self.model.id == id).first()
+            if not db_obj:
+                self.db_response.get_response(errCode=0, msg="Record not found", obj=None)
+            else:
+                self.db_session.delete(db_obj)
+                self.db_session.flush()
+                self.db_response.get_response(errCode=0, msg="Record deleted successfully", obj=db_obj)
         else:
-            self.db_session.delete(db_obj)
-            self.db_response.get_response(errCode=0, msg="Record deleted successfully", obj=None)
+            self.db_response.get_response(errCode=0, msg="Insufficient parameters provided", obj=None)
+
         return self.db_response.send_response()
 
     def get_by_field(self, field_name, value):

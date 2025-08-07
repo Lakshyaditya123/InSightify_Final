@@ -5,7 +5,8 @@
         <h4 class="mb-2 d-flex align-items-center gap-2">
           <span *ngIf="mySpace"
             class="status-dot"
-            [ngStyle]="{ 'background-color': getStatusColor(cardData.idea_details.status) }">
+            [ngStyle]="{ 'background-color': getStatusColor(cardData.idea_details.status) }"
+            [attr.title]="getStatusTitle(cardData.idea_details.status)">
           </span>
           {{ cardData.idea_details.title }}
         </h4>

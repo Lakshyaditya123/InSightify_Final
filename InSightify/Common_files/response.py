@@ -9,7 +9,6 @@ class ResponseHandler:
     def send_response(self):
         return self.response
 
-
 class DatabaseResponse:
     def __init__(self):
         self.errCode = None

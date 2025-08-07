@@ -2,7 +2,7 @@ from InSightify.Common_files.response import ResponseHandler
 from InSightify.CoreClasses import UsersRolesCRUD, RoleCRUD
 from InSightify.CoreClasses.users import UserCRUD
 from InSightify.db_server.Flask_app import dbsession, app_logger
-
+import bcrypt
 
 class LoginHelper:
     def __init__(self):
@@ -17,8 +17,9 @@ class LoginHelper:
         if data.get('email') and data.get('password'):
             user_rec=self.user_crud.get_by_email(data.get('email'))["obj"]
             if user_rec:
-                if user_rec.password == data['password']:
-                    #token = create_access_token(identity={"user_name": self.username, "user_id": self.user_rec.id}, expires_delta=timedelta(days=1))
+                user_password = data['password'].encode('utf-8')
+                hashed_password = user_rec.password.encode('utf-8')
+                if bcrypt.checkpw(user_password, hashed_password):
                     user_role_id = self.user_role_crud.get_user_roles(user_id=user_rec.id)["obj"]
                     user_role = self.role_crud.get_role_id(user_role_id.id_roles)["obj"].roles
                     role=data.get('role')

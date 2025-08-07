@@ -1,4 +1,4 @@
-from sqlalchemy import or_, func
+from sqlalchemy import or_, func, select
 from sqlalchemy.orm import joinedload
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.Flask_app import app_logger
@@ -248,4 +248,10 @@ class IdeaCRUD(BaseCRUD):
                     msg="No similar ideas found!",
                     obj=None)
 
+        return self.db_response.send_response()
+
+
+    def bulk_select_ideas(self, idea_list):
+        self.db_session.execute(select(Idea).where(Idea.id.in_(idea_list))).scalars().all()
+        self.db_response.get_response(errCode=0, msg="Found tags", obj=self.db_session.query(self.model))
         return self.db_response.send_response()

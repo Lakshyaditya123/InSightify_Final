@@ -19,7 +19,8 @@ export class IdeaService {
   private add_comment_url = `${this.apiUrl}/user/add_comment`;
   private get_user_profile = `${this.apiUrl}/user_profile`;
   private get_admin_wall =`${this.apiUrl}/admin/main_wall`;
-  private update_idea_status=`${this.apiUrl}/admin/update_idea_status`
+  private update_idea_status=`${this.apiUrl}/admin/update_idea_status`;
+  private remerge_ideas=`${this.apiUrl}/admin/remerge_ideas`;
 
   constructor(private http: HttpClient) {}
 
@@ -94,4 +95,7 @@ get_idea(idea_id: number | null, merged_idea_id: number | null, user_id: number)
     return this.http.post(this.update_idea_status,payload)
   }
 
+  remerge_these_ideas(payload:any): Observable<any>{
+    return this.http.post(this.remerge_ideas, payload)
+  }
 }

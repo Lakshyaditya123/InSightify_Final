@@ -8,8 +8,7 @@ api.add_resource(Bar, '/bar') #Done
 api.add_resource(SignUp, '/signup') #Done
 api.add_resource(Login, '/login') #Done
 api.add_resource(AdminMainWall, '/admin/main_wall') #Done
-api.add_resource(UserMainWall, '/user/main_wall')
-# api.add_resource(MySpaceWall, '/user/my_space_wall') #Done
+api.add_resource(UserMainWall, '/user/main_wall') #Done
 api.add_resource(VoteUpdate, '/user/vote_update') #Done
 api.add_resource(AddingIdea, '/user/add_idea') #Done
 api.add_resource(UpdateIdeaStatus, '/admin/update_idea_status')
@@ -24,6 +23,7 @@ api.add_resource(AddComment, "/user/add_comment") #Done
 api.add_resource(CommentDisplay, "/user/comment_display") #Done
 api.add_resource(RefineIdeas, "/user/refine_idea") #Done
 api.add_resource(ForgotPassswd, "/forgot_password") #Done
+api.add_resource(BulkMerge, "/admin/remerge_ideas") #Done
 
 # Test left for merging with merged ideas
 app_logger.info("Routes registered successfully")

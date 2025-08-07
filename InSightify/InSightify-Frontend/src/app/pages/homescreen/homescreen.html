@@ -1,5 +1,4 @@
 <div class="homescreen-container">
-    <!-- <app-navbar (ideaSearch)="onSearchReceived($event)"></app-navbar> -->
     <app-navbar 
     (ideaSearch)="onSearchReceived($event)" 
     [allIdeas]="unfiltered_cards" 
@@ -70,7 +69,7 @@
           <div *ngFor="let idea of all_my_cards" class="my-idea-card" (click)="open_my_space_idea_modal(idea, false)"
             title="Click to view idea">
             <div class="my-idea-header">
-              <span class="dot" [ngClass]="getStatusColor(idea.status)"></span>
+              <span class="dot" [ngClass]="getStatusColor(idea.status)" [attr.title]="getStatusTitle(idea.status)"></span>
               <span class="idea-name">{{ idea.title }}</span>
             </div>
             <small class="my-idea-subject">{{ idea.subject }}</small>
@@ -117,14 +116,14 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header text-muted row" *ngIf="selectedMergedCard">
-        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false" style="max-width: 15rem;">
+        <div class="idea_header col" *ngIf="selectedMergedCard.user_idea_details?.length" (click)="showMergedIdea=true;isMergedCommentsVisible=false" style="max-width: fit-content;" [class.active]="showMergedIdea">
           <img *ngFor="let user of selectedMergedCard.user_idea_details.slice(0, 3)"
                 [src]="user.user_details.profile_picture || 'assets/userLogo.png'" width="30px"
                 class="author-avatar" [title]="user.user_details.name">
           Merged Idea
         </div>
         <!-- </span> -->
-        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header col" (click)="showChildIdea(user.idea_details.id)" >
+        <div *ngFor="let user of selectedMergedCard.user_idea_details" style="gap:3" class="idea_header col" (click)="showChildIdea(user.idea_details.id)" [class.active]="!showMergedIdea && selectedCard?.idea_details?.id === user.idea_details.id">
          <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" style="border-radius: 50%;" class="author-avatar">
          {{ user.idea_details.title }}
         </div>

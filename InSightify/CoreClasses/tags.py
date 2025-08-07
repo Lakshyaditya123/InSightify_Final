@@ -30,7 +30,7 @@ class TagCRUD(BaseCRUD):
     def delete_tag(self, tag_id):
         tag=self.get_by_id(id=tag_id)["obj"]
         if tag.status==0:
-            self.delete(id=tag_id)
+            self.delete_record(id=tag_id)
             self.db_response.get_response(errCode=0, msg="Tag deleted successfully", obj=tag)
         else:
             self.db_response.get_response(errCode=0, msg="Tag cannot be deleted as it is active", obj=tag)

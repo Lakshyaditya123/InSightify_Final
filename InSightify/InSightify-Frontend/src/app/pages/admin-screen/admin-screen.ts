@@ -8,7 +8,7 @@ import { IdeaDetails } from '../../components/idea-details/idea-details';
 import { MergedIdeaDetails } from '../../components/merged-idea-details/merged-idea-details';
 import { AuthService } from '../../services/auth';
 import { IdeaService } from '../../services/idea';
-import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small, TagsList, User_idea_details} from '../../services/api-interfaces';
+import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small, TagsList, User_idea_details } from '../../services/api-interfaces';
 
 declare var bootstrap: any;
 
@@ -35,10 +35,18 @@ export class AdminScreen implements OnInit, AfterViewInit {
   currentUser!: CurrUser;
   model_opened = false;
   showMergedIdea = true;
+  isMerging = false;
+  isIdeaRemoved = false;
+  isClicked=false;
   @ViewChild('modelContent') modelContent!: ElementRef;
   modalWidth: number = 0;
   updatedTagsList: TagsList[] = [];
-  users!:User_idea_details[]
+  userIdeaDetails!:User_idea_details[];
+  removeIdeaIds:number[]=[];
+
+  // New properties for the confirmation modal
+  showRemoveConfirmModal = false;
+  ideaToRemove: User_idea_details | null = null;
 
   constructor(
     private router: Router,
@@ -71,27 +79,21 @@ export class AdminScreen implements OnInit, AfterViewInit {
     });
   }
 
-  /**
-   * Handles the search term emitted from the navbar and filters the submissions.
-   */
   onSearchReceived(searchTerm: string) {
     const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
 
     if (!lowerCaseSearchTerm) {
-      // If search is empty, restore the original lists
       this.all_cards = [...this.unfiltered_cards];
       this.all_merged_cards = [...this.unfiltered_merged_cards];
       return;
     }
 
-    // Filter single ideas
     this.all_cards = this.unfiltered_cards.filter(card =>
       card.idea_details.title.toLowerCase().includes(lowerCaseSearchTerm) ||
       card.idea_details.subject.toLowerCase().includes(lowerCaseSearchTerm)||
       card.user_details.name.toLowerCase().includes(lowerCaseSearchTerm)
     );
 
-    // Filter merged ideas
     this.all_merged_cards = this.unfiltered_merged_cards.filter(card =>
       card.merged_idea_details.title.toLowerCase().includes(lowerCaseSearchTerm) ||
       card.merged_idea_details.subject.toLowerCase().includes(lowerCaseSearchTerm)||
@@ -100,14 +102,10 @@ export class AdminScreen implements OnInit, AfterViewInit {
   }
 
   get_all_ideas() {
-    // Assuming 'get_all_admin_main_walls' is the correct method for fetching admin submissions
     this.ideaService.get_all_admin_main_walls().subscribe((res: ApiResponse) => {
       if (res.errCode === 0 && res.datarec) {
-        // Store the original, unfiltered data
         this.unfiltered_cards = res.datarec.all_ideas || [];
         this.unfiltered_merged_cards = res.datarec.all_merged_ideas || [];
-
-        // Initially, the displayed lists are a copy of the master lists
         this.all_cards = [...this.unfiltered_cards];
         this.all_merged_cards = [...this.unfiltered_merged_cards];
       } else {
@@ -116,10 +114,10 @@ export class AdminScreen implements OnInit, AfterViewInit {
     });
   }
 
-
     async showChildIdea(card_id:number){
     console.log("Method triggered");
     this.showMergedIdea=false;
+    this.isClicked=true;
     const result: ApiResponse = await firstValueFrom(
       this.ideaService.get_idea(card_id, null, this.currentUserId)
     );
@@ -132,14 +130,55 @@ export class AdminScreen implements OnInit, AfterViewInit {
     }
   }
 
-  removeThisIdea(user:User_idea_details){
-    this.showMergedIdea=true;
-    this.users = this.users.filter(
-      obj => obj.idea_details.id !== user.idea_details.id);
+  removeThisIdea(user: User_idea_details) {
+    this.ideaToRemove = user;
+    this.showRemoveConfirmModal = true;
   }
 
-  async onApprove(idea_id: number|null, merged_idea_id:number|null) {
-    const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: 1, tags_list:[],update_idea_tags:null }
+  confirmRemoveIdea() {
+    if (!this.ideaToRemove) {
+      return; 
+    }
+    this.showMergedIdea = true;
+    this.isIdeaRemoved = true;
+    this.removeIdeaIds.push(this.ideaToRemove.idea_details.id);
+    this.userIdeaDetails = this.userIdeaDetails.filter(
+      obj => obj.idea_details.id !== this.ideaToRemove!.idea_details.id
+    );
+
+    this.cancelRemoveIdea();
+  }
+  
+  cancelRemoveIdea() {
+    this.showRemoveConfirmModal = false;
+    this.ideaToRemove = null;
+  }
+
+  async RemergeIdeas(){
+    this.isMerging=true;
+    const payload={merged_idea_id:this.selectedMergedCard?.merged_idea_details.id,idea_id_list: this.userIdeaDetails.map(item => item.idea_details.id)}
+    try{
+      const result: ApiResponse= await firstValueFrom(this.ideaService.remerge_these_ideas(payload));
+      if (result.errCode === 0 && result.datarec) {
+          this.showSuccess('Idea merged successfully!');
+          Object.assign(this.selectedMergedCard!.merged_idea_details, {
+            title: result.datarec.title,
+            subject: result.datarec.subject,
+            content: result.datarec.content
+          });
+        } else {
+          this.showError('Failed to merge Ideas');
+          console.error("Failed to get idea:", result.message);
+        }
+    }catch (error) {
+      console.error('Error Merging Ideas:', error);
+    } finally {
+      this.isMerging = false;
+    }
+  }
+
+  async onApprove(idea_id: number|null, merged_idea_id:number|null, merged_idea_details:any|null, removed_idea_ids: number[]|null) {
+    const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: 1, merged_idea_details: merged_idea_details,removed_idea_ids:removed_idea_ids}
     const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
     if (result.errCode === 0 && result.datarec) {
         this.showSuccess('Idea Approved');
@@ -151,7 +190,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
 
 
   async onDecline(idea_id: number|null, merged_idea_id:number|null) {
-    const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: -1, tags_list:[],update_idea_tags:null }
+    const payload={idea_id:idea_id, merged_idea_id:merged_idea_id, status: -1}
     const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
     if (result.errCode === 0 && result.datarec) {
         this.showSuccess('Idea Declined');
@@ -191,8 +230,8 @@ export class AdminScreen implements OnInit, AfterViewInit {
       );
   
       if (result.errCode === 0 && result.datarec) {
-        this.selectedMergedCard = result.datarec; // Full Merged_idea_large
-        this.users=this.selectedMergedCard!.user_idea_details
+        this.selectedMergedCard = result.datarec; 
+        this.userIdeaDetails=this.selectedMergedCard!.user_idea_details
       } else {
         console.error("Failed to fetch merged idea details:", result.message);
       }
@@ -231,6 +270,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
     setTimeout(() => {
     this.selectedMergedCard = null;
     this.showMergedIdea=true;
+    this.isIdeaRemoved=false;
      }, 150);
   }
 

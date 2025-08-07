@@ -18,6 +18,11 @@ export class AuthPage implements OnInit {
   signupForm: FormGroup;
   isSignup = false;
 
+  // Properties to track password visibility
+  showLoginPassword = false;
+  showSignupPassword = false;
+  showConfirmPassword = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -27,7 +32,7 @@ export class AuthPage implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      role: ['User', Validators.required] // Add role control with 'user' as default
+      role: ['User', Validators.required]
     });
 
     this.signupForm = this.fb.group({
@@ -43,10 +48,24 @@ export class AuthPage implements OnInit {
     this.authService.clearUser();
   }
 
+  /**
+   * Toggles the visibility of a password field.
+   * @param field The field to toggle ('login', 'signup', or 'confirm').
+   */
+  togglePasswordVisibility(field: 'login' | 'signup' | 'confirm') {
+    if (field === 'login') {
+      this.showLoginPassword = !this.showLoginPassword;
+    } else if (field === 'signup') {
+      this.showSignupPassword = !this.showSignupPassword;
+    } else if (field === 'confirm') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
+  }
+
   toggleMode(event: Event): void {
     event.preventDefault();
     this.isSignup = !this.isSignup;
-    this.loginForm.reset({ role: 'User' }); // Reset form but keep default role
+    this.loginForm.reset({ role: 'User' });
     this.signupForm.reset();
   }
 
@@ -74,16 +93,15 @@ export class AuthPage implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      const payload= this.loginForm.value;
+      const payload = this.loginForm.value;
       this.authService.login(payload).subscribe({
         next: (res: ApiResponse) => {
           if (res.errCode === 0 && res.datarec) {
             this.showSuccess('Login successful!');
             const user: CurrUser = res.datarec;
-            console.log(user)
             this.authService.setUser(user);
-            // Navigate based on the selected role
-            if (payload.role === 'Admin' || payload.role==="Super Admin") {
+
+            if (payload.role === 'Admin' || payload.role === "Super Admin") {
               this.router.navigate(['/admin']);
             } else {
               this.router.navigate(['/homescreen']);

@@ -1,7 +1,7 @@
 from InSightify.Common_files.response import ResponseHandler
 from InSightify.CoreClasses import UserCRUD, UsersRolesCRUD
 from InSightify.db_server.Flask_app import dbsession
-
+import bcrypt
 
 class SignupHelper:
     def __init__(self):
@@ -21,6 +21,10 @@ class SignupHelper:
             if user_rec:
                 self.response.get_response(3, "User already exists with this email")
             else:
+                password = data['password'].encode('utf-8')
+                salt = bcrypt.gensalt(rounds=12)
+                hashed_password = bcrypt.hashpw(password, salt)
+                data['password'] = hashed_password.decode('utf-8')
                 user=self.user_crud.create_user(**data)["obj"]
                 if self.user_crud.commit_it()["errCode"]:
                     self.response.get_response(500, "Internal Server Error")
