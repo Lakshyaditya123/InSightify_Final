@@ -21,10 +21,9 @@ class IdeasMergedIdeasCRUD(BaseCRUD):
             IdeasMergedIdeas.id_ideas.in_(removed_idea_ids)
         ).delete(synchronize_session=False)
         self.db_session.flush()
-        if deleted_count == 0:
-            self.db_response.get_response(errCode=0, msg="No matching ideas found to unlink", obj=None)
+        if deleted_count == 0 or deleted_count is None:
+            self.db_response.get_response(errCode=1, msg="No matching ideas found to unlink", obj=None)
         else:
             self.db_response.get_response(errCode=0, msg=f"{deleted_count} idea(s) unlinked successfully", obj=None)
-
         return self.db_response.send_response()
 

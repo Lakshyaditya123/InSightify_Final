@@ -11,17 +11,6 @@ class WallHelper:
         self.response=ResponseHandler()
         self.session=dbsession
 
-    # def load_my_space(self, data):
-    #     my_ideas = self.idea_crud.get_by_user(data.get("user_id"))
-    #     if my_ideas["errCode"] == 0:
-    #         if my_ideas["obj"]:
-    #             self.response.get_response(0, "Found My ideas Successfully", data=my_ideas["obj"] ) # pass token here
-    #         else:
-    #             self.response.get_response(2, "No Ideas Found")
-    #     else:
-    #         self.response.get_response(500, "Internal Server Error")
-    #     return self.response.send_response()
-
     def load_wall(self,data=None, user="user"):
         if user=="user":
             all_ideas = self.idea_crud.get_all_ideas_with_details(user_id=data.get("user_id"))["obj"]

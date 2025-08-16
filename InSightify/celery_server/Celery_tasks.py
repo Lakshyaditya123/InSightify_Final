@@ -10,6 +10,12 @@ response = ResponseHandler()
 
 @app.task(name="tags_worker")
 def tags_worker(idea_id, tags_list):
+    """
+    Handles tags for the ideas and updates the tags in the idea table
+    :param idea_id:
+    :param tags_list:
+    :return:
+    """
     app_logger.info("------------Idea worker started-----------")
     tag_ids_by_name = {}
     for tag in tags_list:
@@ -51,10 +57,16 @@ def tags_worker(idea_id, tags_list):
     else:
         idea=idea_crud.get_by_id(idea_id)["obj"]
         response.get_response(0, "Tags updated successfully!!", data_rec=idea_crud.convert_to_dict(idea))
+        merge_idea_worker.delay(idea_id)
     return response.send_response()
 
 @app.task(name="merge_idea_worker")
 def merge_idea_worker(idea_id):
+    """
+    Automatically merges the ideas based when a new idea is created.
+    :param idea_id:
+    :return:
+    """
     from InSightify.service_handler import AiHelper
     ai_helper = AiHelper()
     idea=idea_crud.get_by_id(idea_id)["obj"]

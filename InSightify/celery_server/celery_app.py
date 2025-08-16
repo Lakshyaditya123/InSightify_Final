@@ -1,10 +1,10 @@
 from celery import Celery
-
+from InSightify.Common_files.config import config
 
 
 app = Celery(
     "InSightify_tasks",
-    broker = "redis://:12345@localhost:6379/0",  # or use host.docker.internal if calling from a container
+    broker = config.REDDIS_URL,
 )
 app.conf.task_routes = {
     "tags_worker":{

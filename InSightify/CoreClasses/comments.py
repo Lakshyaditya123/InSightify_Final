@@ -1,5 +1,4 @@
 from sqlalchemy.orm import joinedload
-
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.app_orm import Comment, User, Vote
 

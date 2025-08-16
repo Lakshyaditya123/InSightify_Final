@@ -1,27 +1,14 @@
 import logging as lg
 from pythonjsonlogger.json import JsonFormatter
+from InSightify.Common_files.config import config
 
-leveldict = {
-    'DEBUG': lg.DEBUG,
-    'INFO': lg.INFO,
-    'WARNING': lg.WARNING,
-    'ERROR': lg.ERROR,
-    'CRITICAL': lg.CRITICAL
-}
+class Logger:
 
-
-class Logger:  # Capitalized class name following Python conventions
-
-    def __init__(self, level=lg.INFO,
-                 log_file="Task.log"):
+    def __init__(self, level=lg.INFO, log_file=config.LOG_FILE):
         # Logging setup
         self.log = lg.getLogger(__name__)
         self.log.setLevel(level)
-
-        # Clear any existing handlers to avoid duplicates
         self.log.handlers.clear()
-
-        # Log file handler
         file_handler = lg.FileHandler(filename=log_file, mode="a")
         formatter = JsonFormatter("%(asctime)s %(levelname)s %(message)s")
         file_handler.setFormatter(formatter)
@@ -34,19 +21,3 @@ class Logger:  # Capitalized class name following Python conventions
 
     def get_logger(self):
         return self.log
-
-    # Convenience methods for different log levels
-    def debug(self, message):
-        self.log.debug(message)
-
-    def info(self, message):
-        self.log.info(message)
-
-    def warning(self, message):
-        self.log.warning(message)
-
-    def error(self, message):
-        self.log.error(message)
-
-    def critical(self, message):
-        self.log.critical(message)

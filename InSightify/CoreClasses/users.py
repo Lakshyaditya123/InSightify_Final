@@ -21,14 +21,7 @@ class UserCRUD(BaseCRUD):
     def get_by_email(self, email):
         return self.get_by_field("email", email)
 
-    def get_by_mobile(self, mobile):
-        return self.get_by_field("mobile", mobile)
-
     def update_profile(self, user_id, **kwargs):
         return self.update(user_id, **kwargs)
-
-    def get_user_details(self, user_id):
-        return self.get_by_id(user_id)
-
 
 

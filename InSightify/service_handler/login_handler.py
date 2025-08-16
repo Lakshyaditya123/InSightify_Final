@@ -1,6 +1,5 @@
 from InSightify.Common_files.response import ResponseHandler
-from InSightify.CoreClasses import UsersRolesCRUD, RoleCRUD
-from InSightify.CoreClasses.users import UserCRUD
+from InSightify.CoreClasses import UsersRolesCRUD, RoleCRUD, UserCRUD, SecurityQuesCRUD
 from InSightify.db_server.Flask_app import dbsession, app_logger
 import bcrypt
 
@@ -10,6 +9,7 @@ class LoginHelper:
         self.user_crud = UserCRUD(dbsession)
         self.user_role_crud = UsersRolesCRUD(dbsession)
         self.role_crud = RoleCRUD(dbsession)
+        self.security_crud=SecurityQuesCRUD(dbsession)
         self.session = dbsession
 
     def login(self, data):
@@ -51,7 +51,7 @@ class LoginHelper:
                 app_logger.info(f"User found: {data['security_question_id']}=={user_rec.this_obj2security_ques}:{data["security_answer"].strip()}=={user_rec.security_ques_answer}")
                 if user_rec.this_obj2security_ques == data['security_question_id'] and user_rec.security_ques_answer == data['security_answer'].strip():
                     self.response.get_response(0, "Yupp you are the one...")
-                    self.reset_password(data, user_rec)
+                    self.reset_password(data, user_rec.id)
                 else:
                     self.response.get_response(1,"Security_question or answer is incorrect")
             else:
@@ -60,10 +60,12 @@ class LoginHelper:
             self.response.get_response(400, "email, security_question_id and security_answer are required")
         return self.response.send_response()
 
-    def reset_password(self, data, user_rec):
-        new_password = data.get("new_password")
+    def reset_password(self, data, user_id):
+        new_password = data['new_password'].encode('utf-8')
+        salt = bcrypt.gensalt(rounds=12)
+        hashed_password = bcrypt.hashpw(new_password, salt)
         if new_password:
-            self.user_crud.update_profile(user_rec.id, password=new_password)
+            self.user_crud.update_profile(user_id, password=hashed_password.decode('utf-8'))
             if self.user_crud.commit_it()["errCode"]:
                 self.response.get_response(500, "Internal Server Error")
             else:
@@ -72,6 +74,13 @@ class LoginHelper:
             self.response.get_response(400, "new_password are required")
         return self.response.send_response()
 
+    def send_questions(self):
+        result=self.security_crud.get_all_ques()["obj"]
+        if result:
+            self.response.get_response(0,"Security Questions found", data=self.security_crud.convert_to_dict_list(result))
+        else:
+            self.response.get_response(400, "No security questions found")
+        return self.response.send_response()
 
 
 

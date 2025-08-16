@@ -448,7 +448,7 @@ body, html {
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: #b0b0b0;
-    border-radius: 10px; 
+    border-radius: 11px; 
     padding: 5px;
     margin:0px 6px;
     transition: all 0.2s ease;

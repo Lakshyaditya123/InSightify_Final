@@ -37,8 +37,8 @@ class ProfileHelper:
         user_id = data.get("user_id")
         user_rec = self.user_crud.get_by_id(id=user_id)
         if user_rec["obj"]:
-            if data.get("mobile") or data.get("name") or data.get("email"):
-                self.response.get_response(1,"Access Denied to change mobile, email or name")
+            if data.get("mobile") or data.get("name") or data.get("email") or data.get("password"):
+                self.response.get_response(1,"Access Denied to change mobile, email, name and password")
             else:
                 result=self.user_crud.update_profile(user_id=user_rec["obj"].id, **data)["obj"]
                 if self.user_crud.commit_it()["errCode"]:

@@ -49,22 +49,6 @@ class IdeaCRUD(BaseCRUD):
             self.db_response.get_response(errCode=0, msg="Record not found", obj=None)
         return self.db_response.send_response()
 
-    def get_by_status(self, status=1):
-        return self.get_by_fields(status=status)
-
-    def get_by_status_without_ver(self, status=1):
-        return self.get_by_fields(status=status, parent_idea=-1)
-
-    def get_by_tags(self, tag_ids):
-        result = self.db_session.query(self.model).filter(
-            self.model.tags_list.op('&&')(tag_ids)
-        ).all()
-        if result:
-            self.db_response.get_response(errCode=0, msg="Found Record !", obj=result)
-        else:
-            self.db_response.get_response(errCode=0, msg="Record not found", obj=None)
-        return self.db_response.send_response()
-
     def update_status(self, idea_id, status):
         return self.update(idea_id, status=status)
 
@@ -126,6 +110,8 @@ class IdeaCRUD(BaseCRUD):
             if merged_ideas:
                 for merged_idea in merged_ideas:
                     ideas.extend(merged_idea.ideas)
+
+            ideas = list(set(ideas))
             if not ideas:
                 self.db_response.get_response(
                     errCode=0,
@@ -138,7 +124,7 @@ class IdeaCRUD(BaseCRUD):
             for idea in ideas:
                 if idea.status==0 and status==1 and merged_ideas:
                     continue
-                elif idea.status==1 and status==0 and merged_ideas:
+                if idea.status==1 and status==0 and merged_ideas:
                     continue
                 result = self.db_session.query(Vote).filter(Vote.this_obj2ideas == idea.id, Vote.this_obj2users==user_id).first()
                 idea_votes = vote_map.get(idea.id, [])
@@ -195,6 +181,7 @@ class IdeaCRUD(BaseCRUD):
                             "id": idea.id,
                             "title": idea.title,
                             "subject": idea.subject,
+                            "status": idea.status,
                             "created_at": idea.create_datetime.isoformat(),
                             "comments_count": comment_count_map.get(idea.id, 0)
                         },
@@ -226,6 +213,7 @@ class IdeaCRUD(BaseCRUD):
             other_ideas = (
                 self.db_session.query(Idea)
                 .filter(Idea.id != idea.id,Idea.status==1)
+                # .filter(Idea.id != idea.id, Idea.status == 1)
                 .filter(Idea.tags_list.overlap(idea.tags_list))
                 .all()
             )
@@ -235,7 +223,7 @@ class IdeaCRUD(BaseCRUD):
                     continue
                 overlap = input_tags.intersection(set(other.tags_list))
                 ratio = len(overlap) / len(input_tags)
-                if ratio > 0:
+                if ratio >= (2/7):
                     similar_ideas.append(other)
             if similar_ideas:
                 self.db_response.get_response(

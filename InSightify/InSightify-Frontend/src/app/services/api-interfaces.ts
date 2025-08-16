@@ -24,9 +24,10 @@ export interface Idea_small {
     profile_picture: string
   },
   idea_details: {
-    id: 7,
+    id: number,
     title: string,
     subject: string,
+    status: number,
     created_at: string,
     comments_count: number
   },
@@ -43,6 +44,7 @@ export interface User_idea_details{
     id: number,
     title: string,
     subject: string
+    status: number,
   }
 }
 
@@ -53,6 +55,7 @@ export interface Merged_idea_small {
     id: number,
     title: string,
     subject: string,
+    status: number,
     comments_count: number
   }
   vote_details: Vote
@@ -80,9 +83,9 @@ user_vote_details:{
   vote_type: number
   },
 vote_details: {
-  upvotes: 0,
-  downvotes: 0,
-  total: 0
+  upvotes: number,
+  downvotes: number,
+  total: number
   }
 }
 
@@ -190,4 +193,9 @@ export interface bulkMerge{
     title: string,
     subject: string,
     content: string
+}
+
+export interface securityQues{
+  id: number,
+  content: string
 }

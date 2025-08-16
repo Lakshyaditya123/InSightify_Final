@@ -14,6 +14,6 @@ class DatabaseResponse:
         self.errCode = None
         self.response = dict()
     def get_response(self,errCode, msg, obj=None):
-        self.response = {"errCode": errCode, "msg": msg if msg else "No Message", "obj": obj}
+        self.response = {"errCode": errCode, "msg": msg if msg else "No Message", "obj": obj if obj else None}
     def send_response(self):
         return self.response

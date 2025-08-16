@@ -8,6 +8,7 @@ from .merged_ideas import *
 from .ideas_merged_ideas import *
 from .users_roles import *
 from .ideas_merged_ideas import *
+from .security_ques import *
 
 all_models={
     'user_crud' : UserCRUD,
@@ -19,5 +20,6 @@ all_models={
     'merged_idea_crud' : MergedIdeaCRUD,
     'ideas_merged_ideas' : IdeasMergedIdeasCRUD,
     'users_roles_crud' : UsersRolesCRUD,
+    'security_ques_crud':SecurityQuesCRUD
 }
 

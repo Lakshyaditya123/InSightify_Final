@@ -9,5 +9,4 @@ export const routes: Routes = [
   { path: 'login', component: AuthPage },
   { path: 'homescreen', component: Homescreen },
   { path: 'admin', component: AdminScreen },
-  // other routes...
 ];

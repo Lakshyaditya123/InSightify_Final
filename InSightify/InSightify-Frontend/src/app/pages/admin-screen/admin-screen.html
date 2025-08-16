@@ -15,7 +15,8 @@
                   <ng-container *ngIf="idea.user_idea_details.length >1">
                     <img *ngFor="let user of idea.user_idea_details.slice(0,3)"
                         [src]="user.user_details.profile_picture || 'assets/default-user.png'"
-                        class="author-avatar" [title]="user.user_details.name">
+                        class="author-avatar" [title]="user.user_details.name"
+                        (click)="removeThisIdea(user); $event.stopPropagation()">
                   </ng-container>
                 </div>
               <div class="idea-text">
@@ -83,7 +84,7 @@
           </div>
           Merged Idea
         </div>
-        <div *ngFor="let user of userIdeaDetails" class="idea_header col gap-2" [class.active]="!showMergedIdea && selectedCard?.idea_details?.id === user.idea_details.id" (click)="showChildIdea(user.idea_details.id)">
+        <div *ngFor="let user of userIdeaDetails" class="idea_header col gap-2" [class.active]="!showMergedIdea && selectedCard?.idea_details?.id === user.idea_details.id " (click)="showChildIdea(user.idea_details.id)">
           <img [src]="user.user_details.profile_picture || '/assets/userLogo.png'" width="30px" [attr.title]="user.user_details.name" class="author-avatar">
           <div class="idea-tab-content">
             <span class="idea-header-title">{{ user.idea_details.title }}</span>
@@ -98,8 +99,8 @@
       <div class="modal-footer">
         <div>
           <div class="modal-actions" *ngIf="selectedMergedCard && showMergedIdea">
-            <button class="approve-btn" (click)="onApprove(null,selectedMergedCard.merged_idea_details.id,null ,removeIdeaIds)" [disabled]="isMerging || !showMergedIdea || isIdeaRemoved">APPROVE</button>
-            <button class="decline-btn" (click)="onDecline(null,selectedMergedCard.merged_idea_details.id)" [disabled]="isMerging || !showMergedIdea || isIdeaRemoved">DECLINE</button>
+            <button class="approve-btn" (click)="onApprove(null,selectedMergedCard.merged_idea_details.id,selectedMergedCard.merged_idea_details,removeIdeaIds)" [disabled]="isMerging || isIdeaRemoved">APPROVE</button>
+            <button class="decline-btn" (click)="onDecline(null,selectedMergedCard.merged_idea_details.id)" [disabled]="isMerging || isIdeaRemoved">DECLINE</button>
           </div>
         </div>
       <span class="row">

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
-import { ApiResponse, CurrUser } from '../../services/api-interfaces';
+import { ApiResponse, CurrUser, securityQues } from '../../services/api-interfaces';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
@@ -16,12 +16,18 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class AuthPage implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
+  forgotPasswordForm: FormGroup;
   isSignup = false;
+  isForgotPassword = false;
 
   // Properties to track password visibility
   showLoginPassword = false;
   showSignupPassword = false;
   showConfirmPassword = false;
+  showNewPassword = false;
+  showConfirmNewPassword = false;
+  
+  securityQuesList: securityQues[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -42,24 +48,40 @@ export class AuthPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     });
+
+    this.forgotPasswordForm = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        security_question_id: [null, Validators.required],
+        security_answer: ['', Validators.required],
+        new_password: ['', [Validators.required, Validators.minLength(6)]],
+        confirm_new_password: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
     this.authService.clearUser();
+    this.getSecurityQuestions();
   }
 
-  /**
-   * Toggles the visibility of a password field.
-   * @param field The field to toggle ('login', 'signup', or 'confirm').
-   */
-  togglePasswordVisibility(field: 'login' | 'signup' | 'confirm') {
-    if (field === 'login') {
-      this.showLoginPassword = !this.showLoginPassword;
-    } else if (field === 'signup') {
-      this.showSignupPassword = !this.showSignupPassword;
-    } else if (field === 'confirm') {
-      this.showConfirmPassword = !this.showConfirmPassword;
-    }
+  getSecurityQuestions() {
+      this.authService.getSecQuestions().subscribe({
+          next: (res: ApiResponse) => {
+              if(res.errCode === 0 && res.data) {
+                  this.securityQuesList = res.data;
+              } else {
+                  this.showError('Could not load security questions.');
+              }
+          },
+          error: (err) => this.showError('Failed to fetch security questions.')
+      });
+  }
+
+  togglePasswordVisibility(field: 'login' | 'signup' | 'confirm' | 'new' | 'confirmNew') {
+    if (field === 'login') this.showLoginPassword = !this.showLoginPassword;
+    else if (field === 'signup') this.showSignupPassword = !this.showSignupPassword;
+    else if (field === 'confirm') this.showConfirmPassword = !this.showConfirmPassword;
+    else if (field === 'new') this.showNewPassword = !this.showNewPassword;
+    else if (field === 'confirmNew') this.showConfirmNewPassword = !this.showConfirmNewPassword;
   }
 
   toggleMode(event: Event): void {
@@ -67,6 +89,12 @@ export class AuthPage implements OnInit {
     this.isSignup = !this.isSignup;
     this.loginForm.reset({ role: 'User' });
     this.signupForm.reset();
+  }
+
+  toggleForgotPassword(event: Event): void {
+      event.preventDefault();
+      this.isForgotPassword = !this.isForgotPassword;
+      this.forgotPasswordForm.reset();
   }
 
   signup() {
@@ -113,6 +141,31 @@ export class AuthPage implements OnInit {
         error: (err) => this.showError('An error occurred during login.')
       });
     }
+  }
+
+    forgotPassword() {
+      if(this.forgotPasswordForm.valid) {
+          if (this.forgotPasswordForm.value.new_password !== this.forgotPasswordForm.value.confirm_new_password) {
+              this.showError('New passwords do not match.');
+              return;
+          }
+
+          const formValue = { ...this.forgotPasswordForm.value };
+          formValue.security_question_id = parseInt(formValue.security_question_id, 10);
+          delete formValue.confirm_new_password;
+          
+          this.authService.forgetPasswd(formValue).subscribe({
+              next: (res: ApiResponse) => {
+                  if (res.errCode === 0) {
+                      this.showSuccess('Password has been reset successfully! Please login.');
+                      this.isForgotPassword = false;
+                  } else {
+                      this.showError(res.message || 'Password reset failed.');
+                  }
+              },
+              error: (err) => this.showError('An error occurred during password reset.')
+          });
+      }
   }
 
   showSuccess(message: string) {

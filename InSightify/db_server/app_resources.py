@@ -163,3 +163,9 @@ class BulkMerge(Resource):
         merger=AiHelper()
         data=request.get_json()
         return merger.merge_bulk_ideas(data)
+
+class SendQuestions(Resource):
+    @staticmethod
+    def get():
+        login=LoginHelper()
+        return login.send_questions()

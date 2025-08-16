@@ -1,68 +1,58 @@
-<!-- 
-<div class="profile-backdrop" (click)="onBackdropClick()">
-
-  <aside class="profile-panel" (click)="onPanelClick($event)">
-    <div class="panel-header">
-      <h3>User Profile</h3>
-      <button class="close-btn" (click)="closeProfile.emit()">&times;</button>
-    </div>
-    <div class="panel-body" *ngIf="currentUser">
-      <div class="profile-avatar-large">
-        <img [src]="currentUser.user_profile_picture || 'assets/userLogo.png'" [attr.title]="currentUser.user_name">
-      </div>
-      <div class="profile-info">
-        <h4 class="user-name">{{ currentUser.user_name }}</h4>
-        <p class="user-role">{{ currentUser.user_role.join(', ') | titlecase }}</p>
-        <div class="user-details">
-          <p><i class="bi bi-envelope-fill"></i> {{ currentUser.user_email }}</p>
-          <p><i class="bi bi-telephone-fill"></i> {{ currentUser.user_mobile }}</p>
-        </div>
-        <div class="user-bio">
-          <h5>Bio</h5>
-          <p>{{ currentUser.user_bio || 'No bio provided.' }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="panel-footer">
-      <button class="logout-btn" (click)="logout()">
-        <i class="bi bi-box-arrow-right"></i> Logout
-      </button>
-    </div>
-  </aside>
-</div> -->
-
 <div class="profile-backdrop" [class.fade-out]="isClosing" (click)="onBackdropClick()">
   <aside class="profile-panel" [class.slide-out]="isClosing" (click)="onPanelClick($event)">
-    <div class="panel-header">
+   <div class="panel-header">
       <h3>User Profile</h3>
       <button class="close-btn" (click)="startClose()">&times;</button>
     </div>
-    <div class="panel-body" *ngIf="currentUser">
+    <div class="panel-body" *ngIf="displayUser">
       <div class="profile-avatar-large">
-        <img [src]="currentUser.user_profile_picture || 'assets/userLogo.png'" [attr.title]="currentUser.user_name">
+        <img [src]="displayUser.user_profile_picture || 'assets/userLogo.png'" [attr.title]="displayUser.user_name">
       </div>
       <div class="profile-info">
-        <h4 class="user-name">{{ currentUser.user_name }}</h4>
-        <p class="user-role">{{ currentUser.user_role | titlecase }}</p>
+        <h4 class="user-name">{{ displayUser.user_name }}</h4>
+        <p class="user-role">{{ displayUser.user_role | titlecase }}</p>
         <div class="user-details">
-          <p><i class="bi bi-envelope-fill"></i> {{ currentUser.user_email }}</p>
-          <p><i class="bi bi-telephone-fill"></i> {{ currentUser.user_mobile }}</p>
+          <p><i class="bi bi-envelope-fill"></i> {{ displayUser.user_email }}</p>
+          <p><i class="bi bi-telephone-fill"></i> {{ displayUser.user_mobile }}</p>
         </div>
-        <div class="user-bio">
+
+        <!-- View Mode -->
+        <div class="user-bio" *ngIf="!isEditMode">
           <h5>Bio</h5>
-          <p>{{ currentUser.user_bio || 'No bio provided.' }}</p>
+          <p>{{ displayUser.user_bio || 'No bio provided.' }}</p>
         </div>
+
+        <!-- Edit Mode -->
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="edit-profile-form" *ngIf="isEditMode">
+          <div class="form-group">
+            <label for="profile_picture">Profile Picture URL</label>
+            <input id="profile_picture" type="text" formControlName="profile_picture" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea id="bio" formControlName="bio" rows="4" class="form-control"></textarea>
+          </div>
+          <div class="edit-actions">
+            <button type="button" class="btn-cancel" (click)="toggleEditMode()">Cancel</button>
+            <button type="submit" class="btn-save">Save Changes</button>
+          </div>
+        </form>
+
       </div>
     </div>
-    <div class="panel-footer" *ngIf="isSuperAdmin">
-      <button class="switch-btn" (click)="switchProfile()">
-        <i class="bi bi-box-arrow-right"></i> Switch To {{profile}}
-      </button>
-    </div>
     <div class="panel-footer">
+      <!-- Edit button is only shown for the user's own profile -->
+      <button class="edit-btn" *ngIf="currentUser?.user_id === displayUser?.user_id && !isEditMode" (click)="toggleEditMode()">
+        <i class="bi bi-pencil-fill"></i> Edit Profile
+      </button>
+      <button class="switch-btn" *ngIf="isSuperAdmin" (click)="switchProfile()">
+        <i class="bi bi-arrow-repeat"></i> Switch to {{ currentModeLabel }}
+      </button>
       <button class="logout-btn" (click)="logout()">
         <i class="bi bi-box-arrow-right"></i> Logout
       </button>
     </div>
   </aside>
 </div>
+
+

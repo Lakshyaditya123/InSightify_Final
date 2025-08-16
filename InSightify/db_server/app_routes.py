@@ -1,4 +1,6 @@
 """add all apis to here along with their routes. """
+from sqlalchemy.orm.query import BulkDelete
+
 from InSightify.db_server.Flask_app import app, api,app_logger
 from InSightify.db_server.app_resources import *
 
@@ -24,6 +26,7 @@ api.add_resource(CommentDisplay, "/user/comment_display") #Done
 api.add_resource(RefineIdeas, "/user/refine_idea") #Done
 api.add_resource(ForgotPassswd, "/forgot_password") #Done
 api.add_resource(BulkMerge, "/admin/remerge_ideas") #Done
+api.add_resource(SendQuestions, "/security_questions")
 
 # Test left for merging with merged ideas
 app_logger.info("Routes registered successfully")

@@ -41,7 +41,6 @@ body, html {
   background-image: linear-gradient(#5C7285, #09122C);
 }
 
-/* --- NEW: Password Wrapper --- */
 .password-wrapper {
   position: relative;
   width: 100%;
@@ -59,23 +58,18 @@ body, html {
   background-color: #f0f4f8;
   color: #333;
   box-sizing: border-box;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-/* --- NEW: Validation Styling --- */
-/* This class is automatically added by Angular to invalid fields the user has touched */
 .auth-card input.ng-invalid.ng-touched {
-  border-color: #dc3545; /* Red border for validation error */
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2); /* Optional: adds a subtle glow */
+  border-color: #dc3545;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
 }
 
-
-/* Adjust password input padding to make space for the icon */
 .password-wrapper input {
   padding-right: 45px;
 }
 
-/* --- NEW: Password Toggle Icon --- */
 .password-wrapper .bi {
   position: absolute;
   right: 20px;
@@ -85,7 +79,6 @@ body, html {
   color: #6c757d;
 }
 
-/* Style for the dropdown arrow */
 .role-select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -96,7 +89,6 @@ body, html {
   background-size: 0.65em auto;
   padding-right: 2.5rem;
 }
-
 
 .auth-card button {
   width: 100%;
@@ -117,7 +109,7 @@ body, html {
 }
 
 .switch-text {
-  margin-top: 15px;
+  margin-top: none !important;
   font-size: 1rem;
   color: white;
 }
@@ -132,6 +124,14 @@ body, html {
   text-decoration: underline;
 }
 
+.form-footer {
+    margin-top: 1rem;
+}
+
+.forgot-password-link {
+    font-size: 0.9rem;
+    color: #82c0ff;
+}
 
 ::ng-deep .snack-success {
   background-color: #4caf50;

@@ -1,58 +1,84 @@
 <div class="auth-container">
   <div class="auth-wrapper">
     <img src="assets/Heading.png" alt="InSightify Logo" class="logo" />
+
     <!-- Signup Form -->
-    <div class="auth-card" *ngIf="isSignup">
+    <div class="auth-card" *ngIf="isSignup && !isForgotPassword">
       <form [formGroup]="signupForm" (ngSubmit)="signup()">
         <input type="text" formControlName="name" placeholder="Full Name" required />
         <input type="number" formControlName="mobile" placeholder="Mobile" required />
         <input type="email" formControlName="email" placeholder="Email" required />
-        
-        <!-- Signup Password with Toggle -->
         <div class="password-wrapper">
           <input [type]="showSignupPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" required />
           <i class="bi" [ngClass]="showSignupPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('signup')"></i>
         </div>
-        
-        <!-- Confirm Password with Toggle -->
         <div class="password-wrapper">
           <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" required />
           <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('confirm')"></i>
         </div>
-
         <button type="submit">Sign Up</button>
-        <p class="switch-text">
-          Already have an account?
-          <a href="#" (click)="toggleMode($event)">Login</a>
-        </p>
+        <div class="form-footer">
+          <span class="switch-text">
+            Already have an account?
+            <a href="#" (click)="toggleMode($event)">Login</a><br>
+          </span>
+        </div>
       </form>
     </div>
+
     <!-- Login Form -->
-    <div class="auth-card" *ngIf="!isSignup" style="height: auto;">
+    <div class="auth-card" *ngIf="!isSignup && !isForgotPassword" style="height: auto;">
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <input type="email" formControlName="email" placeholder="Email" required />
-        
-        <!-- Login Password with Toggle -->
         <div class="password-wrapper">
           <input [type]="showLoginPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" required />
           <i class="bi" [ngClass]="showLoginPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('login')"></i>
         </div>
-        
-        <!-- Role Selection Dropdown -->
         <select formControlName="role" class="role-select">
           <option value="User">User</option>
           <option value="Admin">Admin</option>
           <option value="Super Admin">Super Admin</option>
         </select>
-        
         <button type="submit">Login</button>
         <div class="form-footer">
-          <p class="switch-text">
+          <span class="switch-text">
             Don’t have an account?
-            <a href="#" (click)="toggleMode($event)">Sign up</a>
+            <a href="#" (click)="toggleMode($event)">Sign up</a><br>
+          </span>
+          <!-- Forgot Password Link -->
+          <span class="switch-text">
+            <a href="#" class="forgot-password-link" (click)="toggleForgotPassword($event)">Reset password</a><br>
+          </span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div class="auth-card" *ngIf="isForgotPassword" style="height: auto;">
+      <form [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPassword()">
+        <input type="email" formControlName="email" placeholder="Enter your Email" required />
+        <select formControlName="security_question_id" class="role-select">
+          <option [ngValue]="null" disabled>Select a security question</option>
+          <option  *ngFor="let q of securityQuesList" [value]="q.id">{{ q.content }}</option>
+        </select>
+        <input type="text" formControlName="security_answer" placeholder="Your Answer" required />
+        <div class="password-wrapper">
+          <input [type]="showNewPassword ? 'text' : 'password'" formControlName="new_password" placeholder="New Password" required />
+          <i class="bi" [ngClass]="showNewPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('new')"></i>
+        </div>
+        <div class="password-wrapper">
+          <input [type]="showConfirmNewPassword ? 'text' : 'password'" formControlName="confirm_new_password" placeholder="Confirm New Password" required />
+          <i class="bi" [ngClass]="showConfirmNewPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('confirmNew')"></i>
+        </div>
+        <button type="submit">Reset Password</button>
+        <div class="form-footer">
+          <p class="switch-text">
+            Remember your password?
+            <a href="#" (click)="toggleForgotPassword($event)">Back to Login</a>
           </p>
         </div>
       </form>
     </div>
+
   </div>
 </div>

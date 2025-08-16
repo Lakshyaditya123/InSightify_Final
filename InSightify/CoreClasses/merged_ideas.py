@@ -18,9 +18,9 @@ class MergedIdeaCRUD(BaseCRUD):
             tags_list=tags_list,
             status=status
         )
-    def update_merged_ideas(self, merged_idea_id, title, subject, content, tags_list, status=0):
+    def update_merged_ideas(self, id, title, subject, content, tags_list, status=0):
         return self.update(
-            id=merged_idea_id,
+            id=id,
             title=title,
             subject=subject,
             content=content,
@@ -124,7 +124,8 @@ class MergedIdeaCRUD(BaseCRUD):
                         "idea_details": {
                             "id": idea.id,
                             "title": idea.title,
-                            "subject": idea.subject
+                            "subject": idea.subject,
+                            "status": idea.status
                         }
                     })
 
@@ -184,7 +185,7 @@ class MergedIdeaCRUD(BaseCRUD):
             # Fetch all merged ideas with at least one overlapping tag
             merged_ideas = (
                 self.db_session.query(MergedIdea)
-                .filter(MergedIdea.status == 1)
+                # .filter(MergedIdea.status == 1)
                 .filter(MergedIdea.tags_list.overlap(idea.tags_list))
                 .all()
             )
@@ -195,7 +196,7 @@ class MergedIdeaCRUD(BaseCRUD):
                     continue
                 overlap = input_tags.intersection(set(m.tags_list))
                 ratio = len(overlap) / len(input_tags)
-                if ratio > 0:
+                if ratio >= (2/7):
                     similar_merged_ideas.append(m)
             self.db_response.get_response(errCode=0, msg="Similar merged ideas found successfully!", obj=similar_merged_ideas)
         return self.db_response.send_response()

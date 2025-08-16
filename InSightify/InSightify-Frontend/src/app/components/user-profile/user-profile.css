@@ -1,4 +1,4 @@
-/* The backdrop covers the entire screen with a semi-transparent black layer */
+/* --- Existing Styles --- */
 .profile-backdrop {
   position: fixed;
   top: 0;
@@ -10,7 +10,6 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* The side panel itself */
 .profile-panel {
   position: fixed;
   top: 0;
@@ -26,7 +25,6 @@
   animation: slideIn 0.3s ease-in-out;
 }
 
-/* --- NEW: Closing Animation Classes --- */
 .profile-panel.slide-out {
   animation: slideOut 0.3s ease-in-out forwards;
 }
@@ -133,33 +131,14 @@
 .panel-footer {
   padding: 1.5rem;
   border-top: 1px solid #2d2d4a;
-}
-.switch-btn{
-    width: 100%;
-  padding: 0.75rem;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: background-color 0.2s;
+  flex-direction: column;
+  gap: 1rem; /* Space between buttons */
 }
 
-.switch-btn:hover {
-  background-color: rgb(0, 148, 0);
-}
-
-
-.logout-btn {
+.edit-btn, .switch-btn, .logout-btn {
   width: 100%;
   padding: 0.75rem;
-  background-color: #dc3545;
-  color: white;
   border: none;
   border-radius: 8px;
   font-weight: 600;
@@ -171,11 +150,83 @@
   transition: background-color 0.2s;
 }
 
+.edit-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+.edit-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.switch-btn {
+  background-color: #198754;
+  color: white;
+}
+.switch-btn:hover {
+  background-color: #157347;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+}
 .logout-btn:hover {
   background-color: #c82333;
 }
 
-/* --- NEW: Animation Keyframes --- */
+/* --- NEW: Edit Form Styles --- */
+.edit-profile-form {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #b6e0fe;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2d2d4a;
+  border: 1px solid #4a4a6b;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn-cancel, .btn-save {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-save {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* --- Animation Keyframes --- */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

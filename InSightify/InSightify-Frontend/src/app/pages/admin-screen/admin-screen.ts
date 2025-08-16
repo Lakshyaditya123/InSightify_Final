@@ -43,7 +43,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
   updatedTagsList: TagsList[] = [];
   userIdeaDetails!:User_idea_details[];
   removeIdeaIds:number[]=[];
-
+  removedCards: User_idea_details[]=[];
   // New properties for the confirmation modal
   showRemoveConfirmModal = false;
   ideaToRemove: User_idea_details | null = null;
@@ -115,18 +115,19 @@ export class AdminScreen implements OnInit, AfterViewInit {
   }
 
     async showChildIdea(card_id:number){
-    console.log("Method triggered");
-    this.showMergedIdea=false;
-    this.isClicked=true;
-    const result: ApiResponse = await firstValueFrom(
-      this.ideaService.get_idea(card_id, null, this.currentUserId)
-    );
+    if(!this.isMerging){
+      this.showMergedIdea=false;
+      this.isClicked=true;
+      const result: ApiResponse = await firstValueFrom(
+        this.ideaService.get_idea(card_id, null, this.currentUserId)
+      );
 
-    if (result.errCode === 0 && result.datarec) {
-      console.log("show children method")
-      this.selectedCard = result.datarec;
-    } else {
-      console.error("Failed to get idea:", result.message);
+      if (result.errCode === 0 && result.datarec) {
+        console.log("show children method")
+        this.selectedCard = result.datarec;
+      } else {
+        console.error("Failed to get idea:", result.message);
+      }
     }
   }
 
@@ -142,10 +143,10 @@ export class AdminScreen implements OnInit, AfterViewInit {
     this.showMergedIdea = true;
     this.isIdeaRemoved = true;
     this.removeIdeaIds.push(this.ideaToRemove.idea_details.id);
+    this.removedCards.push(this.ideaToRemove)
     this.userIdeaDetails = this.userIdeaDetails.filter(
       obj => obj.idea_details.id !== this.ideaToRemove!.idea_details.id
     );
-
     this.cancelRemoveIdea();
   }
   
@@ -156,6 +157,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
 
   async RemergeIdeas(){
     this.isMerging=true;
+    this.isIdeaRemoved=false;
     const payload={merged_idea_id:this.selectedMergedCard?.merged_idea_details.id,idea_id_list: this.userIdeaDetails.map(item => item.idea_details.id)}
     try{
       const result: ApiResponse= await firstValueFrom(this.ideaService.remerge_these_ideas(payload));
@@ -166,14 +168,13 @@ export class AdminScreen implements OnInit, AfterViewInit {
             subject: result.datarec.subject,
             content: result.datarec.content
           });
+          this.isMerging = false
         } else {
           this.showError('Failed to merge Ideas');
           console.error("Failed to get idea:", result.message);
         }
     }catch (error) {
       console.error('Error Merging Ideas:', error);
-    } finally {
-      this.isMerging = false;
     }
   }
 
@@ -182,6 +183,40 @@ export class AdminScreen implements OnInit, AfterViewInit {
     const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
     if (result.errCode === 0 && result.datarec) {
         this.showSuccess('Idea Approved');
+       for (const card of this.removedCards){
+        if (card.idea_details.status===0){
+        const removedIdea={
+        user_details: {
+          id: card.user_details.id,
+          name: card.user_details.name,
+          profile_picture: card.user_details.profile_picture
+        },
+        idea_details: {
+          id: card.idea_details.id,
+          title: card.idea_details.title,
+          subject: card.idea_details.subject,
+          status: card.idea_details.status,
+          created_at: "",
+          comments_count: 0
+        },
+        vote_details: {
+          user_vote_details:{
+            vote_id: 0,
+            vote_type: 0
+            },
+          vote_details: {
+            upvotes: 0,
+            downvotes: 0,
+            total: 0
+            }
+        }
+    }
+    this.all_cards.push(removedIdea)
+  }
+    if (merged_idea_id!==null) this.all_merged_cards = this.all_merged_cards.filter(card => card.merged_idea_details.id !== this.selectedMergedCard?.merged_idea_details.id);
+    else this.all_cards = this.all_cards.filter(card => card.idea_details.id !== this.selectedCard?.idea_details.id);
+
+  }
       } else {
         this.showError('Failed to Approve Idea');
         console.error("Failed to get idea:", result.message);
@@ -194,6 +229,8 @@ export class AdminScreen implements OnInit, AfterViewInit {
     const result: ApiResponse= await firstValueFrom(this.ideaService.update_user_idea(payload));
     if (result.errCode === 0 && result.datarec) {
         this.showSuccess('Idea Declined');
+        if (merged_idea_id!==null) this.all_merged_cards = this.all_merged_cards.filter(card => card.merged_idea_details.id !== this.selectedMergedCard?.merged_idea_details.id);
+        else this.all_cards = this.all_cards.filter(card => card.idea_details.id !== this.selectedCard?.idea_details.id);
       } else {
         console.error("Failed to get idea:", result.message);
         this.showError('Failed to Decline Idea');
@@ -255,6 +292,7 @@ export class AdminScreen implements OnInit, AfterViewInit {
     }
     setTimeout(() => {
     this.selectedCard = null;
+    window.location.reload();
     }, 150);
   }
 
@@ -271,7 +309,9 @@ export class AdminScreen implements OnInit, AfterViewInit {
     this.selectedMergedCard = null;
     this.showMergedIdea=true;
     this.isIdeaRemoved=false;
+    window.location.reload();
      }, 150);
+
   }
 
     showSuccess(message: string) {
