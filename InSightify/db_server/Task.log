@@ -1067,3 +1067,462 @@
 {"asctime": "2025-08-16 10:49:01,549", "levelname": "INFO", "message": "Execution Time: 19.5ms"}
 {"asctime": "2025-08-16 10:49:01,549", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
 {"asctime": "2025-08-16 10:49:01,549", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:30:35,896", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:30:35,897", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:30:35,897", "levelname": "INFO", "message": "Endpoint: adminmainwall"}
+{"asctime": "2025-08-16 11:30:35,928", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:30:35,928", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:30:35,928", "levelname": "INFO", "message": "Execution Time: 31.75ms"}
+{"asctime": "2025-08-16 11:30:35,928", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:30:35,928", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:30:37,840", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:30:37,840", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:30:37,840", "levelname": "INFO", "message": "Endpoint: adminmainwall"}
+{"asctime": "2025-08-16 11:30:37,857", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:30:37,857", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:30:37,857", "levelname": "INFO", "message": "Execution Time: 17.25ms"}
+{"asctime": "2025-08-16 11:30:37,857", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:30:37,857", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:30:39,865", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:30:39,865", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:30:39,865", "levelname": "INFO", "message": "Endpoint: adminmainwall"}
+{"asctime": "2025-08-16 11:30:39,885", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:30:39,885", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:30:39,885", "levelname": "INFO", "message": "Execution Time: 19.7ms"}
+{"asctime": "2025-08-16 11:30:39,885", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:30:39,885", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:31:15,855", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:31:15,856", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:31:15,856", "levelname": "INFO", "message": "Endpoint: adminmainwall"}
+{"asctime": "2025-08-16 11:31:15,878", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:31:15,878", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:31:15,878", "levelname": "INFO", "message": "Execution Time: 22.56ms"}
+{"asctime": "2025-08-16 11:31:15,878", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:31:15,878", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:33:48,129", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:33:48,129", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:33:48,129", "levelname": "INFO", "message": "Endpoint: adminmainwall"}
+{"asctime": "2025-08-16 11:33:48,146", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:33:48,146", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:33:48,146", "levelname": "INFO", "message": "Execution Time: 17.45ms"}
+{"asctime": "2025-08-16 11:33:48,147", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:33:48,147", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:38:13,410", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:38:13,410", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:38:13,410", "levelname": "INFO", "message": "Endpoint: adminmainwall"}
+{"asctime": "2025-08-16 11:38:13,429", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:38:13,429", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:38:13,429", "levelname": "INFO", "message": "Execution Time: 19.07ms"}
+{"asctime": "2025-08-16 11:38:13,429", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:38:13,429", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:41:51,056", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:42:00,635", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:44:08,831", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:44:46,850", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:45:14,701", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:49:40,895", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:50:07,518", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:50:07,519", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:50:07,519", "levelname": "INFO", "message": "Endpoint: sendquestions"}
+{"asctime": "2025-08-16 11:50:07,690", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:50:07,691", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:50:07,691", "levelname": "INFO", "message": "Execution Time: 172.26ms"}
+{"asctime": "2025-08-16 11:50:07,691", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:50:07,691", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:50:09,760", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:50:09,760", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 11:50:09,760", "levelname": "INFO", "message": "Endpoint: login"}
+{"asctime": "2025-08-16 11:50:09,979", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:50:09,979", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 11:50:09,979", "levelname": "INFO", "message": "Execution Time: 219.28ms"}
+{"asctime": "2025-08-16 11:50:09,979", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:50:09,979", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:50:10,014", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:50:10,014", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:50:10,014", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 11:50:10,037", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:50:10,037", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:50:10,037", "levelname": "INFO", "message": "Execution Time: 22.75ms"}
+{"asctime": "2025-08-16 11:50:10,037", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:50:10,037", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:50:14,046", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:50:14,046", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:50:14,047", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 11:50:14,051", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:50:14,052", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:50:14,052", "levelname": "INFO", "message": "Execution Time: 5.52ms"}
+{"asctime": "2025-08-16 11:50:14,052", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:50:14,052", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:51:07,875", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 11:51:43,872", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:51:43,873", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:51:43,873", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 11:51:43,956", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:51:43,956", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:51:43,956", "levelname": "INFO", "message": "Execution Time: 83.69ms"}
+{"asctime": "2025-08-16 11:51:43,956", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:51:43,956", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:54:33,026", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:54:33,026", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:54:33,027", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 11:54:33,038", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:54:33,038", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:54:33,038", "levelname": "INFO", "message": "Execution Time: 12.27ms"}
+{"asctime": "2025-08-16 11:54:33,039", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:54:33,039", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:55:06,667", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:55:06,668", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 11:55:06,668", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 11:55:06,708", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:55:06,708", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 11:55:06,708", "levelname": "INFO", "message": "Execution Time: 40.84ms"}
+{"asctime": "2025-08-16 11:55:06,708", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:55:06,708", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:55:45,505", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:55:45,506", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:55:45,506", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 11:55:45,590", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:55:45,590", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:55:45,590", "levelname": "INFO", "message": "Execution Time: 84.31ms"}
+{"asctime": "2025-08-16 11:55:45,590", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:55:45,590", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 11:55:48,609", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 11:55:48,610", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:55:48,610", "levelname": "INFO", "message": "Endpoint: ideadisplay"}
+{"asctime": "2025-08-16 11:55:48,631", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 11:55:48,631", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 11:55:48,631", "levelname": "INFO", "message": "Execution Time: 21.2ms"}
+{"asctime": "2025-08-16 11:55:48,631", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 11:55:48,631", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:11:27,371", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:11:27,628", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:11:39,335", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:11:40,720", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:11:40,721", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:11:40,721", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:11:40,830", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:11:40,831", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:11:40,831", "levelname": "INFO", "message": "Execution Time: 110.06ms"}
+{"asctime": "2025-08-16 12:11:40,831", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:11:40,831", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:11:43,520", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:11:43,521", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:11:43,521", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 12:11:43,534", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:11:43,534", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:11:43,534", "levelname": "INFO", "message": "Execution Time: 13.68ms"}
+{"asctime": "2025-08-16 12:11:43,534", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:11:43,535", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:11:57,910", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:11:57,910", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:11:57,910", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:11:57,935", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:11:57,935", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:11:57,935", "levelname": "INFO", "message": "Execution Time: 24.96ms"}
+{"asctime": "2025-08-16 12:11:57,935", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:11:57,935", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:12:02,227", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:12:02,227", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:12:02,227", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:12:02,253", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:12:02,253", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:12:02,254", "levelname": "INFO", "message": "Execution Time: 26.74ms"}
+{"asctime": "2025-08-16 12:12:02,254", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:12:02,254", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:12:43,979", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:12:43,980", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:12:43,980", "levelname": "INFO", "message": "Endpoint: ideadisplay"}
+{"asctime": "2025-08-16 12:12:44,004", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:12:44,004", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:12:44,004", "levelname": "INFO", "message": "Execution Time: 24.72ms"}
+{"asctime": "2025-08-16 12:12:44,004", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:12:44,004", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:12:53,076", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:12:53,077", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:12:53,077", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:12:53,121", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:12:53,122", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:12:53,122", "levelname": "INFO", "message": "Execution Time: 44.89ms"}
+{"asctime": "2025-08-16 12:12:53,122", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:12:53,122", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:13:02,029", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:13:02,029", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:13:02,029", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 12:13:02,037", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:13:02,038", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:13:02,038", "levelname": "INFO", "message": "Execution Time: 8.66ms"}
+{"asctime": "2025-08-16 12:13:02,038", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:13:02,038", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:13:59,879", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:13:59,880", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:13:59,880", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 12:13:59,885", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:13:59,885", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:13:59,885", "levelname": "INFO", "message": "Execution Time: 6.17ms"}
+{"asctime": "2025-08-16 12:13:59,885", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:13:59,885", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:14:08,444", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:14:08,445", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:14:08,445", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:14:08,494", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:14:08,494", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:14:08,494", "levelname": "INFO", "message": "Execution Time: 49.65ms"}
+{"asctime": "2025-08-16 12:14:08,494", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:14:08,494", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:16:30,221", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:16:37,200", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:16:37,200", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:16:37,201", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:16:37,381", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:16:37,381", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:16:37,381", "levelname": "INFO", "message": "Execution Time: 181.25ms"}
+{"asctime": "2025-08-16 12:16:37,381", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:16:37,381", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:16:40,546", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:16:40,546", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:16:40,546", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 12:16:40,558", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:16:40,558", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:16:40,558", "levelname": "INFO", "message": "Execution Time: 11.83ms"}
+{"asctime": "2025-08-16 12:16:40,558", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:16:40,558", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:16:54,030", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:16:54,030", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:16:54,031", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:16:54,053", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:16:54,054", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:16:54,054", "levelname": "INFO", "message": "Execution Time: 23.39ms"}
+{"asctime": "2025-08-16 12:16:54,054", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:16:54,054", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:19:51,950", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:20:01,714", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:20:01,715", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:20:01,715", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:20:01,800", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:20:01,800", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:20:01,800", "levelname": "INFO", "message": "Execution Time: 85.8ms"}
+{"asctime": "2025-08-16 12:20:01,800", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:20:01,800", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:20:52,345", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:23:23,759", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:25:41,417", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:26:12,391", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:26:57,634", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:26:59,195", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:26:59,195", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:26:59,195", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:26:59,331", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:26:59,331", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:26:59,331", "levelname": "INFO", "message": "Execution Time: 135.94ms"}
+{"asctime": "2025-08-16 12:26:59,331", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:26:59,331", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:27:00,821", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:27:00,821", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:27:00,821", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 12:27:00,831", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:27:00,831", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:27:00,831", "levelname": "INFO", "message": "Execution Time: 9.84ms"}
+{"asctime": "2025-08-16 12:27:00,831", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:27:00,831", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:27:13,283", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:27:13,284", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:27:13,284", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:27:13,309", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:27:13,309", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:27:13,309", "levelname": "INFO", "message": "Execution Time: 25.68ms"}
+{"asctime": "2025-08-16 12:27:13,309", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:27:13,310", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:28:27,582", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:28:35,063", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:28:35,064", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:28:35,064", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:28:35,139", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:28:35,139", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:28:35,139", "levelname": "INFO", "message": "Execution Time: 75.55ms"}
+{"asctime": "2025-08-16 12:28:35,139", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:28:35,139", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:29:17,847", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:29:24,975", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:29:24,976", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:29:24,976", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:29:25,052", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:29:25,053", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:29:25,053", "levelname": "INFO", "message": "Execution Time: 77.39ms"}
+{"asctime": "2025-08-16 12:29:25,053", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:29:25,053", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:30:40,432", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:30:40,675", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:30:52,766", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:30:52,767", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:30:52,767", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:30:52,898", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:30:52,898", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:30:52,898", "levelname": "INFO", "message": "Execution Time: 131.62ms"}
+{"asctime": "2025-08-16 12:30:52,898", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:30:52,898", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:31:56,430", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:35:04,782", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:35:15,324", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:35:15,325", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:35:15,325", "levelname": "INFO", "message": "Endpoint: userprofileupdate"}
+{"asctime": "2025-08-16 12:35:15,405", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:35:15,405", "levelname": "INFO", "message": "Method: POST post"}
+{"asctime": "2025-08-16 12:35:15,405", "levelname": "INFO", "message": "Execution Time: 80.9ms"}
+{"asctime": "2025-08-16 12:35:15,405", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:35:15,405", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:43:20,940", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:43:21,194", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:48:50,115", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 12:51:55,495", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:51:55,496", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:51:55,496", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:51:55,657", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:51:55,657", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:51:55,657", "levelname": "INFO", "message": "Execution Time: 161.34ms"}
+{"asctime": "2025-08-16 12:51:55,657", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:51:55,657", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:51:58,123", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:51:58,123", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:51:58,123", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 12:51:58,153", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:51:58,153", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:51:58,153", "levelname": "INFO", "message": "Execution Time: 29.85ms"}
+{"asctime": "2025-08-16 12:51:58,153", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:51:58,153", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 12:52:00,615", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 12:52:00,615", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:52:00,615", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 12:52:00,624", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 12:52:00,624", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 12:52:00,624", "levelname": "INFO", "message": "Execution Time: 9.54ms"}
+{"asctime": "2025-08-16 12:52:00,624", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 12:52:00,624", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:05:43,613", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:05:43,615", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:05:43,615", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:05:43,649", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:05:43,650", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:05:43,650", "levelname": "INFO", "message": "Execution Time: 36.13ms"}
+{"asctime": "2025-08-16 13:05:43,650", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:05:43,650", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:05:46,685", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:05:46,685", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:05:46,685", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:05:46,721", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:05:46,721", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:05:46,721", "levelname": "INFO", "message": "Execution Time: 35.98ms"}
+{"asctime": "2025-08-16 13:05:46,721", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:05:46,721", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:05:48,811", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:05:48,812", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:05:48,812", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 13:05:48,817", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:05:48,818", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:05:48,818", "levelname": "INFO", "message": "Execution Time: 6.07ms"}
+{"asctime": "2025-08-16 13:05:48,818", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:05:48,818", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:07:11,709", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:07:11,709", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:07:11,709", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:07:11,739", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:07:11,739", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:07:11,739", "levelname": "INFO", "message": "Execution Time: 29.93ms"}
+{"asctime": "2025-08-16 13:07:11,739", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:07:11,739", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:07:42,602", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:07:42,602", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:07:42,602", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:07:42,626", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:07:42,626", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:07:42,626", "levelname": "INFO", "message": "Execution Time: 24.3ms"}
+{"asctime": "2025-08-16 13:07:42,626", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:07:42,626", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:08:09,662", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:08:09,663", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:08:09,663", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:08:09,698", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:08:09,698", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:08:09,698", "levelname": "INFO", "message": "Execution Time: 35.74ms"}
+{"asctime": "2025-08-16 13:08:09,698", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:08:09,698", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:08:56,014", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:08:56,014", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:08:56,014", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:08:56,038", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:08:56,039", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:08:56,039", "levelname": "INFO", "message": "Execution Time: 24.86ms"}
+{"asctime": "2025-08-16 13:08:56,039", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:08:56,039", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:09:00,955", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:09:00,955", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:09:00,955", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:09:00,981", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:09:00,981", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:09:00,981", "levelname": "INFO", "message": "Execution Time: 26.11ms"}
+{"asctime": "2025-08-16 13:09:00,981", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:09:00,981", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:09:38,074", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:09:38,074", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:09:38,074", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:09:38,099", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:09:38,099", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:09:38,099", "levelname": "INFO", "message": "Execution Time: 24.95ms"}
+{"asctime": "2025-08-16 13:09:38,099", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:09:38,099", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:12:23,335", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:12:23,336", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:12:23,337", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:12:23,389", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:12:23,389", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:12:23,390", "levelname": "INFO", "message": "Execution Time: 53.82ms"}
+{"asctime": "2025-08-16 13:12:23,390", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:12:23,390", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:14:03,403", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:14:03,404", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:14:03,404", "levelname": "INFO", "message": "Endpoint: ideadisplay"}
+{"asctime": "2025-08-16 13:14:03,425", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:14:03,425", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:14:03,426", "levelname": "INFO", "message": "Execution Time: 22.41ms"}
+{"asctime": "2025-08-16 13:14:03,426", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:14:03,426", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:14:16,795", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:14:16,795", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:14:16,795", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 13:14:16,800", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:14:16,801", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:14:16,801", "levelname": "INFO", "message": "Execution Time: 5.9ms"}
+{"asctime": "2025-08-16 13:14:16,801", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:14:16,801", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:18:16,358", "levelname": "INFO", "message": "Routes registered successfully"}
+{"asctime": "2025-08-16 13:18:16,629", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:18:16,629", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:16,629", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:18:16,824", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:18:16,824", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:16,824", "levelname": "INFO", "message": "Execution Time: 195.01ms"}
+{"asctime": "2025-08-16 13:18:16,824", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:18:16,824", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:18:16,959", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:18:16,959", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:16,959", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:18:16,975", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:18:16,975", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:16,976", "levelname": "INFO", "message": "Execution Time: 16.22ms"}
+{"asctime": "2025-08-16 13:18:16,976", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:18:16,976", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:18:24,537", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:18:24,537", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:24,537", "levelname": "INFO", "message": "Endpoint: usermainwall"}
+{"asctime": "2025-08-16 13:18:24,563", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:18:24,563", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:24,563", "levelname": "INFO", "message": "Execution Time: 25.83ms"}
+{"asctime": "2025-08-16 13:18:24,563", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:18:24,563", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}
+{"asctime": "2025-08-16 13:18:26,155", "levelname": "INFO", "message": "=== RESOURCE CALL START ==="}
+{"asctime": "2025-08-16 13:18:26,156", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:26,156", "levelname": "INFO", "message": "Endpoint: userprofile"}
+{"asctime": "2025-08-16 13:18:26,164", "levelname": "INFO", "message": "=== RESOURCE CALL SUCCESS ==="}
+{"asctime": "2025-08-16 13:18:26,164", "levelname": "INFO", "message": "Method: GET get"}
+{"asctime": "2025-08-16 13:18:26,164", "levelname": "INFO", "message": "Execution Time: 8.26ms"}
+{"asctime": "2025-08-16 13:18:26,164", "levelname": "INFO", "message": "Response - ErrorCode: 0, Message: No message"}
+{"asctime": "2025-08-16 13:18:26,164", "levelname": "INFO", "message": "=== RESOURCE CALL END ==="}

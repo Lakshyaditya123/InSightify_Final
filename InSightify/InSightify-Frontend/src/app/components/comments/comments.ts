@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { ApiResponse, Comments, AddComment, Idea_large, Merged_idea_large } from '../../services/api-interfaces';
 import { IdeaService } from '../../services/idea';
 import { firstValueFrom } from 'rxjs';
-
+import { ImageUrlPipe } from '../../pipes/image-pipe'; // Import the new pipe
 @Component({
   selector: 'app-comments',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,ImageUrlPipe],
   templateUrl: './comments.html',
   styleUrls: ['./comments.css']
 })

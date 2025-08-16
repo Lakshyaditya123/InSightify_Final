@@ -15,7 +15,12 @@ class config:
     MODEL_NAME = "google/gemma-3-12b"
     REDDIS_URL = "redis://:12345@localhost:6379/0"
     LOG_FILE = "Task.log"
+    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    # Profile picture storage path (absolute)
+    PROFILE_PIC_PATH = os.path.join(BASE_DIR, "Files", "Profile_Pictures")
 
+    # URL prefix to serve these files
+    PROFILE_PIC_URL_PREFIX = "/static/Profile_Pictures"
     LM_CONFIG={"temperature": 0.2,
                 "max_tokens": 5000,
                 "stream": False}

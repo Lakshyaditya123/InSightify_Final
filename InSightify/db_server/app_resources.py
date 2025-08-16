@@ -119,8 +119,10 @@ class UserProfileUpdate(Resource):
     @staticmethod
     def post():
         user = ProfileHelper()
-        data = request.get_json()
-        return user.update_profile(data)
+        user_id = int(request.form.get("user_id"))
+        bio = request.form.get("bio", "")
+        file = request.files.get('profile_picture')
+        return user.update_profile(user_id,bio,file)
 
 class AddComment(Resource):
     @staticmethod

@@ -9,6 +9,7 @@ import { MergedIdeaDetails } from '../../components/merged-idea-details/merged-i
 import { AuthService } from '../../services/auth';
 import { IdeaService } from '../../services/idea';
 import { ApiResponse, CurrUser, Idea_large, Merged_idea_large, Idea_small, Merged_idea_small, TagsList, User_idea_details } from '../../services/api-interfaces';
+import { ImageUrlPipe } from '../../pipes/image-pipe'; // Import the new pipe
 
 declare var bootstrap: any;
 
@@ -17,7 +18,7 @@ declare var bootstrap: any;
   templateUrl: './admin-screen.html',
   styleUrls: ['./admin-screen.css'],
   standalone: true,
-  imports: [CommonModule, Navbar, IdeaDetails, MergedIdeaDetails, MatSnackBarModule],
+  imports: [CommonModule, Navbar, IdeaDetails, MergedIdeaDetails, MatSnackBarModule,ImageUrlPipe],
 })
 export class AdminScreen implements OnInit, AfterViewInit {
   // Arrays for displaying ideas

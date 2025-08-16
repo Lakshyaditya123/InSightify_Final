@@ -13,7 +13,7 @@ class SignupHelper:
     def signup(self, data):
         data.setdefault('security_question_id',1)
         data.setdefault('security_answer',"School name")
-        data.setdefault('profile_picture', "/assets/userLogo.png")
+        data.setdefault('profile_picture', "/static/Profile_Pictures/profile_picture.png")
         data.setdefault('bio', "No bio available")
         # Check if all required fields are provided
         if  data.get('name') and data.get('email') and data.get('mobile') and data.get('password') and  data.get('security_question_id') and data.get('security_answer') and data.get('profile_picture'):

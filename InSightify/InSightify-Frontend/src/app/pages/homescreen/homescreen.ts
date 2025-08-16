@@ -10,13 +10,14 @@ import { ApiResponse, Idea_small, Idea_large, Merged_idea_small, My_idea, Merged
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { VotesSection } from '../../components/votes-section/votes-section';
+import { ImageUrlPipe } from '../../pipes/image-pipe'; // Import the new pipe
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-homescreen',
   standalone: true,
-  imports: [CommonModule, Navbar, IdeaDetails, CreateAdd, MergedIdeaDetails, VotesSection],
+  imports: [CommonModule, Navbar, IdeaDetails, CreateAdd, MergedIdeaDetails, VotesSection, ImageUrlPipe],
   templateUrl: './homescreen.html',
   styleUrl: './homescreen.css'
 })

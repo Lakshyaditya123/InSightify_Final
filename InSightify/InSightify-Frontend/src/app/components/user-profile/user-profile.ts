@@ -1,86 +1,15 @@
-// import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { Router } from '@angular/router';
-// import { AuthService } from '../../services/auth';
-// import { CurrUser } from '../../services/api-interfaces';
-
-// @Component({
-//   selector: 'app-user-profile',
-//   standalone: true,
-//   imports: [CommonModule],
-//   templateUrl: './user-profile.html',
-//   styleUrls: ['./user-profile.css']
-// })
-
-// export class UserProfile implements OnInit {
-//   @Output() closeProfile = new EventEmitter<void>();
-//   currentUser: CurrUser | null = null;
-//   otherUser: CurrUser | null=null;
-//   isClosing = false;
-//   profile_role=""
-//   profile=""
-//   change_navigation=""
-//   isSuperAdmin=false;
-//   constructor(private authService: AuthService, private router: Router) {}
-
-//   ngOnInit() {
-//     this.currentUser = this.authService.getCurrentUser();
-//     this.profile_role=this.currentUser!.user_role
-//     if(this.profile_role==="Super Admin") this.isSuperAdmin=true;
-//     if(this.router.url.includes('/admin') && this.isSuperAdmin) {
-//       this.profile="User"
-//       this.change_navigation='/homescreen'
-//     }
-//     else if (this.router.url.includes('/homescreen') && this.isSuperAdmin){
-//       this.profile="Admin"
-//       this.change_navigation='/admin'
-//     }
-//   }
-
-//   startClose() {
-//     this.isClosing = true;
-//     setTimeout(() => {
-//       this.closeProfile.emit();
-//     }, 300);
-//   }
-
-//   logout() {
-//     this.authService.clearUser();
-//     this.router.navigate(['/login']); 
-//     this.startClose();
-//   }
-
-//   switchProfile() {
-//     if(this.isSuperAdmin) {
-//       this.router.navigate([this.change_navigation]); 
-//     }
-//     this.startClose();
-//   }
-
-//   onBackdropClick() {
-//     this.startClose();
-//   }
-
-//   openOtherProfile(user_id: number){
-//     // this.otherUser=this.authService.user_profile(user_id)
-//   } 
-
-//   onPanelClick(event: Event) {
-//     event.stopPropagation();
-//   }
-// }
-
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { ApiResponse, CurrUser } from '../../services/api-interfaces';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ImageUrlPipe } from '../../pipes/image-pipe'; // Import the new pipe
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,ImageUrlPipe],
   templateUrl: './user-profile.html',
   styleUrls: ['./user-profile.css']
 })
@@ -95,16 +24,16 @@ export class UserProfile implements OnInit {
   isSuperAdmin = false;
   isEditMode = false;
   profileForm: FormGroup;
+  selectedProfilePic: File | null = null;
 
   constructor(
     private authService: AuthService, 
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.profileForm = this.fb.group({
-      bio: [''],
-      profile_picture: ['']
-    });
+   this.profileForm = this.fb.group({
+    bio: [this.displayUser?.user_bio || '']
+  });
   }
 
  currentModeLabel = '';
@@ -148,19 +77,28 @@ ngOnInit() {
     }
   }
 
+  onProfilePicSelected(event: any) {
+  const file: File = event.target.files[0];
+  if (file && file.type === 'image/png') {
+    this.selectedProfilePic = file;
+  } else {
+    alert("Only PNG files are allowed.");
+  }
+}
   saveProfile() {
     if (!this.profileForm.valid || !this.currentUser) return;
 
-    const payload = {
-      user_id: this.currentUser.user_id,
-      ...this.profileForm.value
-    };
+   const formData = new FormData();
+    formData.append('user_id', String(this.currentUser.user_id));    formData.append('bio', this.profileForm.get('bio')?.value || '');
 
-    this.authService.update_user_profile(payload).subscribe({
+    if (this.selectedProfilePic) {
+      formData.append('profile_picture', this.selectedProfilePic);
+    }
+
+    this.authService.update_user_profile(formData).subscribe({
       next: (res: ApiResponse) => {
         if (res.errCode === 0) {
           this.displayUser = { ...this.displayUser, ...res.datarec };
-          // If the updated user is the currently logged-in user, update local storage
           if (this.currentUser && this.currentUser.user_id === res.datarec.user_id) {
             this.authService.setUser(res.datarec);
           }
