@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.1.6" use-changelog="false" max-obj-count="15"
+	 last-position="55,-1" last-zoom="0.75" scene-rect="0,-1,2094.1,1207.72"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="NewInSightify" encoding="UTF8" lc-collate="C" lc-ctype="C" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<schema name="in_use" layers="0" rect-visible="true" fill-color="#b0ab89" name-color="#000000">
+	<role name="postgres"/>
+</schema>
+
+<table name="roles" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="100" y="120"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="roles" not-null="true">
+		<type name="character" length="0"/>
+	</column>
+	<column name="description" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="roles_pk" type="pk-constr" table="in_use.roles">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_roles" type="uq-constr" table="in_use.roles">
+		<columns names="roles" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="roles_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="users" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="820" y="40"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2security_ques" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="mob_number" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="security_ques_answer" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="profile_picture" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="bio">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="users_pk" type="pk-constr" table="in_use.users">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_email" type="uq-constr" table="in_use.users">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_profile_picture" type="uq-constr" table="in_use.users">
+		<columns names="profile_picture" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="users_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="votes" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="840" y="680"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2users" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2ideas">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2merged_ideas">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2comments">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="vote_type" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="votes_pk" type="pk-constr" table="in_use.votes">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="votes_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="ideas" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="200" y="320"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2users" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="title" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="subject" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="content" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="refine_content">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="tags_list">
+		<type name="smallint" length="0" dimension="1"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="file_path">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="parent_idea">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="ideas_pk" type="pk-constr" table="in_use.ideas">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="ideas_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="comments" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="1500" y="340"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2users" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2ideas">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="this_obj2merged_ideas">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="parent_comment" default-value="'-1'::integer">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="content" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="comments_pk" type="pk-constr" table="in_use.comments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="comments_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="tags" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="840" y="980"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="tag_desc" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="generated_by" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="tags_pk" type="pk-constr" table="in_use.tags">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tags_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="merged_ideas" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="1500" y="860"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="title">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="subject" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="content" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="tags_list">
+		<type name="smallint" length="0" dimension="1"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="create_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="lastchange_datetime" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="merged_ideas_pk" type="pk-constr" table="in_use.merged_ideas">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="merged_ideas_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<sequence name="ideas_merged_ideas_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="ideas_merged_ideas" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="220" y="860"/>
+	<column name="id" not-null="true" sequence="in_use.ideas_merged_ideas_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="id_merged_ideas" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="id_ideas" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="ideas_merged_ideas_pk" type="pk-constr" table="in_use.ideas_merged_ideas">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="users_roles_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="users_roles" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="480" y="120"/>
+	<column name="id" not-null="true" sequence="in_use.users_roles_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="id_roles" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="id_users" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="users_roles_pk" type="pk-constr" table="in_use.users_roles">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="security_ques" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+	<position x="1440" y="140"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS" start="1" increment="1" min-value="1" max-value="32767" cache="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="content" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="pk_security_ques" type="pk-constr" table="in_use.security_ques">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="security_ques_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="32767" cache="1" sql-disabled="true">
+	<schema name="in_use"/>
+	<role name="postgres"/>
+</sequence>
+
+<constraint name="fk_this_obj2security_ques" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.security_ques" table="in_use.users">
+	<columns names="this_obj2security_ques" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2users" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.users" table="in_use.votes">
+	<columns names="this_obj2users" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2ideas" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.ideas" table="in_use.votes">
+	<columns names="this_obj2ideas" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2comments" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.comments" table="in_use.votes">
+	<columns names="this_obj2comments" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2merged_ideas" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.merged_ideas" table="in_use.votes">
+	<columns names="this_obj2merged_ideas" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2user" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.users" table="in_use.ideas">
+	<columns names="this_obj2users" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2users" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.users" table="in_use.comments">
+	<columns names="this_obj2users" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2ideas" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.ideas" table="in_use.comments">
+	<columns names="this_obj2ideas" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_this_obj2merged_ideas" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="in_use.merged_ideas" table="in_use.comments">
+	<columns names="this_obj2merged_ideas" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="merged_ideas_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="in_use.merged_ideas" table="in_use.ideas_merged_ideas">
+	<columns names="id_merged_ideas" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ideas_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="in_use.ideas" table="in_use.ideas_merged_ideas">
+	<columns names="id_ideas" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="roles_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="in_use.roles" table="in_use.users_roles">
+	<columns names="id_roles" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="users_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="in_use.users" table="in_use.users_roles">
+	<columns names="id_users" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_users_security_ques" type="relfk" layers="0"
+	 custom-color="#bf5ac0"
+	 src-table="in_use.users"
+	 dst-table="in_use.security_ques" reference-fk="fk_this_obj2security_ques"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_votes_users" type="relfk" layers="0"
+	 custom-color="#f2a4b5"
+	 src-table="in_use.votes"
+	 dst-table="in_use.users" reference-fk="fk_this_obj2users"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_votes_ideas" type="relfk" layers="0"
+	 custom-color="#4f4778"
+	 src-table="in_use.votes"
+	 dst-table="in_use.ideas" reference-fk="fk_this_obj2ideas"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_votes_comments" type="relfk" layers="0"
+	 custom-color="#f2682b"
+	 src-table="in_use.votes"
+	 dst-table="in_use.comments" reference-fk="fk_this_obj2comments"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ideas_users" type="relfk" layers="0"
+	 custom-color="#8ead1b"
+	 src-table="in_use.ideas"
+	 dst-table="in_use.users" reference-fk="fk_this_obj2user"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_comments_users" type="relfk" layers="0"
+	 custom-color="#1619c8"
+	 src-table="in_use.comments"
+	 dst-table="in_use.users" reference-fk="fk_this_obj2users"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_comments_ideas" type="relfk" layers="0"
+	 custom-color="#f77585"
+	 src-table="in_use.comments"
+	 dst-table="in_use.ideas" reference-fk="fk_this_obj2ideas"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_comments_merged_ideas" type="relfk" layers="0"
+	 custom-color="#bbcd09"
+	 src-table="in_use.comments"
+	 dst-table="in_use.merged_ideas" reference-fk="fk_this_obj2merged_ideas"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ideas_merged_ideas_merged_ideas" type="relfk" layers="0"
+	 custom-color="#731aab"
+	 src-table="in_use.ideas_merged_ideas"
+	 dst-table="in_use.merged_ideas" reference-fk="merged_ideas_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_ideas_merged_ideas_ideas" type="relfk" layers="0"
+	 custom-color="#f3e493"
+	 src-table="in_use.ideas_merged_ideas"
+	 dst-table="in_use.ideas" reference-fk="ideas_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_users_roles_roles" type="relfk" layers="0"
+	 custom-color="#9806d6"
+	 src-table="in_use.users_roles"
+	 dst-table="in_use.roles" reference-fk="roles_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_users_roles_users" type="relfk" layers="0"
+	 custom-color="#41cfc1"
+	 src-table="in_use.users_roles"
+	 dst-table="in_use.users" reference-fk="users_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_votes_merged_ideas" type="relfk" layers="0"
+	 src-table="in_use.votes"
+	 dst-table="in_use.merged_ideas" reference-fk="fk_this_obj2merged_ideas"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
