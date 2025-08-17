@@ -3,6 +3,7 @@ from sqlalchemy.orm import joinedload
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.Flask_app import app_logger
 from InSightify.db_server.app_orm import Idea, Vote, Comment, Tag, MergedIdea
+from InSightify.Common_files.config import config
 
 
 class IdeaCRUD(BaseCRUD):
@@ -223,7 +224,7 @@ class IdeaCRUD(BaseCRUD):
                     continue
                 overlap = input_tags.intersection(set(other.tags_list))
                 ratio = len(overlap) / len(input_tags)
-                if ratio >= (2/7):
+                if ratio >= config.SIMILARITY_RATIO:
                     similar_ideas.append(other)
             if similar_ideas:
                 self.db_response.get_response(

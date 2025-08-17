@@ -65,7 +65,6 @@ export class Homescreen implements OnInit {
     ticket_modal?.addEventListener('hidden.bs.modal',()=>{
       this.close_ticket_details_modal();
     })
-
     const merged_ticket_modal=document.getElementById('merged_ticket_details_modal');
     merged_ticket_modal?.addEventListener('shown.bs.modal', () => {
       this.modalWidth = this.modelContent.nativeElement.offsetWidth;

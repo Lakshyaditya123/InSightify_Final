@@ -1,6 +1,6 @@
 from InSightify.Common_files.base_crud import BaseCRUD
 from InSightify.db_server.app_orm import IdeasMergedIdeas
-from InSightify.db_server.Flask_app import app_logger  # Import app_logger
+
 
 
 class IdeasMergedIdeasCRUD(BaseCRUD):

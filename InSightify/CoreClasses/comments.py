@@ -49,10 +49,3 @@ class CommentCRUD(BaseCRUD):
             self.db_response.get_response(errCode=0, msg="Found all comments!", obj=comments_send)
 
         return self.db_response.send_response()
-
-    def get_by_user(self, user_id):
-        return self.get_by_fields(this_obj2users=user_id)
-
-    def get_replies(self, parent_comment_id):
-        return self.get_by_fields(parent_comment=parent_comment_id)
-

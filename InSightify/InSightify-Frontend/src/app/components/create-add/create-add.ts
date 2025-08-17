@@ -16,7 +16,7 @@ import { Editor, Toolbar, NgxEditorModule } from 'ngx-editor';
 })
 export class CreateAdd implements OnInit {
   addIdeaForm!: FormGroup;
-  selectedFile: File | null = null;
+  selectedFiles: File[]=[];
 
   // newTagForm!: FormGroup;
   //State Management
@@ -85,8 +85,8 @@ editor!: Editor;
   onFileSelected(event: Event): void {
   const input = event.target as HTMLInputElement;
   if (input.files && input.files.length > 0) {
-    this.selectedFile = input.files[0];
-    console.log('Selected file:', this.selectedFile);
+    this.selectedFiles.push(input.files[0])
+    console.log('Selected file:', this.selectedFiles);
   }
 }
 
@@ -205,7 +205,7 @@ editor!: Editor;
     description: '',
     generated_by: 'Human',
   };
-    this.selectedFile = null;
+    this.selectedFiles = [];
     this.isSubmitting= false;
     this.isRefining=false;
 
@@ -224,6 +224,9 @@ get contentControl(): FormControl {
 
   // Close the modal
   closeModal() {
+    const mainBtn = document.querySelector('.add-more-btn') as HTMLElement;
+    if (mainBtn) mainBtn.focus();
+    else document.body.focus();
     const modalElement = document.getElementById('addIdea_modal');
     if (modalElement) {
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
@@ -231,6 +234,9 @@ get contentControl(): FormControl {
         modal.hide();
       }
     }
+    setTimeout(() => {
+    this.resetForm();
+     }, 150);
   }
 
   // Get character count for description

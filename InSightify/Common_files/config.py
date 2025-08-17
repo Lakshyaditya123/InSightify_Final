@@ -18,7 +18,7 @@ class config:
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     # Profile picture storage path (absolute)
     PROFILE_PIC_PATH = os.path.join(BASE_DIR, "Files", "Profile_Pictures")
-
+    SIMILARITY_RATIO = 2/7
     # URL prefix to serve these files
     PROFILE_PIC_URL_PREFIX = "/static/Profile_Pictures"
     LM_CONFIG={"temperature": 0.2,
